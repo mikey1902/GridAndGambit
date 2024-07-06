@@ -40,8 +40,10 @@ public class createGrid : MonoBehaviour
                 if (i % 2 == 0){
                 currentObject.GetComponent<Renderer>().material.color = j % 2 == 0 ? Color.black : Color.white;
                 } else {
-                currentObject.GetComponent<Renderer>().material.color = j % 2 == 0 ? Color.white : Color.black;
+                currentObject.GetComponent<Renderer>().material.color = j % 2 == 0 ? Color.white : Color.black; 
                 }
+                node.originalColor = currentObject.GetComponent<Renderer>().material.color;
+
                  nlist.Add(currentObject.transform);    
             }
         }
