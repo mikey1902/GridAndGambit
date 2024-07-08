@@ -3,8 +3,7 @@ using UnityEngine;
 public class AreaSelect : MonoBehaviour
 {
     private Vector2[] a;
-    private GameObject[] b;
-
+    private List<GameObject> b;
     public GameObject fodder;
     private Vector2[] pat;
     private int[,] definePattern;
@@ -12,7 +11,7 @@ public class AreaSelect : MonoBehaviour
     public GridManager createGrid;
 
     public GameObject chessUnit;
-	// public GameObject fodder;
+    public List<GameObject> path;
 
 	void Awake()
 	{
@@ -20,29 +19,22 @@ public class AreaSelect : MonoBehaviour
 	}
 	void Start()
     {
-        
-       // call(chessUnit.GetComponent<gridInteg>().gcord, new Vector2(1, 0), "S", 3);
-
-        
-            //GetNodeFromVec(new Vector2(0, 1), createGrid.nlist));
+    
     }
 
     void Update(){
-
-            if(Input.GetKeyDown("space")){
-            call(chessUnit.GetComponent<gridInteg>().gcord, new Vector2(1, -1), "S", 5);
-
-            }
+        if(Input.GetKeyDown("space")){
+        path = call(chessUnit.GetComponent<gridInteg>().gcord, new Vector2(-1, 1), "S", 4);
+        }
     }
-    public GameObject[] call(Vector2 orig, Vector2 orient, string type, int len)
+    public List<GameObject> call(Vector2 orig, Vector2 orient, string type, int len)
     {
         a = returnDamageGroup(type, orig, orient, len);
         Debug.Log(a[1]);
-        b = new GameObject[a.Length];
+        b = new List<GameObject>();
         for (var i = 0; i < a.Length; i++)
         {
-            //Debug.Log(a[i]);
-            b[i] = GetNodeFromVec(a[i], createGrid.cellTransforms);
+            b.Add(GetNodeFromVec(a[i], createGrid.cellTransforms));
             if (b[i] != null)
             {
                 b[i] = GetNodeFromVec(a[i], createGrid.cellTransforms);

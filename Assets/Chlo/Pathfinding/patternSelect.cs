@@ -13,7 +13,7 @@ public class patternSelect : MonoBehaviour
     private int[] patterns;
     private AreaSelect AreaSelect;
     //public pathFind pathFind;
-    public GameObject[] pth;
+    public List<GameObject> pth;
   
 
 
