@@ -390,8 +390,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: 
-  sourceBankPath: 
+  sourceProjectPath: ../../../../Downloads/testproject - FMOD/testproject.fspro
+  sourceBankPath: ../../../../Downloads/testproject - FMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -423,10 +423,10 @@ MonoBehaviour:
   StopEventsOutsideMaxDistance: 0
   BoltUnitOptionsBuildPending: 0
   EnableErrorCallback: 0
-  SharedLibraryUpdateStage: 3
-  SharedLibraryTimeSinceStart: 495.5527428
+  SharedLibraryUpdateStage: 0
+  SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131617
-  HideSetupWizard: 0
+  HideSetupWizard: 1
   LastEventReferenceScanVersion: 131617
   Platforms:
   - {fileID: -5053646880941018164}
