@@ -6,10 +6,10 @@ public class Node : MonoBehaviour
   public LayerMask unwalkableMask;
   public bool walkable;
   public bool occupied;
-  public Vector3 gcord;
+  public Vector2 gcord;
 
   public Color originalColor;
-  public Vector3 Gcord
+  public Vector2 Gcord
   {
     get
     {

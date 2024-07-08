@@ -7,7 +7,7 @@ using System;
 public class pathFind : MonoBehaviour
 {
     public AreaSelect AreaSelect;
-    public GameObject pl;
+    //public GameObject pl;
     public GameObject gridOb;
     private List<Transform> possMoves;
     [SerializeField] private GameObject[] enemies;
@@ -20,110 +20,51 @@ public class pathFind : MonoBehaviour
     public gridInteg gridInteg;
     public bool enemyMoving;
     public bool enemyTurnDone;
-    private Vector3 newPosition;
+    private Vector2 newPosition;
    // public Animator Ani;
     private Coroutine mvCoroutine;
-    public List<Vector3> pubDirs;
+    public List<Vector2> pubDirs;
     private void Awake()
     {
       
         gridOb = GameObject.Find("ChessGrid");
     }
-    //TESTING SWITCH CASE AND FILTER CODE GOES HERE UNTIL BEN MAKES TURN SYSTEM
-    //e.g 
-    /*
-    switch(item.GetComponent<SCRIPTNAME>().string){
-    case "Charger":
 
-    startFunc(x, z);
-    break;
-    }
-    */
-    /// <summary>
-    /// jank if statement for each offset position, throw it in a function  and forgor about it 
-    /// 
-    /// <returns></returns>
-
-
-    //This is essentially the function that calls everything else, if you are going to make the enemy do anything special -  
-    //I'd make a COPY of this and go from there - lots of things use this.
-    public List<GameObject> startFunc(Vector3 TargetPos, Vector3 currentPosition, GameObject item, int stepLength, string TYPE)
-    {
-            Vector3 reroll(Vector3 TargetPos) {
-            System.Random rand = new System.Random();
-            x = rand.Next(-2, 2);
-            z = rand.Next(-2, 2);
-            return new Vector3(x, 0, z) + TargetPos;
-            }
-        pubDirs = new List<Vector3>();
-        nextMove = new List<GameObject>();  
-
-    switch(TYPE){
-    case "SD":           
-        var ret = returnPoint(reroll(TargetPos));
-        int n = 0;
-        while (ret == null)
-        {
-            n += 1;
-            ret = returnPoint(reroll(TargetPos));
-            if (n > 10) break;
-        }
-        
+    public List<GameObject> startFunc(List<GameObject> nextMove, Vector2 currentPosition, GameObject item, int length)
+    {        
+       /* pubDirs = new List<Vector2>();
         StartCoroutine(moveWithDelay(ret.transform, item));
-        break;
-        
-        case "SP":
-        for (var i = 0; i < stepLength; i++)
-        {
-            if (i >= 1)
-            {      
-                nextMove.Add(tryEMoving(TargetPos, newPosition, item));
-            }
-            else
-            {       
-                nextMove.Add(tryEMoving(TargetPos, currentPosition, item));
-            }
-        }
-            break;
-            default:
-            Debug.Log("Game don't work"); 
-            break;
-        }  
-        GameObject nxtMv = nextMove[nextMove.Count - 1];
-        nxtMv.GetComponent<Node>().occupied = true;
+        GameObject finalDestination = nextMove[nextMove.Count - 1];
+        finalDestination.GetComponent<Node>().occupied = true;
         if (mvCoroutine != null)
         {
             StopCoroutine(mvCoroutine);
         }
-        mvCoroutine = StartCoroutine(sMoveObject(nextMove, item, 1.0f));
+        mvCoroutine = StartCoroutine(sMoveObject(nextMove, item, 1.0f));*/
         return nextMove;
+
     }
-
-
- 
-
-    public void moveObject(Transform trnf, GameObject item)
+   /* public void moveObject(Transform trnf, GameObject item)
     {
         item.transform.position = trnf.position;
         ps.enemyMoves = 0;
+    }*/
 
-    }
 
-
-    public string deconS(Vector3 vector){
+    public string deconS(Vector2 vector){
         string conv(float a){
         return Convert.ToString(a);
         }
-        return conv(vector.x) + conv(vector.z);
+        return conv(vector.x) + conv(vector.y);
     }
 
 
 
-    public IEnumerator moveWithDelay(Transform trnf, GameObject item){
+   /* public IEnumerator moveWithDelay(Transform trnf, GameObject item){
         yield return new WaitForSeconds(1.0f);
         item.transform.position = trnf.position;
         ps.enemyMoves = 0;
-    }
+    }*/ 
 
 
 
@@ -144,36 +85,36 @@ public class pathFind : MonoBehaviour
         while (elapsedTime < timeToMove)
         {
             float t = elapsedTime / timeToMove;
-            item.transform.position = new Vector3(Mathf.Lerp(origPos.x, target.position.x, t), 0, Mathf.Lerp(origPos.z, target.position.z, t));
+            item.transform.position = new Vector3(Mathf.Lerp(origPos.x, target.position.x, t),0, Mathf.Lerp(origPos.y, target.position.y, t));
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }    
         yield return new WaitForSeconds(1.0f);
         item.transform.position = target.position;        
     }
-    ps.enemyMoves = 0;
+    //ps.enemyMoves = 0;
 }
 
-    public GameObject tryEMoving(Vector3 goal, Vector3 currentPosition, GameObject Actor)
+  /*  public GameObject tryEMoving(Vector2 goal, Vector2 currentPosition, GameObject Actor)
     {
         var PGC = new List<GameObject>();
         GC = gridOb.GetComponent<createGrid>().nlist;
         var gCord = Actor.GetComponent<gridInteg>().Gcord;
-        Vector3 right = new Vector3(1, 0, 0);
-        Vector3 left = new Vector3(-1, 0, 0);
-        Vector3 backward = new Vector3(0, 0, -1);
-        Vector3 forward = new Vector3(0, 0, 1);
-        Vector3[] dir = { right, left, backward, forward };
-        List<Vector3> dirs = dir.ToList();
-        List<Vector3> tmpDirs = procDirs(dirs, GC, gCord); 
-        Vector3 shortSightedChoice = tmpDirs.OrderBy(vec => Vector3.Distance(vec + gCord, goal)).First();
+        Vector2 right = new Vector2(1,  0);
+        Vector2 left = new Vector2(-1,  0);
+        Vector2 backward = new Vector2(0,  -1);
+        Vector2 forward = new Vector2(0,  1);
+        Vector2[] dir = { right, left, backward, forward };
+        List<Vector2> dirs = dir.ToList();
+        List<Vector2> tmpDirs = procDirs(dirs, GC, gCord); 
+        Vector2 shortSightedChoice = tmpDirs.OrderBy(vec => Vector2.Distance(vec + gCord, goal)).First();
         pubDirs.Add(shortSightedChoice);
         newPosition = currentPosition + shortSightedChoice;
        return  returnPoint(newPosition);
    
-}
+}*/
 
-private GameObject? returnPoint(Vector3 pos){
+private GameObject? returnPoint(Vector2 pos){
 GC = gridOb.GetComponent<createGrid>().nlist;
 for (var i = 0; i < GC.Count; i++){
             var ND = GC[i].gameObject.GetComponent<Node>();
@@ -187,10 +128,10 @@ for (var i = 0; i < GC.Count; i++){
 }
 return null;
 }
-
-    private List<Vector3> procDirs(List<Vector3> dirs, List<Transform> GC, Vector3 cP)
+/*
+    private List<Vector2> procDirs(List<Vector2> dirs, List<Transform> GC, Vector2 cP)
     {
-        List<Vector3> tempDir = new List<Vector3>();
+        List<Vector2> tempDir = new List<Vector2>();
         for (var i = 0; i < dirs.Count; i++)
         {
             for (var j = 0; j < GC.Count; j++)
@@ -206,16 +147,16 @@ return null;
             }
         }
         return tempDir;
-    } 
+    } */
  
     /// <summary>
     /// VESTIGAL FUNKY CODE THAT LINKS TOLD OUTDATED SCRIPTS
     /// 
 
 
-    public List<GameObject> tryMoving(Vector3 xy, GameObject Gamer)
+   /* public List<GameObject> tryMoving(Vector2 xy, GameObject Gamer)
     {
-        List<GameObject> returnCub(Vector3 xy)
+        List<GameObject> returnCub(Vector2 xy)
         {
             GC = Gamer.GetComponent<createGrid>().nlist;
             var PGC = new List<GameObject>();
@@ -232,12 +173,12 @@ return null;
             }
             return PGC;
         }
-        Vector3 reroll(Vector3 gcord)
+     /*   Vector2 reroll(Vector2 gcord)
         {
             System.Random rand = new System.Random();
             x = rand.Next(-2, 2);
             z = rand.Next(-2, 2);
-            var a = new Vector3(x, 0, z) + gcord;
+            var a = new Vector2(x, z) + gcord;
             return a;
         }
         var ret = returnCub(xy);
@@ -250,6 +191,7 @@ return null;
         }
         return ret;
     }
+    }*/
 }
 
      

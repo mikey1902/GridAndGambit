@@ -8,92 +8,63 @@ public class patternSelect : MonoBehaviour
 {
 
     private gridInteg gridInteg;
-    public GameObject tbs;
-    [SerializeField] private GameObject pl;
-    [SerializeField] private Vector3 plC;
-    private GameObject pathManager;
-    public string enemyType;
+    [SerializeField] GameObject pathManager;
+    public string card;
     private int[] patterns;
-    public int enMoves;
     private AreaSelect AreaSelect;
-    public pathFind pathFind;
-    private List<GameObject> pth;
-    public float Initiative;
-    public bool isMoving;
-    public int enemyMoves;
-    private bool playerTurn;
-   // private Animator ani;
-    /*  public int[] allowedPatterns
-      {
-          get
-          {
-              return patterns;
-          }
-          set
-          {
-              patterns = value;
-          }
-      }
-  */
+    //public pathFind pathFind;
+    public GameObject[] pth;
+  
 
 
     void Start()
-    {   
-
-
-        
-        tbs = GameObject.Find("EventSystem");
-       // playerTurn = tbs.GetComponent<TurnbaseSystem>().playersTurn;
+    {
         gridInteg = gameObject.GetComponent<gridInteg>();
-      //  isMoving = false;
         pathManager = GameObject.Find("PathManager");
-        pathFind = pathManager.GetComponent<pathFind>();
+        //pathFind = pathManager.GetComponent<pathFind>();
         AreaSelect = pathManager.GetComponent<AreaSelect>();
-     //   ani = transform.GetChild(0).GetComponent<Animator>();
-        /*
- 
-*/
+        
+        //ultizeCard(new Vector2(0, 1));
+        
     }
     void Update()
     {
-      //  pl = FindObjectOfType<newPlayerMovement>().gameObject;
-        plC = pl.GetComponent<gridInteg>().gcord;
+            
+        //performAttack(, new Vector2(0, 1), "S", 3);
+        //  pl = FindObjectOfType<newPlayerMovement>().gameObject;
+      //  plC = pl.GetComponent<gridInteg>().gcord;
     }
 
-    private void performAttack(Vector2 orient, int length)
-    {   
-    AreaSelect.call(patterns[Random.Range(0, patterns.Length)], pl.GetComponent<gridInteg>().gcord);
-    }
-    public void ultizeCard(ScriptableObject card, Vector2 orient)
+   
+    public void ultizeCard(Vector2 orient)
     {
         bool returnRand(int min, int max)
         {
             Randoms rand = new System.Random();
             return Convert.ToBoolean(rand.Next(min, max));
         }
-       /* switch (card.nameProperty)
-        {
-            case "Sheep":
-                pathFind.startFunc(plC, gameObject.GetComponent<gridInteg>().Gcord, gameObject, 4, "SP");                                                   //                                                                                                                                           // Debug.Log("PLAYER TARGET: " + plC);
-                performAttack(card, orient);
-                break;
-
-
-            case "SD":
-               // pathFind.startFunc(plC, gameObject.GetComponent<gridInteg>().Gcord, gameObject, 1, "SD");
-                performAttack(card, orient);
-                
-                break;
-    }*/
+       
+                pth = AreaSelect.call(gameObject.GetComponent<gridInteg>().Gcord, orient, card, 3);
+                //pathFind.startFunc(plC, gameObject.GetComponent<gridInteg>().Gcord, gameObject, 4, "SP");   
+        
     }
 
-    private IEnumerator delay(){
+    private IEnumerator delay()
+    {
         //ani.SetBool("teleport", true);
         new WaitForSeconds(1.0f);
-        pathFind.startFunc(plC, gameObject.GetComponent<gridInteg>().Gcord, gameObject, 1, "SD");
+        // pathFind.startFunc(plC, gameObject.GetComponent<gridInteg>().Gcord, gameObject, 1, "SD");
         //ani.SetBool("teleport", false);
         yield return new WaitForEndOfFrame();
 
     }
-   
+
+    void OnDrawGizmosSelected()
+    {
+        // Draws a blue line from this transform to the target
+        /*Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, target.position);*/
+    }
 }
+
+

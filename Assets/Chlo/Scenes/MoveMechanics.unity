@@ -267,6 +267,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1703649170700293235, guid: 9dd05fb7ae5b53a438812dd00083942b, type: 3}
+      propertyPath: maxY
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3582188707370103388, guid: 9dd05fb7ae5b53a438812dd00083942b, type: 3}
       propertyPath: m_Name
       value: ChessGrid
@@ -286,15 +290,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4904112424143578604, guid: 9bad8beb5b6971f498d68df6e2f90575, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4904112424143578604, guid: 9bad8beb5b6971f498d68df6e2f90575, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.8
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 4904112424143578604, guid: 9bad8beb5b6971f498d68df6e2f90575, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4904112424143578604, guid: 9bad8beb5b6971f498d68df6e2f90575, type: 3}
       propertyPath: m_LocalPosition.z
@@ -335,7 +339,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7923741643637419582, guid: 9bad8beb5b6971f498d68df6e2f90575, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2008581043}
   m_SourcePrefab: {fileID: 100100000, guid: 9bad8beb5b6971f498d68df6e2f90575, type: 3}
 --- !u!1 &1816330405
 GameObject:
@@ -346,6 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1816330406}
+  - component: {fileID: 1816330407}
   m_Layer: 0
   m_Name: PathManager
   m_TagString: Untagged
@@ -366,5 +374,57 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1816330407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816330405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21792f0daaa61ae4e8747c194572e14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fodder: {fileID: 360262440654651145, guid: 92bfed307d6231d41822d8ea47c65c2e, type: 3}
+  chessObj: {fileID: 2034831161}
+  createGrid: {fileID: 2034831162}
+  chessUnit: {fileID: 2008581042}
+--- !u!1 &2008581042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7923741643637419582, guid: 9bad8beb5b6971f498d68df6e2f90575, type: 3}
+  m_PrefabInstance: {fileID: 1784905918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2008581043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008581042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1d26e46c6addd4a8ca2466f1abe08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathManager: {fileID: 0}
+  card: S
+  pth: []
+--- !u!1 &2034831161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3582188707370103388, guid: 9dd05fb7ae5b53a438812dd00083942b, type: 3}
+  m_PrefabInstance: {fileID: 1743975090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2034831162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1703649170700293235, guid: 9dd05fb7ae5b53a438812dd00083942b, type: 3}
+  m_PrefabInstance: {fileID: 1743975090}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034831161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab34ed192f7e1954e9d147c2165fc18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

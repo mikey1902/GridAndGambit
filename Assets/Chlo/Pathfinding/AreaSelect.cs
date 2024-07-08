@@ -1,28 +1,42 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-
 public class AreaSelect : MonoBehaviour
 {
-    private Vector3[] a;
+    private Vector2[] a;
     private GameObject[] b;
-    private Vector3[] pat;
-    private int[,] definePattern;
-    private GameObject chessObj;
-    public createGrid createGrid;
-    public GameObject fodder;
 
-    void Awake()
+    public GameObject fodder;
+    private Vector2[] pat;
+    private int[,] definePattern;
+    public GameObject chessObj;
+    public createGrid createGrid;
+
+    public GameObject chessUnit;
+    // public GameObject fodder;
+    void Start()
     {
-        chessObj = GameObject.Find("/ChessGrid");
-        createGrid = chessObj.GetComponent<createGrid>();
+        
+       // call(chessUnit.GetComponent<gridInteg>().gcord, new Vector2(1, 0), "S", 3);
+
+        
+            //GetNodeFromVec(new Vector2(0, 1), createGrid.nlist));
     }
-    public void call(int pattern, Vector3 orig)
+
+    void Update(){
+
+            if(Input.GetKeyDown("space")){
+            call(chessUnit.GetComponent<gridInteg>().gcord, new Vector2(1, -1), "S", 5);
+
+            }
+    }
+    public GameObject[] call(Vector2 orig, Vector2 orient, string type, int len)
     {
-        a = returnDamageGroup(pattern, orig);
+        a = returnDamageGroup(type, orig, orient, len);
+        Debug.Log(a[1]);
         b = new GameObject[a.Length];
         for (var i = 0; i < a.Length; i++)
         {
+            //Debug.Log(a[i]);
             b[i] = GetNodeFromVec(a[i], createGrid.nlist);
             if (b[i] != null)
             {
@@ -31,52 +45,49 @@ public class AreaSelect : MonoBehaviour
                 show.transform.position = b[i].transform.position;
             }
         }
+        return b;
     }
-      
 
-
-
-    public GameObject? GetNodeFromVec(Vector3 xy, List<Transform> GC)
+    public GameObject? GetNodeFromVec(Vector2 xy, List<Transform> GC)
     {
         for (int i = 0; i < GC.Count; i++)
         {
             var ND = GC[i].gameObject.GetComponent<Node>();
-            if (!ND.walkable){
-            if (ND.Gcord == xy )
+            if (!ND.walkable)
+            if (ND.Gcord == xy)
             {
                 return ND.gameObject;
             }
         }
+        return null;
     }
-    return null;
-}
 
 
-//Failed experiment that came close - flipping patterns, will do everything manually for this project 
-/*
-    public Vector3[] flpPattern(int pattern, Vector3 Origin)
-    {
-        Vector3[] ret = returnDamageGroup(pattern, Origin);
-        var modRet = new Vector3[ret.Length];
-        var z = 0;
-        foreach (var item in ret)
+    //Failed experiment that came close - flipping patterns, will do everything manually for this project 
+    /*
+        public Vector2[] flpPattern(int pattern, Vector2 Origin)
         {
-            modRet[z] = new Vector3(createGrid.wid - item.x -1f, item.y, item.z);   
-            z++;
+            Vector2[] ret = returnDamageGroup(pattern, Origin);
+            var modRet = new Vector2[ret.Length];
+            var z = 0;
+            foreach (var item in ret)
+            {
+                modRet[z] = new Vector2(createGrid.wid - item.x -1f, item.y, item.z);   
+                z++;
+            }
+            return modRet;
         }
-        return modRet;
-    }
-*/ 
-    public Vector3[] transformTemplate(int[,] patternTemplate, Vector3 Origin)
+    */
+    public Vector2[] transformTemplate(int[,] patternTemplate, Vector2 Origin)
     {
-        Vector3 qV(int xOffset, int zOffset)
+        Vector2 qV(int xOffset, int yOffset)
         {
-            return new Vector3(Origin.x + xOffset, 0, Origin.z + zOffset);
+            return new Vector2(Origin.x + xOffset, Origin.y + yOffset);
         }
-        pat = new Vector3[patternTemplate.GetLength(0)];
+        pat = new Vector2[patternTemplate.GetLength(0)];
         for (int i = 0; i < patternTemplate.GetLength(0); i++)
         {
-            Vector3 tmp = qV(patternTemplate[i, 0], patternTemplate[i, 1]);
+            Vector2 tmp = qV(patternTemplate[i, 0], patternTemplate[i, 1]);
             if (tmp != null)
             {
                 pat[i] = qV(patternTemplate[i, 0], patternTemplate[i, 1]);
@@ -84,42 +95,32 @@ public class AreaSelect : MonoBehaviour
         }
         return pat;
     }
-    public Vector3[] returnDamageGroup(int pattern, Vector3 Origin)
+    public string parseVector(Vector2 Orient)
     {
+        return Orient.ToString();
+    }
+
+    public Vector2[] returnDamageGroup(string pattern, Vector2 Origin, Vector2 Orient, int len)
+    {
+        int[,] populateLine(Vector2 orient, int len)
+        {
+            int[,] currentPattern = new int[len, 2];
+            for (var i = 0; i < len; i++)
+            {
+                currentPattern[i, 0] = (int)(orient.x * i);  // Set the x coordinate
+                currentPattern[i, 1] = (int)(orient.y * i);  // Set the y coordinate
+            }
+
+            return currentPattern;
+        }
         switch (pattern)
         {
-            case 0:
-                definePattern = new int[,] { { 0, 1 }, { 1, 0 }, { -1, 0 }, { 0, -1 }, { 0, 0 } };
+            case "S":
+                definePattern = populateLine(Orient, len);
                 break;
-            case 1:
-                definePattern = new int[,] { { 3, -1 }, { -2, 1 }, { 0, 0 }, { 1, -2 }, { 1, -3 } };
+            case "D":
                 break;
-
-            case 2:
-                definePattern = new int[,] { { 1, -1 }, { -1, 2 }, { 3, -2 }, { 4, -3 }, { 1, -4 } };
-                break;
-
-            case 3:
-                definePattern = new int[,] { { 1, 1 }, { 1, 0 }, { 0, 0 }, { 0, -1 }, { -1, -1 } };
-
-                break;
-            case 4:
-                definePattern = new int[,] { { 0, 1 }, { 1, 0 }, { -1, 1 }, { 1, 1 }, { -1, -1 }, { 1, -1 }, { -1, 0 }, { 0, -1 }, { 0, 0 } };
-
-                break;
-            case 5:
-
-              definePattern = new int[,] {{1, 1},{0, 1},{0, 0},{-1, 0},{-1, -1}};
-            break;
-            case 6:
-            definePattern = new int[,] {{-1, -1},{0, -1},{0, 0},{1, 0},{1, 1}};
-            break;
         }
         return transformTemplate(definePattern, Origin);
     }
-
-
 }
-
-
-
