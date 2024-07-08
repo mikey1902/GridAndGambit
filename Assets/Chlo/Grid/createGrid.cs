@@ -9,8 +9,8 @@ public class createGrid : MonoBehaviour
     public int maxX;
 
 
-    public float magicX, magicZ;
-    public int maxZ;
+    public float magicX, magicY;
+    public int maxY;
     public List<Transform> nlist;
 
     public List<Transform> nlist2;
@@ -19,7 +19,7 @@ public class createGrid : MonoBehaviour
 
  void Start()
     {
-       createNodeGrid(maxX, maxZ);
+       createNodeGrid(maxX, maxY);
     }
 
     private int round(float num)
@@ -34,7 +34,7 @@ public class createGrid : MonoBehaviour
             for (int j = 0; j < wid; j++)
             {
                 matrix[i, j] = new Vector2(i, j);
-                GameObject currentObject = Instantiate(blnk, new Vector2(transform.position.x,transform.position.y) - matrix[i, j], transform.rotation, this.transform);
+                GameObject currentObject = Instantiate(blnk, new Vector2(transform.position.x + magicX, transform.position.y + magicY) - matrix[i, j], transform.rotation, this.transform);
                 node = currentObject.GetComponent<Node>();
                 node.Gcord = new Vector2(round(matrix[i, j].x), round(matrix[i, j].y));  
                 if (i % 2 == 0){
