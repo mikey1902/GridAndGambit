@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class HandManager : MonoBehaviour
 {
-	public DeckManager deckManager;
 	public GameObject cardPF;
 	public List<GameObject> cardsInHand = new List<GameObject>();
 	public Transform handTransform;
