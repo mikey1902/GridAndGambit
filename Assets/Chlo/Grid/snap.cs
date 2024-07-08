@@ -9,7 +9,7 @@ public class snap : MonoBehaviour
     public float dist;
     private float distance;
     [SerializeField] private GameObject nearest;
-    public Vector3 gcord;
+    public Vector2 gcord;
 
     void Update()
     {
@@ -24,13 +24,13 @@ public class snap : MonoBehaviour
                     if (distance < dist)
                     {
                         nearest = allGridable[i];
-                        gameObject.GetComponent<Node>().occupied = true;
+                    gameObject.GetComponent<Node>().cellOccupied = true;
                         nearest.GetComponent<gridInteg>().gcord = gameObject.GetComponent<Node>().gcord;
                       }
                     }
                 else
                 {
-                gameObject.GetComponent<Node>().occupied = false;
+                gameObject.GetComponent<Node>().cellOccupied = false;
             }
         }
     }

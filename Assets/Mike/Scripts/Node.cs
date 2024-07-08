@@ -1,14 +1,27 @@
 using UnityEngine;
 
 
-public class GridCell : MonoBehaviour
+public class Node : MonoBehaviour
 {
 	private SpriteRenderer spriteRenderer;
 	public GameObject objectInCell;
 	public bool cellOccupied = false;
 	public Vector2 gridIndex;
+	public Vector2 gcord;
 
 	public Color originalColor;
+
+	public Vector2 Gcord
+	{
+		get
+		{
+			return gcord;
+		}
+		set
+		{
+			gcord = value;
+		}
+	}
 
 	void Awake()
 	{

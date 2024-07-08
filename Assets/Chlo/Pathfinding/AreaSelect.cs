@@ -9,11 +9,16 @@ public class AreaSelect : MonoBehaviour
     private Vector2[] pat;
     private int[,] definePattern;
     public GameObject chessObj;
-    public createGrid createGrid;
+    public GridManager createGrid;
 
     public GameObject chessUnit;
-    // public GameObject fodder;
-    void Start()
+	// public GameObject fodder;
+
+	void Awake()
+	{
+        createGrid = gameObject.GetComponent<GridManager>();
+	}
+	void Start()
     {
         
        // call(chessUnit.GetComponent<gridInteg>().gcord, new Vector2(1, 0), "S", 3);
@@ -53,7 +58,7 @@ public class AreaSelect : MonoBehaviour
         for (int i = 0; i < GC.Count; i++)
         {
             var ND = GC[i].gameObject.GetComponent<Node>();
-            if (!ND.walkable)
+            if (!ND.cellOccupied)
             if (ND.Gcord == xy)
             {
                 return ND.gameObject;

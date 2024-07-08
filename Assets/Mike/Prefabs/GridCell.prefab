@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3683020845643642066}
   - component: {fileID: 6874005284786522038}
   - component: {fileID: 8008666872904851528}
-  - component: {fileID: 7939090573771856484}
+  - component: {fileID: -2567882919677406977}
+  - component: {fileID: 4454064899892195912}
   m_Layer: 6
   m_Name: GridCell
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6874005284786522038
 SpriteRenderer:
@@ -131,7 +132,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7939090573771856484
+--- !u!114 &-2567882919677406977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184581097308111931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5575ee308dc08d641a884711abc20b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allGridable: []
+  gridable:
+    serializedVersion: 2
+    m_Bits: 8
+  dist: 0.5
+  nearest: {fileID: 0}
+  gcord: {x: 0, y: 0}
+--- !u!114 &4454064899892195912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,4 +166,5 @@ MonoBehaviour:
   objectInCell: {fileID: 0}
   cellOccupied: 0
   gridIndex: {x: 0, y: 0}
+  gcord: {x: 0, y: 0}
   originalColor: {r: 0, g: 0, b: 0, a: 0}

@@ -6,6 +6,7 @@ using System.Linq;
 public class GridManager: MonoBehaviour
 {
     public List<GameObject> objectsOnGrid = new List<GameObject>();
+    public List<Transform> nlist = new List<Transform>();
     public GameObject[,] gridCells;
     public GameObject cellPrefab;
     public int width = 8;
@@ -31,16 +32,18 @@ public class GridManager: MonoBehaviour
                 GameObject cell = Instantiate(cellPrefab, spawnPos, Quaternion.identity);
                 cell.transform.SetParent(transform);
 
-                cell.GetComponent<GridCell>().gridIndex = gridPos;
+                cell.GetComponent<Node>().gridIndex = gridPos;
+                cell.GetComponent<Node>().gcord = gridPos;
 
                 if (x % 2 == 0){
                 cell.GetComponent<Renderer>().material.color = y % 2 == 0 ? Color.black : Color.white;
                 } else {
                 cell.GetComponent<Renderer>().material.color = y % 2 == 0 ? Color.white : Color.black; 
                 }
-                cell.GetComponent<GridCell>().originalColor = cell.GetComponent<Renderer>().material.color;
+                cell.GetComponent<Node>().originalColor = cell.GetComponent<Renderer>().material.color;
 
                 gridCells[x, y] = cell;
+                nlist.Add(cell.transform);
             }
         }
     }
@@ -50,7 +53,7 @@ public class GridManager: MonoBehaviour
         if (cellPos.x >= 0 && cellPos.x < width && cellPos.y >= 0 && cellPos.y < height)
         {
             //searches 2D array to find the cell
-            GridCell cell = gridCells[(int)cellPos.x, (int)cellPos.y].GetComponent<GridCell>();
+            Node cell = gridCells[(int)cellPos.x, (int)cellPos.y].GetComponent<Node>();
 
             if (cell.cellOccupied) return false;
 			else
