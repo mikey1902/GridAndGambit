@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using GridGambitProd;
 
 public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,7 +13,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 	private Vector3 ogScale;
 	private Quaternion ogRotation;
 	private Vector3 ogPos;
-
+	private GridManager gridManager;
 
 	[SerializeField] private float hoverScale = 1.1f;
 	[SerializeField] private Vector2 cardPlay;
@@ -31,6 +32,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 	[SerializeField] private float playPositionXMultiplier = 1.2f;
 	[SerializeField] private bool needUpdatePlayPosition = false;
 
+	private LayerMask gridLayerMask;
+	private LayerMask unitLayerMask;
+	private Card cardData;
+	private CardDisplay cardDisplay;
+	HandManager handManager;
 
 	void Awake()
 	{
@@ -48,6 +54,13 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
 		UpdateCardPlayPosition();
 		UpdatePlayPosition();
+		gridManager = FindObjectOfType<GridManager>();
+		handManager = FindObjectOfType<HandManager>();
+		cardDisplay = GetComponent<CardDisplay>();
+
+		gridLayerMask = LayerMask.GetMask("Grid");
+		unitLayerMask = LayerMask.GetMask("Units");
+		cardData = cardDisplay.cardData;
 	}
 
 	void Update()
@@ -60,6 +73,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		if(needUpdatePlayPosition)
 		{
 			UpdatePlayPosition();
+		}
+
+		if(cardData != cardDisplay.cardData)
+		{
+			cardData = cardDisplay.cardData;
 		}
 
 		//handles states
@@ -77,10 +95,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 				break;
 			case 3:
 				HandlePlayState();
-				if (!Input.GetMouseButton(0))
-				{
-					TransitionToState0();
-				}
 				break;
 		}
 	}
@@ -154,10 +168,62 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		rectTransform.localPosition = playPosition;
 		rectTransform.localRotation = Quaternion.identity;
 
+		if(!Input.GetMouseButton(0))
+		{
+			//shoot raycast down from mouse
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			if(cardData is UnitCard unitCard)
+			{
+				TryUnitCardPlay(ray, unitCard);
+			}
+			else if (cardData is SpellCard spellCard)
+			{
+				TrySpellCardPlay(ray, spellCard);
+			}
+
+			TransitionToState0();
+		}
+
 		if (Input.mousePosition.y < cardPlay.y)
 		{
 			currentState = 2;
 			playArrow.SetActive(false);
+		}
+	}
+
+	private void TryUnitCardPlay(Ray ray, UnitCard unitCard)
+	{
+		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
+
+		//check if gridcell has been hit
+		if (hit.collider != null && hit.collider.GetComponent<GridCell>())
+		{
+			GridCell cell = hit.collider.GetComponent<GridCell>();
+			Vector2 cellPos = cell.gridIndex;
+
+			if (gridManager.AddObjectToGrid(unitCard.unitPrefab, cellPos))
+			{
+				handManager.cardsInHand.Remove(gameObject);
+				//discardManager.AddToDiscard(cardData);
+				handManager.UpdateHandVisuals();
+				Debug.Log("spawned character");
+				Destroy(gameObject);
+			}
+		}
+	}
+
+	private void TrySpellCardPlay(Ray ray, SpellCard spellCard)
+	{
+		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
+
+		if (hit.collider != null)
+		{
+			handManager.cardsInHand.Remove(gameObject);
+			//discardManager.AddToDiscard(cardData);
+			handManager.UpdateHandVisuals();
+			Debug.Log("played spell");
+			Destroy(gameObject);
 		}
 	}
 

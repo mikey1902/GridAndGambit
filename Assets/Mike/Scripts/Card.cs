@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace GridGambitProd
 {
-	[CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 	public class Card : ScriptableObject 
 	{
 
 		public string cardName;
 		public CardType cardType;
 		public Sprite cardSprite;
+		public string cardText;
 
 		public enum CardType
 		{

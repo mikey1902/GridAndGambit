@@ -14,8 +14,8 @@ TagManager:
   - gridable
   - Water
   - UI
-  - 
-  - 
+  - Grid
+  - Units
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Unit
+    uniqueID: 2095459693
     locked: 0

@@ -28,17 +28,13 @@ public class HandManager : MonoBehaviour
 
 			//set the instantiated card's data
 			newCard.GetComponent<CardDisplay>().cardData = cardData;
+			newCard.GetComponent<CardDisplay>().UpdateCard();
 		}
 
 		UpdateHandVisuals();
 	}
 
-	void Update()
-	{
-		//UpdateHandVisuals();
-	}
-
-	private void UpdateHandVisuals()
+	public void UpdateHandVisuals()
 	{
 		int cardCount = cardsInHand.Count;
 
