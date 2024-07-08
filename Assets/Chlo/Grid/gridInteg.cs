@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class gridInteg : MonoBehaviour
 {
-    public Vector3 gcord;
-    public Vector3 Gcord
+    public Vector2 gcord;
+    public Vector2 Gcord
     {
         get
         {
