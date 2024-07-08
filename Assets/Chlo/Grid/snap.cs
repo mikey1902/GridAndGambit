@@ -4,18 +4,22 @@ using UnityEngine;
 public class snap : MonoBehaviour
 {
 
-     public List<GameObject> allGridable;
-    public LayerMask gridable;
+    public List<GameObject> allGridable;
+    public LayerMask units;
     public float dist;
     private float distance;
     [SerializeField] private GameObject nearest;
-    public Vector2 gcord;
+    public Vector2 gridIndex;
 
+    void Awake()
+    {
+        units = LayerMask.GetMask("Units");
+    }
     void Update()
     {
         allGridable = findGriable();
         var isInContact = checkForObstacle();
-        gcord = gameObject.GetComponent<Node>().gcord;
+        gridIndex = gameObject.GetComponent<GridCell>().gridIndex;
             for (var i = 0; i < allGridable.Count; i++)
             {
                 if (isInContact == true)
@@ -24,19 +28,19 @@ public class snap : MonoBehaviour
                     if (distance < dist)
                     {
                         nearest = allGridable[i];
-                    gameObject.GetComponent<Node>().cellOccupied = true;
-                        nearest.GetComponent<gridInteg>().gcord = gameObject.GetComponent<Node>().gcord;
+                        gameObject.GetComponent<GridCell>().cellOccupied = true;
+                        nearest.GetComponent<gridInteg>().gcord = gameObject.GetComponent<GridCell>().gridIndex;
                       }
                     }
                 else
                 {
-                gameObject.GetComponent<Node>().cellOccupied = false;
+                gameObject.GetComponent<GridCell>().cellOccupied = false;
             }
         }
     }
     public bool checkForObstacle()
     {
-        return Physics.CheckBox(transform.position, new Vector2(dist, dist), Quaternion.identity, gridable);
+        return Physics2D.OverlapCircle(transform.position, dist, units);
     }
 
     private List<GameObject> findGriable()

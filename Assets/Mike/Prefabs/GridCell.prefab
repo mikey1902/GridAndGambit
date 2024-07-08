@@ -147,10 +147,10 @@ MonoBehaviour:
   allGridable: []
   gridable:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 200
   dist: 0.5
   nearest: {fileID: 0}
-  gcord: {x: 0, y: 0}
+  gridIndex: {x: 0, y: 0}
 --- !u!114 &4454064899892195912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,11 +160,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4184581097308111931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9533524d1fa22d74ab578de70be826ce, type: 3}
+  m_Script: {fileID: 11500000, guid: c0833706fb88b5e4196e8806dd230c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectInCell: {fileID: 0}
   cellOccupied: 0
   gridIndex: {x: 0, y: 0}
-  gcord: {x: 0, y: 0}
   originalColor: {r: 0, g: 0, b: 0, a: 0}

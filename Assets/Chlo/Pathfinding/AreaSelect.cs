@@ -42,10 +42,10 @@ public class AreaSelect : MonoBehaviour
         for (var i = 0; i < a.Length; i++)
         {
             //Debug.Log(a[i]);
-            b[i] = GetNodeFromVec(a[i], createGrid.nlist);
+            b[i] = GetNodeFromVec(a[i], createGrid.cellTransforms);
             if (b[i] != null)
             {
-                b[i] = GetNodeFromVec(a[i], createGrid.nlist);
+                b[i] = GetNodeFromVec(a[i], createGrid.cellTransforms);
                 GameObject show = Instantiate(fodder);
                 show.transform.position = b[i].transform.position;
             }
@@ -57,9 +57,9 @@ public class AreaSelect : MonoBehaviour
     {
         for (int i = 0; i < GC.Count; i++)
         {
-            var ND = GC[i].gameObject.GetComponent<Node>();
+            var ND = GC[i].gameObject.GetComponent<GridCell>();
             if (!ND.cellOccupied)
-            if (ND.Gcord == xy)
+            if (ND.GridIndex == xy)
             {
                 return ND.gameObject;
             }

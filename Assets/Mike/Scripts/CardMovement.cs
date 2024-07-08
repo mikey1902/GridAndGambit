@@ -197,9 +197,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
 
 		//check if gridcell has been hit
-		if (hit.collider != null && hit.collider.GetComponent<Node>())
+		if (hit.collider != null && hit.collider.GetComponent<GridCell>())
 		{
-			Node cell = hit.collider.GetComponent<Node>();
+			GridCell cell = hit.collider.GetComponent<GridCell>();
 			Vector2 cellPos = cell.gridIndex;
 
 			if (gridManager.AddObjectToGrid(unitCard.unitPrefab, cellPos))

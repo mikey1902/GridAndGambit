@@ -120,11 +120,11 @@ public class pathFind : MonoBehaviour
 
 	private GameObject? returnPoint(Vector2 pos)
 	{
-		GC = gridOb.GetComponent<createGrid>().nlist;
+		GC = gridOb.GetComponent<GridManager>().cellTransforms;
 		for (var i = 0; i < GC.Count; i++)
 		{
-			var ND = GC[i].gameObject.GetComponent<Node>();
-			if (ND.Gcord == pos)
+			var ND = GC[i].gameObject.GetComponent<GridCell>();
+			if (ND.GridIndex == pos)
 			{
 				if (ND.cellOccupied != true)
 				{

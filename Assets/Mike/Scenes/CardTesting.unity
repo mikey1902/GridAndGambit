@@ -128,6 +128,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7923741643637419582, guid: 9bad8beb5b6971f498d68df6e2f90575, type: 3}
   m_PrefabInstance: {fileID: 1865304735}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &325946891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5649830998936514581, guid: 3a76cc9a172db7f419d27cd2a2df8f8d, type: 3}
+  m_PrefabInstance: {fileID: 2704209354418190836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95ef10b1f57c2d4093a4d6ce94f4cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1025373075
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +433,10 @@ PrefabInstance:
       propertyPath: chessUnit
       value: 
       objectReference: {fileID: 104294108}
+    - target: {fileID: 1591938914301375886, guid: 3a76cc9a172db7f419d27cd2a2df8f8d, type: 3}
+      propertyPath: createGrid
+      value: 
+      objectReference: {fileID: 325946891}
     - target: {fileID: 4759673853468368008, guid: 3a76cc9a172db7f419d27cd2a2df8f8d, type: 3}
       propertyPath: m_Name
       value: GridManager
