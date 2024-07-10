@@ -8,8 +8,6 @@ public class HandManager : MonoBehaviour
     public List<GameObject> cardsInHand = new List<GameObject>();
     public Transform handTransform;
 
-    public CardMovement cardMovement;
-
     public float verticalCardSpace = 50f;
     public float horizontalCardSpace = 120f;
     public float handSpread = -10f;
@@ -29,7 +27,6 @@ public class HandManager : MonoBehaviour
             //set the instantiated card's data
             newCard.GetComponent<CardDisplay>().cardData = cardData;
             newCard.GetComponent<CardDisplay>().UpdateCard();
-            cardMovement = newCard.GetComponent<CardMovement>();
         }
 
         UpdateHandVisuals();

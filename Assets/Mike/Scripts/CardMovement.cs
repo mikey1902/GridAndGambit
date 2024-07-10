@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using GridGambitProd;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -41,6 +42,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     private CardDisplay cardDisplay;
     HandManager handManager;
 
+    private EventInstance cardFlicks;
+
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -68,13 +71,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     private void Start()
     {
         OnStateChanged += PlaySoundDependingOnStage;
-    }
 
-    private void PlaySoundDependingOnStage(int newState)
-    {
-        if (newState == 1) {
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.cardFlickSound, transform.position);
-        }
+        cardFlicks = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.cardFlickSound);
     }
 
     void Update()
@@ -245,6 +243,15 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
             playPosition.x = canvsRectTransform.rect.width * segmentX;
             playPosition.y = canvsRectTransform.rect.height * segmentY;
+        }
+    }
+
+    private void PlaySoundDependingOnStage(int newState)
+    {
+        if (newState == 1) {
+            cardFlicks.start();
+        } else {
+            cardFlicks.stop(STOP_MODE.ALLOWFADEOUT);
         }
     }
 }
