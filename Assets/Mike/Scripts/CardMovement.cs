@@ -4,10 +4,15 @@ using UnityEngine.EventSystems;
 
 public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    public delegate void StateChangeEventHandler(int newState);
+
+    public event StateChangeEventHandler OnStateChanged;
+
     private RectTransform rectTransform;
     private Canvas canvas;
     private RectTransform canvsRectTransform;
     private int currentState = 0;
+    private int previousState;
     private Vector3 ogScale;
     private Quaternion ogRotation;
     private Vector3 ogPos;
@@ -60,6 +65,18 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         cardData = cardDisplay.cardData;
     }
 
+    private void Start()
+    {
+        OnStateChanged += PlaySoundDependingOnStage;
+    }
+
+    private void PlaySoundDependingOnStage(int newState)
+    {
+        if (newState == 1) {
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.cardFlickSound, transform.position);
+        }
+    }
+
     void Update()
     {
         if (needUpdateCardPlayPosition) {
@@ -72,6 +89,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         if (cardData != cardDisplay.cardData) {
             cardData = cardDisplay.cardData;
+        }
+
+        if (previousState != currentState) {
+            previousState = currentState;
+            OnStateChanged?.Invoke(currentState);
         }
 
         //handles states
@@ -142,8 +164,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     {
         highlightEffect.SetActive(true);
         rectTransform.localScale = ogScale * hoverScale;
-
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.cardFlickSound, this.transform.position);
     }
 
     private void HandleDragState()
