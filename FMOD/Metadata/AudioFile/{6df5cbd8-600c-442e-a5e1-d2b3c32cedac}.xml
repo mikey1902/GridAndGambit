@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6df5cbd8-600c-442e-a5e1-d2b3c32cedac}">
+		<property name="assetPath">
+			<value>Card Throw Swish 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.62063492063492065</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a378ce1d-b619-4876-a8f6-53748a5c9d27}</destination>
+		</relationship>
+	</object>
+</objects>

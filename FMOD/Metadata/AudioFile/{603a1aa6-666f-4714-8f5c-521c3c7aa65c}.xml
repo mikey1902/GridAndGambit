@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{603a1aa6-666f-4714-8f5c-521c3c7aa65c}">
+		<property name="assetPath">
+			<value>Card Throw 3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.67907029478458047</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a378ce1d-b619-4876-a8f6-53748a5c9d27}</destination>
+		</relationship>
+	</object>
+</objects>

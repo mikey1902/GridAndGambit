@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1578573798}
   - component: {fileID: 1578573797}
-  - component: {fileID: 1578573796}
+  - component: {fileID: 1578573799}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -240,14 +240,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1578573796
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578573795}
-  m_Enabled: 1
 --- !u!20 &1578573797
 Camera:
   m_ObjectHideFlags: 0
@@ -314,6 +306,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1578573799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578573795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1723533619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4759673853468368008, guid: 3a76cc9a172db7f419d27cd2a2df8f8d, type: 3}
@@ -391,6 +396,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1303329704256948369, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1550750852045930554, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -433,6 +442,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1550750852045930554, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: rate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: cardPF
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: unitCard
+      value: 
+      objectReference: {fileID: 11400000, guid: c2cba5a3679ef384bb0d0b3fa8ace665, type: 2}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: handManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: CardFlickEvent.Path
+      value: event:/Card Flick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: CardFlickEvent.Guid.Data1
+      value: -1000586767
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: CardFlickEvent.Guid.Data2
+      value: 1142999238
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: CardFlickEvent.Guid.Data3
+      value: 680417691
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: CardFlickEvent.Guid.Data4
+      value: 898295838
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043823555757878019, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: playingCard
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6286302199892740072, guid: b0728908fbf271b46903ddab474fbec4, type: 3}

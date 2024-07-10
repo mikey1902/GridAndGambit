@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{45c55c94-f934-4dec-a090-d32a6adf37f6}">
+		<property name="assetPath">
+			<value>Mountain Audio - Cardboard Game Card Flip - 3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.62344671201814061</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a378ce1d-b619-4876-a8f6-53748a5c9d27}</destination>
+		</relationship>
+	</object>
+</objects>
