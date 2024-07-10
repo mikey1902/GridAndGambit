@@ -61,29 +61,29 @@ public class CardDisplay : MonoBehaviour
 		}
 
 		//dependant card changes
-		if (cardData is UnitCard unitCard)
-		{
-			UpdateUnitCard(unitCard);
-		}
-		else if (cardData is SpellCard spellCard)
-		{
-			UpdateSpellCard(spellCard);
-		}
+		//if (cardData is UnitCard unitCard)
+		//{
+		//	UpdateUnitCard(unitCard);
+		//}
+		//else if (cardData is SpellCard spellCard)
+		//{
+		//	UpdateSpellCard(spellCard);
+		//}
 	}
 
-	private void UpdateUnitCard(UnitCard unitCard)
-	{
-		spellValues.SetActive(false);
-		unitValues.SetActive(true);
-		unitLabel.SetActive(true);
-	}
+	//private void UpdateUnitCard(UnitCard unitCard)
+	//{
+	//	spellValues.SetActive(false);
+	//	unitValues.SetActive(true);
+	//	unitLabel.SetActive(true);
+	//}
 
-	private void UpdateSpellCard(SpellCard unitCard)
-	{
-		unitValues.SetActive(false);
-		spellValues.SetActive(true);
-		spellLabel.SetActive(true);
+	//private void UpdateSpellCard(SpellCard unitCard)
+	//{
+	//	unitValues.SetActive(false);
+	//	spellValues.SetActive(true);
+	//	spellLabel.SetActive(true);
 
-		damageText.text = unitCard.damage.ToString();
-	}
+	//	damageText.text = unitCard.damage.ToString();
+	//}
 }
