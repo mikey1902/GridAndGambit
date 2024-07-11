@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{46ef12a3-cbbd-4501-b9be-42a34ef02db9}">
 		<property name="assetPath">
-			<value>Card Draw Soft 2.wav</value>
+			<value>Card FLicks/Card Draw Soft 2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

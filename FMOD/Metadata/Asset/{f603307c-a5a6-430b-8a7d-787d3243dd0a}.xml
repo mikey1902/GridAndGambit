@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{f603307c-a5a6-430b-8a7d-787d3243dd0a}">
+		<property name="assetPath">
+			<value>Card FLicks/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a378ce1d-b619-4876-a8f6-53748a5c9d27}</destination>
+		</relationship>
+	</object>
+</objects>

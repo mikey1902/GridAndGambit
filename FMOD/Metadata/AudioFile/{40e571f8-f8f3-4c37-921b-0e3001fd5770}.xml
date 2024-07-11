@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{40e571f8-f8f3-4c37-921b-0e3001fd5770}">
 		<property name="assetPath">
-			<value>Mountain Audio - Cardboard Game Card Flip - 1.wav</value>
+			<value>Card FLicks/Mountain Audio - Cardboard Game Card Flip - 1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

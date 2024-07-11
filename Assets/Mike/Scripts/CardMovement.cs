@@ -72,7 +72,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     {
         OnStateChanged += PlaySoundDependingOnStage;
 
-        cardFlicks = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.cardFlickSound);
+        cardFlicks = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.CardFlickSound);
     }
 
     void Update()
@@ -248,6 +248,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     private void PlaySoundDependingOnStage(int newState)
     {
+        //TODO: Add condition for sound to not play while another sound is playing before it
         if (newState == 1) {
             cardFlicks.start();
         } else {

@@ -271,13 +271,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b82fd9c6530ff4f96e03c015cefe7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <cardFlickSound>k__BackingField:
+  <CardFlickSound>k__BackingField:
     Guid:
       Data1: -1347875271
       Data2: 1339611787
       Data3: 694986881
       Data4: 1132541282
-    Path: event:/CardFlicks
+    Path: event:/SFX/CardFlicks
+  <BackgroundMusic>k__BackingField:
+    Guid:
+      Data1: 208483407
+      Data2: 1186076175
+      Data3: -1985876579
+      Data4: -1868911275
+    Path: event:/Music/Tavern Pixel Melody
 --- !u!1 &1578573795
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,24 +528,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: musicVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
+      propertyPath: masterVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
       propertyPath: CardFlickEvent.Path
-      value: event:/Card Flick
+      value: event:/CardFlicks
       objectReference: {fileID: 0}
     - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
       propertyPath: CardFlickEvent.Guid.Data1
-      value: -1000586767
+      value: -1347875271
       objectReference: {fileID: 0}
     - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
       propertyPath: CardFlickEvent.Guid.Data2
-      value: 1142999238
+      value: 1339611787
       objectReference: {fileID: 0}
     - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
       propertyPath: CardFlickEvent.Guid.Data3
-      value: 680417691
+      value: 694986881
       objectReference: {fileID: 0}
     - target: {fileID: 1651452372717340167, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
       propertyPath: CardFlickEvent.Guid.Data4
-      value: 898295838
+      value: 1132541282
       objectReference: {fileID: 0}
     - target: {fileID: 4043823555757878019, guid: b0728908fbf271b46903ddab474fbec4, type: 3}
       propertyPath: playingCard
