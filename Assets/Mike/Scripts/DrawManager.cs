@@ -8,7 +8,7 @@ public class DrawManager : MonoBehaviour
 {
 	public List<Card> drawPileCards = new List<Card>();
 
-	public int startingHandSize = 6;
+	public int startingHandSize;
 
 	private int currentIndex = 0;
 	public int maxHandSize;
@@ -20,6 +20,7 @@ public class DrawManager : MonoBehaviour
 	void Start()
 	{
 		handManager = FindObjectOfType<HandManager>();
+		discardManager = FindObjectOfType<DiscardManager>();
 	}
 
 	void Update()
@@ -33,7 +34,7 @@ public class DrawManager : MonoBehaviour
 	public void CreateDrawPile(List<Card> cardsToAdd)
 	{
 		drawPileCards.AddRange(cardsToAdd);
-		Utility.Shuffle(drawPileCards);
+		//Utility.Shuffle(drawPileCards);
 		UpdateDrawPileNumber();
 	}
 
@@ -57,15 +58,19 @@ public class DrawManager : MonoBehaviour
 		{
 			Card nextCard = drawPileCards[currentIndex];
 			handManager.AddCard(nextCard);
+			drawPileCards.RemoveAt(currentIndex);
+			UpdateDrawPileNumber();
 
-			//mod to never go beyond how many cards are in the list
-			currentIndex = (currentIndex + 1) % drawPileCards.Count;
+			if (drawPileCards.Count > 0)
+			{
+				currentIndex %= drawPileCards.Count;
+			}
 		}
 	}
 
 	private void ShuffleDiscardIntoDeck()
 	{
-		if (discardManager = null)
+		if (discardManager == null)
 		{
 			discardManager = FindObjectOfType<DiscardManager>();
 		}
@@ -73,7 +78,7 @@ public class DrawManager : MonoBehaviour
 		if (discardManager != null && discardManager.discardCardsCount > 0)
 		{
 			drawPileCards = discardManager.PullAllCardsInDiscard();
-			Utility.Shuffle(drawPileCards);
+			//Utility.Shuffle(drawPileCards);
 			currentIndex = 0;
 		}
 	}

@@ -5,7 +5,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 [CustomEditor(typeof(DrawManager))]
-public class DeckManagerEditor : Editor
+public class DrawManagerEditor : Editor
 {
 	public override void OnInspectorGUI()
 	{

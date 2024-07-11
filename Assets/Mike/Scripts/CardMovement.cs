@@ -36,7 +36,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 	private LayerMask unitLayerMask;
 	private Card cardData;
 	private CardDisplay cardDisplay;
-	HandManager handManager;
+	private HandManager handManager;
+	private DiscardManager discardManager;
 
 	void Awake()
 	{
@@ -56,6 +57,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		UpdatePlayPosition();
 		gridManager = FindObjectOfType<GridManager>();
 		handManager = FindObjectOfType<HandManager>();
+		discardManager = FindObjectOfType<DiscardManager>();
 		cardDisplay = GetComponent<CardDisplay>();
 
 		gridLayerMask = LayerMask.GetMask("Grid");
@@ -211,7 +213,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 			if (gridManager.AddObjectToGrid(unitCard.unitPrefab, cellPos))
 			{
 				handManager.cardsInHand.Remove(gameObject);
-				//discardManager.AddToDiscard(cardData);
+				discardManager.AddCardToDiscard(cardData);
 				handManager.UpdateHandVisuals();
 				Debug.Log("spawned character");
 				Destroy(gameObject);
@@ -226,7 +228,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		if (hit.collider != null)
 		{
 			handManager.cardsInHand.Remove(gameObject);
-			//discardManager.AddToDiscard(cardData);
+			discardManager.AddCardToDiscard(cardData);
 			handManager.UpdateHandVisuals();
 			Debug.Log("played spell");
 			Destroy(gameObject);
