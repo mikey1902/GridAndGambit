@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5649830998936514581
 MonoBehaviour:
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsOnGrid: []
+  cellTransforms: []
   cellPrefab: {fileID: 4184581097308111931, guid: 1caf0d156b5af4c4381b8f1b52693ff9, type: 3}
   width: 8
   height: 8
@@ -63,5 +64,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fodder: {fileID: 360262440654651145, guid: 92bfed307d6231d41822d8ea47c65c2e, type: 3}
   chessObj: {fileID: 4759673853468368008}
-  createGrid: {fileID: 0}
+  createGrid: {fileID: 5649830998936514581}
   chessUnit: {fileID: 0}
+  path: []

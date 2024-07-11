@@ -60,7 +60,7 @@ public class CardDisplay : MonoBehaviour
 				break;
 		}
 
-		//dependant card changes
+		////dependant card changes
 		//if (cardData is UnitCard unitCard)
 		//{
 		//	UpdateUnitCard(unitCard);
@@ -78,12 +78,12 @@ public class CardDisplay : MonoBehaviour
 	//	unitLabel.SetActive(true);
 	//}
 
-	//private void UpdateSpellCard(SpellCard unitCard)
+	//private void UpdateSpellCard(SpellCard spellCard)
 	//{
 	//	unitValues.SetActive(false);
 	//	spellValues.SetActive(true);
 	//	spellLabel.SetActive(true);
 
-	//	damageText.text = unitCard.damage.ToString();
+	//	damageText.text = spellCard.damage.ToString();
 	//}
 }

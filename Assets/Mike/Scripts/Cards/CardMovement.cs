@@ -27,7 +27,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 	[SerializeField] private float cardPlayMultiplier = 1f;
 	[SerializeField] private bool needUpdateCardPlayPosition = false;
 	[SerializeField] private int playPositionYDivider = 2;
-	[SerializeField] private float playPositionYMultiplier = 1f;	
+	[SerializeField] private float playPositionYMultiplier = 1f;
 	[SerializeField] private int playPositionXDivider = -3;
 	[SerializeField] private float playPositionXMultiplier = 1.2f;
 	[SerializeField] private bool needUpdatePlayPosition = false;
@@ -44,7 +44,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		rectTransform = GetComponent<RectTransform>();
 		canvas = GetComponentInParent<Canvas>();
 
-		if(canvas != null)
+		if (canvas != null)
 		{
 			canvsRectTransform = canvas.GetComponent<RectTransform>();
 		}
@@ -72,12 +72,12 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 			UpdateCardPlayPosition();
 		}
 
-		if(needUpdatePlayPosition)
+		if (needUpdatePlayPosition)
 		{
 			UpdatePlayPosition();
 		}
 
-		if(cardData != cardDisplay.cardData)
+		if (cardData != cardDisplay.cardData)
 		{
 			cardData = cardDisplay.cardData;
 		}
@@ -105,6 +105,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 	{
 		currentState = 0;
 		GameManager.Instance.playingCard = false;
+		GameManager.Instance.playingMove = false;
 		//reset scale, rotation and position
 		rectTransform.localScale = ogScale;
 		rectTransform.localPosition = ogPos;
@@ -144,7 +145,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 	public void OnDrag(PointerEventData eventData)
 	{
 		if (currentState == 2)
-		{	
+		{
 			if (rectTransform.localPosition.y > cardPlay.y)
 			{
 				currentState = 3;
@@ -168,7 +169,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
 	private void HandlePlayState()
 	{
-		if(!GameManager.Instance.playingCard)
+		if (!GameManager.Instance.playingCard)
 		{
 			GameManager.Instance.playingCard = true;
 		}
@@ -176,18 +177,22 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		rectTransform.localPosition = playPosition;
 		rectTransform.localRotation = Quaternion.identity;
 
-		if(!Input.GetMouseButton(0))
+		if (!Input.GetMouseButton(0))
 		{
 			//shoot raycast down from mouse
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-			if(cardData is UnitCard unitCard)
+			if (cardData is UnitCard unitCard)
 			{
 				TryUnitCardPlay(ray, unitCard);
 			}
 			else if (cardData is SpellCard spellCard)
 			{
 				TrySpellCardPlay(ray, spellCard);
+			}
+			else if (cardData is MoveCard moveCard)
+			{
+				TryMoveCardPlay(ray, moveCard);
 			}
 
 			TransitionToState0();
@@ -225,8 +230,16 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 	{
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
 
-		if (hit.collider != null)
+		if (hit.collider != null && hit.collider.GetComponent<Unit>())
 		{
+			if (!GameManager.Instance.playingMove)
+			{
+				GameManager.Instance.playingMove = true;
+			}
+
+			Unit unit = hit.collider.GetComponent<Unit>();
+			unit.DestroyUnit();
+
 			handManager.cardsInHand.Remove(gameObject);
 			discardManager.AddCardToDiscard(cardData);
 			handManager.UpdateHandVisuals();
@@ -235,9 +248,29 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		}
 	}
 
+	private void TryMoveCardPlay(Ray ray, MoveCard moveCard)
+	{
+		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
+		RaycastHit2D hit2 = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
+
+		if (hit.collider != null && hit.collider.GetComponent<Unit>())
+		{
+			Debug.Log("MoveCard Hit");
+			Unit unit = hit.collider.GetComponent<Unit>();
+			GridCell cell = hit2.collider.GetComponent<GridCell>();
+
+			gridManager.MoveObjectOnGrid(cell.gridIndex, moveCard);
+			handManager.cardsInHand.Remove(gameObject);
+			discardManager.AddCardToDiscard(cardData);
+			handManager.UpdateHandVisuals();
+			Debug.Log("played Move");
+			Destroy(gameObject);
+		}
+	}
+
 	private void UpdateCardPlayPosition()
 	{
-		if(cardPlayDivider != 0 && canvsRectTransform != null)
+		if (cardPlayDivider != 0 && canvsRectTransform != null)
 		{
 			float segment = cardPlayMultiplier / cardPlayDivider;
 
@@ -247,7 +280,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
 	private void UpdatePlayPosition()
 	{
-		if(canvsRectTransform != null && playPositionYDivider != 0 && playPositionXDivider != 0)
+		if (canvsRectTransform != null && playPositionYDivider != 0 && playPositionXDivider != 0)
 		{
 			float segmentX = playPositionXMultiplier / playPositionXDivider;
 			float segmentY = playPositionYMultiplier / playPositionYDivider;
