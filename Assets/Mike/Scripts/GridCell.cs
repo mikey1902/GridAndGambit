@@ -3,12 +3,18 @@ using UnityEngine;
 
 public class GridCell : MonoBehaviour
 {
-	private SpriteRenderer spriteRenderer;
+	private SpriteRenderer cellSpriteRenderer;
+	private SpriteRenderer highlightSpriteRenderer;
+	private GameObject cellHighlight;
 	public GameObject objectInCell;
 	public bool cellOccupied = false;
 	public Vector2 gridIndex;
 
 	public Color originalColor;
+	public Color highlightColor = Color.cyan;
+	public Color occupiedColor = Color.yellow;
+	public Color placeableColor = Color.green;
+	public Color notPlaceableColor = Color.red;
 
 	public Vector2 GridIndex
 	{
@@ -24,24 +30,44 @@ public class GridCell : MonoBehaviour
 
 	void Awake()
 	{
-		spriteRenderer = GetComponent<SpriteRenderer>();
+		cellSpriteRenderer = GetComponent<SpriteRenderer>();
+
+		cellHighlight = gameObject.transform.GetChild(0).gameObject;
+		highlightSpriteRenderer = cellHighlight.GetComponent<SpriteRenderer>();
 	}
 
 	void Update()
 	{
 		if (cellOccupied == true)
 		{
-			spriteRenderer.material.color = Color.yellow;
+			cellSpriteRenderer.material.color = Color.yellow;
+		}
+		else
+		{
+			cellSpriteRenderer.material.color = originalColor;
 		}
 	}
 
 	void OnMouseEnter()
 	{
-		spriteRenderer.material.color = Color.cyan;
+		cellHighlight.gameObject.SetActive(true);
+
+		if (!GameManager.Instance.playingCard)
+		{
+			highlightSpriteRenderer.color = highlightColor;
+		}
+		else if (cellOccupied)
+		{
+			highlightSpriteRenderer.color = notPlaceableColor;
+		}
+		else
+		{
+			highlightSpriteRenderer.color = placeableColor;
+		}
 	}
 
 	void OnMouseExit()
 	{
-		spriteRenderer.material.color = originalColor;
+		cellHighlight.gameObject.SetActive(false);
 	}
 }
