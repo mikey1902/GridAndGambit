@@ -8,7 +8,7 @@ public class HandManager : MonoBehaviour
 	public GameObject cardPF;
 	public List<GameObject> cardsInHand = new List<GameObject>();
 	public Transform handTransform;
-
+	public List<Card> tempList = new List<Card>();
 	public float verticalCardSpace = 50f;
 	public float horizontalCardSpace = 120f;
 	public float handSpread = -10f;
@@ -25,7 +25,7 @@ public class HandManager : MonoBehaviour
 			//Instantiate card and add it to the list
 			GameObject newCard = Instantiate(cardPF, handTransform.position, Quaternion.identity, handTransform);
 			cardsInHand.Add(newCard);
-
+			tempList.Add(cardData);
 			//set the instantiated card's data
 			newCard.GetComponent<CardDisplay>().cardData = cardData;
 			newCard.GetComponent<CardDisplay>().UpdateCard();

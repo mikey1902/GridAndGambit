@@ -21,16 +21,11 @@ namespace Mini
     public class Node
     {
         public int Id { get; set; }
-        public int ParentId
-        {
-            get; set;}
+        public int ParentId{get; set;}
         public Node? Child { get; set; }
 
         public SubNode[] CurrentHand { get; set; }
         public bool haveIBeenVisited;
-        /* internal int W;
-         internal int L;
-         internal int COST;*/
         public Node(int id, int parentId, Node? child, SubNode[] currentHand)
         {
             Id = id;
@@ -54,18 +49,9 @@ namespace Mini
     IsOurs = isOurs;
     }
  }
-public class MiniMa : MonoBehaviour
+public class Tree : MonoBehaviour
 {
-    /*
-    public foundUnit foundUnit(int id, Vector2 gcord, isOurs){
-    internal int Id = id;
-    internal bool IsOurs = isOurs;
-    internal Vector2 Gcord = gcord;
-
-    }*/
-
-    //class foundUnit Mini.foundUnit();
-
+ 
     public GameObject tmp;
     public List<Node> tree;
     public List<Card> AIhand;
@@ -73,41 +59,60 @@ public class MiniMa : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
+
+       AIhand = tmp.GetComponent<HandManager>().tempList;
        tree = populateLis(50);
-      // AIhand = tmp.GetComponent<cardDisplay>().cardData;
+       Node breh = findNodeFromId(tree, 3);
+      Debug.Log(tree[2].Id);
+    
+
     }
+
+    
     public List<Node> populateLis(int endId)
     {
-        int id = 0;
-        List<Mini.Node> preLink = new List<Node>();
-        Node root = new Node(-1, -2, null, populatedSubNodes(AIhand.Count));
+        int id = 1;
+        List<Node> preLink = new List<Node>();
+        Node root = new Node(0, -1, null, populatedSubNodes(AIhand.Count));
         preLink.Add(root);
         do
         {
-            Node tmp = new Node(id, id - 1, null, populatedSubNodes(AIhand.Count) );
+            Node tmp = new Node(id, id-1, null, populatedSubNodes(AIhand.Count));
             preLink.Add(tmp);
             id++;
+           // Debug.Log(tmp.Id);
         }
         while (preLink.Count < endId);
-        foreach (var nd in preLink)
-        {
-            if (nd.Id != -1)
-            {
-                nd.Child = findNodeFromId(preLink, nd.Id + 1);
-            }
+        return createLinks(preLink);
+    }
+
+    public List<Node> createLinks(List<Node> preLink){
+    foreach (Node item in preLink){
+            item.Child = findNodeFromId(preLink,(item.Id+1));
         }
         return preLink;
     }
-
-    private Node findNodeFromId(List<Node> tree, int idToFind)
+    public Node findNodeFromId(List<Node> tree, int idToFind)
+{
+    if (tree == null || tree.Count == 0)
     {
-        Node currentNode = tree[0];
-        while (currentNode.Id != idToFind)
-        {
-            currentNode = currentNode.Child;
-        }
-        return currentNode;
+     //   Debug.Log("Tree empty");
+        return null;
     }
+    Node currentNode = tree.First();
+    while (currentNode.Id != idToFind && currentNode != null)
+    {
+        if (currentNode.Child == null && currentNode.Id != idToFind)
+        {
+           // Debug.Log("Continuing");
+            return null;
+        }
+        currentNode = currentNode.Child;
+    }
+
+    return currentNode;
+}
 //fin
     private SubNode[] populatedSubNodes(int length)
     {
