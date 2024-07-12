@@ -9,8 +9,19 @@ public class GridManager : MonoBehaviour
 	public List<Transform> cellTransforms = new List<Transform>();
 	public GameObject[,] gridCells;
 	public GameObject cellPrefab;
+	public GameObject moveableObject;
+	public List<GameObject> highlightedCells = new List<GameObject>();
 	public int width = 8;
 	public int height = 8;
+	private AreaSelect areaSelect;
+
+	private Vector2 gmCellPos;
+	private int gmMoveDistance;
+
+	void Awake()
+	{
+		areaSelect = GetComponent<AreaSelect>();
+	}
 
 	void Start()
 	{
@@ -101,6 +112,9 @@ public class GridManager : MonoBehaviour
 	private void OrthogonalMovement(Vector2 cellPos, int moveDistance)
 	{
 		List<Vector2> moveCells = new List<Vector2>();
+		gmCellPos = cellPos;
+		gmMoveDistance = moveDistance;
+
 		Vector2 spacePos;
 
 		for (int direction = 0; direction < 4; direction++)
@@ -136,7 +150,9 @@ public class GridManager : MonoBehaviour
 		{
 			GameObject moveableCell = SearchGrid(moveCell);
 			moveableCell.GetComponent<GridCell>().HighlightMoveCell();
+			highlightedCells.Add(moveableCell);
 		}
+		moveSelect(highlightedCells);
 	}
 
 	private void DiagonalMovement(Vector2 cellPos, int moveDistance)
@@ -147,6 +163,20 @@ public class GridManager : MonoBehaviour
 	private void LShapeMovement(Vector2 cellPos, int moveDistance)
 	{
 
+	}
+
+	public void moveChosen(Vector2 orient)
+	{
+		Debug.Log((orient - gmCellPos).normalized);
+		areaSelect.directedMove(gmCellPos,(orient - gmCellPos).normalized, "S", gmMoveDistance + 1, moveableObject);
+	}
+
+	private void moveSelect(List<GameObject> moveableCells)
+	{
+		foreach (GameObject moveCell in moveableCells)
+		{
+			moveCell.GetComponent<GridCell>().cellMoveHighlighted = true;
+		}
 	}
 
 	private GameObject SearchGrid(Vector2 cellPos)

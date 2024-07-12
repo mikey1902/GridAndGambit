@@ -98,6 +98,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 			case 3:
 				HandlePlayState();
 				break;
+			case 4:
+				HandleMoveState();
+				break;
 		}
 	}
 
@@ -256,9 +259,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		if (hit.collider != null && hit.collider.GetComponent<Unit>())
 		{
 			Debug.Log("MoveCard Hit");
+			GameObject movableUnit = hit.collider.gameObject;
 			Unit unit = hit.collider.GetComponent<Unit>();
 			GridCell cell = hit2.collider.GetComponent<GridCell>();
 
+			gridManager.moveableObject = movableUnit;
 			gridManager.MoveObjectOnGrid(cell.gridIndex, moveCard);
 			handManager.cardsInHand.Remove(gameObject);
 			discardManager.AddCardToDiscard(cardData);
@@ -266,6 +271,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 			Debug.Log("played Move");
 			Destroy(gameObject);
 		}
+	}
+
+	private void HandleMoveState()
+	{
+
 	}
 
 	private void UpdateCardPlayPosition()

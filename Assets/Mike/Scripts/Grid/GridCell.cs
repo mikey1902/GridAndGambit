@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public class GridCell : MonoBehaviour
 {
 	private SpriteRenderer cellSpriteRenderer;
 	private SpriteRenderer highlightSpriteRenderer;
+	private GridManager gridManager;
 	private GameObject cellHighlight;
 	public GameObject objectInCell;
 	public bool cellOccupied = false;
+	public bool cellMoveHighlighted = false;
+	public bool hoveringCell = false;
 	public Vector2 gridIndex;
 
 	public Color originalColor;
@@ -33,6 +36,8 @@ public class GridCell : MonoBehaviour
 	void Awake()
 	{
 		cellSpriteRenderer = GetComponent<SpriteRenderer>();
+		gridManager = FindObjectOfType<GridManager>();
+
 
 		cellHighlight = gameObject.transform.GetChild(0).gameObject;
 		highlightSpriteRenderer = cellHighlight.GetComponent<SpriteRenderer>();
@@ -42,13 +47,18 @@ public class GridCell : MonoBehaviour
 	{
 		cellHighlight.gameObject.SetActive(true);
 
-		if (!GameManager.Instance.playingCard && !GameManager.Instance.playingMove)
+		if (!GameManager.Instance.playingCard && !GameManager.Instance.playingMove && cellMoveHighlighted)
+		{
+			highlightSpriteRenderer.color = placeableColor;
+			hoveringCell = true;
+		}
+		else if (!GameManager.Instance.playingCard && !GameManager.Instance.playingMove)
 		{
 			highlightSpriteRenderer.color = highlightColor;
 		}
 		else if (cellOccupied && GameManager.Instance.playingMove)
 		{
-			highlightSpriteRenderer.color = notPlaceableColor;
+			highlightSpriteRenderer.color = MoveableColor;
 		}
 		else if (cellOccupied)
 		{
@@ -63,7 +73,17 @@ public class GridCell : MonoBehaviour
 	void OnMouseExit()
 	{
 		cellHighlight.gameObject.SetActive(false);
+		hoveringCell = false;
 	}
+
+	void OnMouseDown()
+	{
+		if (hoveringCell)
+		{
+			gridManager.moveChosen(GridIndex);
+		}
+	}
+
 	public void HighlightOccupiedCell()
 	{
 		cellSpriteRenderer.material.color = occupiedColor;
