@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using GridGambitProd;
 using System.Linq;
-using Mini;
 namespace Mini
 {
-   
-
     
 //Subnode is designed to hold a SINGLE card 
     public class SubNode 
     {
         public Card current { get; set; }
-        internal int? Score { get; set; }
+        public int Score { get; set; }
         public SubNode(Card card){
         current = card;
         }
-      
+           public void addScore(int score)
+        {
+        if (Score == null)
+        {
+            Score += score;
+        }
+        else
+        {
+            Score = score;
+        }
     }
+}
+
+      
+    
     public class Node : IEnumerable<SubNode>
     {
         public List<SubNode> currentHand = new List<SubNode>();
@@ -71,14 +81,11 @@ public class Tree : MonoBehaviour
     void Awake()
     {
        AIhand = tmp.GetComponent<HandManager>().tempList;
-       tree = populateLis(50);
-       takeTurn(true, tree, 0);
+       tree = populateLis(50);  
+}
+void Start(){
+    takeTurn(true, tree, 0);
 
-    /*while (currentNode != null)
-    {
-        Debug.Log("Node ID: " + currentNode.Id);
-        currentNode = currentNode.Child;
-    }*/
 }
 
     public int? takeTurn(bool cont, List<Node> tree, int turnNumber){
@@ -87,75 +94,68 @@ public class Tree : MonoBehaviour
         return null;
         }else{
         Node turn = findNodeFromId(tree, turnNumber);
-        populatedSubNodes(AIhand.Count, turn);
-        var permutation = GetAllPermutations( turn.currentHand,turn.currentHand.Count);
+        turn = populatedSubNodes(AIhand.Count, turn);
+        List<foundUnit> foundUnits = findUnits();
+        //Bad list
+        var permutation = GetAllPermutations(turn.currentHand, Mathf.Min(6, turn.currentHand.Count));
         foreach (var collection in permutation)
         {
-            foreach (var item in collection)
+            int b = 0;
+            foreach (SubNode item in collection)
             {
-            
+                
+             switch(item.current.cardType){
+            case Card.CardType.Spell:
+            item.addScore(tryPlayingSpell());
+            break;
+            case Card.CardType.Move:
+            item.addScore(tryPlayingMove());
+            break;
+            case Card.CardType.Unit:
+            item.addScore(tryPlayingUnit());
+            break;
+            default:
 
-
-
+            break;
+                }
+                b = b+ item.Score;
             }
+        Debug.Log(b);
         }
-        cont = false;
-        return 1;
+        
+        cont = false;     
     }
+    return 1;
 }
-
-
-
-       
-       //var ls = GetAllPermutations(breh.CurrentHand.ToList(), AIhand.Count);
-      // Debug.Log(ls[0].Count);
-    
-
 
     //Move towards enemyKing = good!
     //Destroy enemy unit = better! (priority before king move)
     //Place friendly unit = even better!
     
-    public void returnOrderOfPlay(Card[] currentHand){
-
-
+    public int tryPlayingUnit(){
+    //King needs to keep track of 'spawn cells'
+    return 3;
     }
-    public void tryPlayingUnit(){
-
-    }
-    public void tryPlayingStructure(){
-
-    }
-    public void tryPlayingSpell(){
-
-    }
-    public void tryPlayingMove(){
-
-    }
-   
-   
-   /*
-    public object boardScore(int, int){
-        switch(current.Type){
-        case Unit:
-         
-        break;
-        case Structure:
-        
-        break;
-        case Spell:
-        return 
-        break;
-        case Move:
-        return tryPlayingMove()
-        break;
-        default:
-        Debug.Log(current.Type.toString());
-        break;
-    }
-
+    /*public void tryPlayingStructure(){
+    
 
     }*/
+    public int tryPlayingSpell(){
+        return 2;
+    }
+    public int tryPlayingMove(){
+    return 1;
+    }
+   
+   
+   
+    public int boardScore(int a){
+        return 1;
+    }
+
+
+
+    
     public void returnCardScore(Card current){
 
     }
@@ -174,7 +174,6 @@ public class Tree : MonoBehaviour
             Node tmp = new Node(id, id-1, null);
             preLink.Add(tmp);
             id++;
-           // Debug.Log(tmp.Id);
         }
         while (preLink.Count < endId);
         return createLinks(preLink);
@@ -206,9 +205,11 @@ public class Tree : MonoBehaviour
 }
 //fin
  
-    private List<foundUnit> findUnits()
+    public List<foundUnit> findUnits()
     {
         GameObject[] tmp = GameObject.FindGameObjectsWithTag("Unit");
+        GameObject[] tmp2 = GameObject.FindGameObjectsWithTag("Structure");
+        tmp.Concat(tmp2);
         List<foundUnit> ret = new List<foundUnit>();
         foreach (GameObject obj in tmp)
         {   
@@ -218,23 +219,25 @@ public class Tree : MonoBehaviour
         }
         return ret;
     }
-       private void populatedSubNodes(int length, Node curr)
-    {
+       private Node populatedSubNodes(int length, Node curr){
         for (var i = 0; i < length; i++)
         {
             curr.AddSubNode(new SubNode(AIhand[i]));
         }
+        return curr;
     }
 //Any No good code not written by me, because I'm too stupid goes here:
  //Literal Stolen code, arrest me officer!
-static IEnumerable<IEnumerable<T>> GetAllPermutations<T>(IEnumerable<T> list, int length )
+
+       public static IEnumerable<IEnumerable<T>> GetAllPermutations<T>(IEnumerable<T> list, int length)
     {
-        // Base case: if the length is 1, return each element as a single-element array
-        if (length == 1) return list.Select(t => new T[] { t });
-        // Recursive case: get permutations of length (n-1)
+        if (length == 1)
+            return list.Select(t => new T[] { t });
+
         return GetAllPermutations(list, length - 1)
-            .SelectMany(t => list.Where(e => !t.Contains(e)), // Add elements not already in the permutation
-                        (t1, t2) => t1.Concat(new T[] { t2 })); // Concatenate current element to the permutation
-        }
-    }  
+            .SelectMany(t => list.Where(e => !t.Contains(e)),
+                        (t1, t2) => t1.Concat(new T[] { t2 }));
+    }
 }
+}
+    
