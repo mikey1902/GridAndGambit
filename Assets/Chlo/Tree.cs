@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using GridGambitProd;
 using System.Linq;
+using rnd=System.Random;
 namespace Mini
 {
     
@@ -81,7 +83,7 @@ public class Tree : MonoBehaviour
     void Awake()
     {
        AIhand = tmp.GetComponent<HandManager>().tempList;
-       tree = populateLis(50);  
+       tree = populateLis(2);  
 }
 void Start(){
     takeTurn(true, tree, 0);
@@ -97,7 +99,8 @@ void Start(){
         turn = populatedSubNodes(AIhand.Count, turn);
         List<foundUnit> foundUnits = findUnits();
         //Bad list
-        var permutation = GetAllPermutations(turn.currentHand, Mathf.Min(6, turn.currentHand.Count));
+       // var permutation = GetPermutations(turn.currentHand, Mathf.Min(6, turn.currentHand.Count));
+       var permutation = PermutationHelper.GetRandomPermutations(turn.currentHand, Mathf.Min(6, turn.currentHand.Count), 25);
         foreach (var collection in permutation)
         {
             int b = 0;
@@ -226,18 +229,38 @@ void Start(){
         }
         return curr;
     }
+
+
+      
+}
 //Any No good code not written by me, because I'm too stupid goes here:
  //Literal Stolen code, arrest me officer!
-
-       public static IEnumerable<IEnumerable<T>> GetAllPermutations<T>(IEnumerable<T> list, int length)
+    public class PermutationHelper{
+     
+     public static rnd rng = new rnd();  
+     public static IEnumerable<IEnumerable<T>> GetRandomPermutations<T>(IEnumerable<T> list, int length, int sampleSize)
     {
-        if (length == 1)
+          
+        var permutations = GetAllPermutations(list, length).ToList();
+        return permutations.OrderBy(x => rng.Next()).Take(sampleSize);
+    }
+ public static IEnumerable<IEnumerable<T>> GetAllPermutations<T>(IEnumerable<T> list, int length){
+           if (length == 1)
             return list.Select(t => new T[] { t });
 
         return GetAllPermutations(list, length - 1)
             .SelectMany(t => list.Where(e => !t.Contains(e)),
                         (t1, t2) => t1.Concat(new T[] { t2 }));
     }
-}
+     public static IEnumerable<IEnumerable<T>> GetCombinations<T>(IEnumerable<T> list, int length)
+    {
+        if (length == 0)
+            return new[] { new T[0] };
+
+        return list.SelectMany((item, index) =>
+            GetCombinations(list.Skip(index + 1), length - 1).Select(subcomb => new[] { item }.Concat(subcomb)));
+        }
+
+    }
 }
     
