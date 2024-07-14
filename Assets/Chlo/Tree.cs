@@ -16,7 +16,7 @@ namespace Mini
         public SubNode(Card card){
         current = card;
         }
-           public void addScore(int score)
+        public void addScore(int score)
         {
         if (Score == null)
         {
@@ -27,7 +27,7 @@ namespace Mini
             Score = score;
         }
     }
-}
+    }
 
       
     
@@ -72,8 +72,21 @@ namespace Mini
     IsOurs = isOurs;
     }
  }
+    public class represent{
+    public foundUnit found {get; set;}
+    public int currentScore {get; set;}
+    public represent(foundUnit foundUn, int intialScore){
+    found = foundUn;
+    currentScore = intialScore;
+    }
+    
+    public void addRep(int score){
+    currentScore += score;
+    }
+}
 public class Tree : MonoBehaviour
 {
+
     //public object 
     public GameObject tmp;
     public List<Node> tree;
@@ -83,11 +96,10 @@ public class Tree : MonoBehaviour
     void Awake()
     {
        AIhand = tmp.GetComponent<HandManager>().tempList;
-       tree = populateLis(2);  
+       tree = populateLis(40);  
 }
 void Start(){
     takeTurn(true, tree, 0);
-
 }
 
     public int? takeTurn(bool cont, List<Node> tree, int turnNumber){
@@ -98,18 +110,21 @@ void Start(){
         Node turn = findNodeFromId(tree, turnNumber);
         turn = populatedSubNodes(AIhand.Count, turn);
         List<foundUnit> foundUnits = findUnits();
-        //Bad list
+        List<foundUnit> listOfFriendly = new List<foundUnit>();
+        List<foundUnit> listOfUnfriendly = new List<foundUnit>();
+
+       
        // var permutation = GetPermutations(turn.currentHand, Mathf.Min(6, turn.currentHand.Count));
        var permutation = PermutationHelper.GetRandomPermutations(turn.currentHand, Mathf.Min(6, turn.currentHand.Count), 25);
         foreach (var collection in permutation)
         {
-            int b = 0;
+            int combinedPlayScore = 0;
             foreach (SubNode item in collection)
             {
                 
-             switch(item.current.cardType){
+            switch(item.current.cardType){
             case Card.CardType.Spell:
-            item.addScore(tryPlayingSpell());
+            item.addScore(tryPlayingSpell(listOfUnfriendly));
             break;
             case Card.CardType.Move:
             item.addScore(tryPlayingMove());
@@ -121,11 +136,10 @@ void Start(){
 
             break;
                 }
-                b = b+ item.Score;
+             combinedPlayScore += item.Score;
             }
-        Debug.Log(b);
+        Debug.Log(combinedPlayScore);
         }
-        
         cont = false;     
     }
     return 1;
@@ -143,15 +157,33 @@ void Start(){
     
 
     }*/
-    public int tryPlayingSpell(){
-        return 2;
+    
+    public int tryPlayingSpell(List<foundUnit> theirs){
+        //init
+    List<represent> possibleTargets = new List<represent>();
+    foreach(var item in theirs){
+    if (!item.IsOurs){
+    possibleTargets.Add(new represent(item,0));}
     }
-    public int tryPlayingMove(){
+    //Fill score 
+    foreach(var item in possibleTargets){ 
+    //Destroy PriorityTarget
+    switch(item.found.Type){
+        case "Pawn":
+        item.addRep(1);
+        break;
+        case "Bishop":
+        item.addRep(3);
+        break;
+    }
+    } 
+    return possibleTargets.OrderByDescending(item => item.currentScore).FirstOrDefault().currentScore;
+    }
+
+    public int tryPlayingMove(/*List<foundUnit> ours, Card a*/){
     return 1;
     }
-   
-   
-   
+
     public int boardScore(int a){
         return 1;
     }
@@ -209,7 +241,8 @@ void Start(){
 //fin
  
     public List<foundUnit> findUnits()
-    {
+    { 
+        List<foundUnit>[] units = new List<foundUnit>[2];
         GameObject[] tmp = GameObject.FindGameObjectsWithTag("Unit");
         GameObject[] tmp2 = GameObject.FindGameObjectsWithTag("Structure");
         tmp.Concat(tmp2);
@@ -220,7 +253,14 @@ void Start(){
             foundUnit current = new foundUnit(obj.name, scr.gcord, scr.isOurs);
             ret.Add(current);
         }
-        return ret;
+        foreach(foundUnit item in ret){
+        if(!item.IsOurs){
+        units[1].Add(item);
+        }else{
+        units[0].Add(item);
+        }    
+    }
+    return ret;
     }
        private Node populatedSubNodes(int length, Node curr){
         for (var i = 0; i < length; i++)
@@ -263,4 +303,3 @@ void Start(){
 
     }
 }
-    
