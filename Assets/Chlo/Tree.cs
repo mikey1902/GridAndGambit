@@ -86,7 +86,6 @@ namespace Mini
 }
 public class Tree : MonoBehaviour
 {
-
     //public object 
     public GameObject tmp;
     public List<Node> tree;
@@ -111,9 +110,7 @@ void Start(){
         turn = populatedSubNodes(AIhand.Count, turn);
         List<foundUnit> foundUnits = findUnits();
         List<foundUnit> listOfFriendly = new List<foundUnit>();
-        List<foundUnit> listOfUnfriendly = new List<foundUnit>();
-
-       
+        List<foundUnit> listOfUnfriendly = new List<foundUnit>();      
        // var permutation = GetPermutations(turn.currentHand, Mathf.Min(6, turn.currentHand.Count));
        var permutation = PermutationHelper.GetRandomPermutations(turn.currentHand, Mathf.Min(6, turn.currentHand.Count), 25);
         foreach (var collection in permutation)
@@ -127,13 +124,12 @@ void Start(){
             item.addScore(tryPlayingSpell(listOfUnfriendly));
             break;
             case Card.CardType.Move:
-            item.addScore(tryPlayingMove());
+            item.addScore(tryPlayingMove(listOfFriendly));
             break;
             case Card.CardType.Unit:
             item.addScore(tryPlayingUnit());
             break;
             default:
-
             break;
                 }
              combinedPlayScore += item.Score;
@@ -149,7 +145,7 @@ void Start(){
     //Destroy enemy unit = better! (priority before king move)
     //Place friendly unit = even better!
     
-    public int tryPlayingUnit(){
+    public int tryPlayingUnit(Card){
     //King needs to keep track of 'spawn cells'
     return 3;
     }
@@ -158,7 +154,7 @@ void Start(){
 
     }*/
     
-    public int tryPlayingSpell(List<foundUnit> theirs){
+    public int tryPlayingSpell(List<foundUnit> theirs, SubNode ){
         //init
     List<represent> possibleTargets = new List<represent>();
     foreach(var item in theirs){
@@ -180,8 +176,25 @@ void Start(){
     return possibleTargets.OrderByDescending(item => item.currentScore).FirstOrDefault().currentScore;
     }
 
-    public int tryPlayingMove(/*List<foundUnit> ours, Card a*/){
-    return 1;
+    public int tryPlayingMove(List<foundUnit> ours, SubNode current){
+    if (ours.Count()!= 0){
+    foreach(var unit in ours){
+    
+
+    }
+
+
+
+    return 0;
+    } else {
+if(tryPlayingUnit() == 0)
+return -1
+    }
+}
+
+
+         
+            
     }
 
     public int boardScore(int a){
@@ -191,13 +204,8 @@ void Start(){
 
 
     
-    public void returnCardScore(Card current){
+  
 
-    }
-    public void cardTree(int amountOfCards){
-    //List<SubNode> 
- 
-    }
     public List<Node> populateLis(int endId)
     {
         int id = 1;
