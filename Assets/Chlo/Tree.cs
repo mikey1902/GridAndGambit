@@ -121,13 +121,13 @@ void Start(){
                 
             switch(item.current.cardType){
             case Card.CardType.Spell:
-            item.addScore(tryPlayingSpell(listOfUnfriendly));
+            item.addScore(tryPlayingSpell(listOfUnfriendly, item));
             break;
             case Card.CardType.Move:
-            item.addScore(tryPlayingMove(listOfFriendly));
+            item.addScore(tryPlayingMove(listOfFriendly, item));
             break;
             case Card.CardType.Unit:
-            item.addScore(tryPlayingUnit());
+            item.addScore(tryPlayingUnit(listOfFriendly, item));
             break;
             default:
             break;
@@ -145,7 +145,7 @@ void Start(){
     //Destroy enemy unit = better! (priority before king move)
     //Place friendly unit = even better!
     
-    public int tryPlayingUnit(Card){
+    public int tryPlayingUnit(List<foundUnit> ours, SubNode current){
     //King needs to keep track of 'spawn cells'
     return 3;
     }
@@ -154,7 +154,7 @@ void Start(){
 
     }*/
     
-    public int tryPlayingSpell(List<foundUnit> theirs, SubNode ){
+    public int tryPlayingSpell(List<foundUnit> theirs, SubNode current){
         //init
     List<represent> possibleTargets = new List<represent>();
     foreach(var item in theirs){
@@ -172,14 +172,27 @@ void Start(){
         item.addRep(3);
         break;
     }
-    } 
+    }
     return possibleTargets.OrderByDescending(item => item.currentScore).FirstOrDefault().currentScore;
     }
 
-    public int tryPlayingMove(List<foundUnit> ours, SubNode current){
+    public int tryPlayingMove(List<foundUnit> ours, SubNode card){
     if (ours.Count()!= 0){
     foreach(var unit in ours){
-    
+    switch(card.current.CardType.Move.moveType){
+
+        case Card.moveType.Orthagonal:
+
+        break;
+
+    }
+
+
+
+
+
+
+
 
     }
 
@@ -188,14 +201,14 @@ void Start(){
     return 0;
     } else {
 if(tryPlayingUnit() == 0)
-return -1
+return -1;
     }
 }
 
 
          
             
-    }
+    
 
     public int boardScore(int a){
         return 1;
@@ -280,7 +293,7 @@ return -1
 
 
       
-}
+
 //Any No good code not written by me, because I'm too stupid goes here:
  //Literal Stolen code, arrest me officer!
     public class PermutationHelper{
@@ -310,4 +323,5 @@ return -1
         }
 
     }
+}
 }
