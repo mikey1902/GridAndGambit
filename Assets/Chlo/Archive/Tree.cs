@@ -110,7 +110,7 @@ namespace Mini
         // Start is called before the first frame update
         void Awake()
         {
-            AIhand = tmp.GetComponent<HandManager>().tempList;
+           //AIhand = tmp.GetComponent<HandManager>().tempList;
           //  tree = populateLis(40);
         }
 
