@@ -5,6 +5,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
 	public bool isDestroyed = false;
+	public bool hasActed = false;
 	private GridManager gridManager;
 
 	void Awake()

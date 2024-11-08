@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5649830998936514581
 MonoBehaviour:
@@ -49,9 +49,10 @@ MonoBehaviour:
   objectsOnGrid: []
   cellTransforms: []
   cellPrefab: {fileID: 4184581097308111931, guid: 1caf0d156b5af4c4381b8f1b52693ff9, type: 3}
+  moveableObject: {fileID: 0}
+  highlightedCells: []
   width: 8
   height: 8
-  targetMoveCell: {x: 0, y: 0}
 --- !u!114 &1591938914301375886
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8404314681017555091}
   - {fileID: 233531929901544542}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4043823555757878019
 MonoBehaviour:
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playingCard: 0
+  playingMove: 0
 --- !u!1001 &2013330360406406540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -190,7 +191,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 948489913030601335, guid: 6dfbee43f9caf7e4a8523588eda1189d, type: 3}
       propertyPath: maxHandSize
-      value: 6
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 948489913030601335, guid: 6dfbee43f9caf7e4a8523588eda1189d, type: 3}
+      propertyPath: startingHandSize
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3127945397589829819, guid: 6dfbee43f9caf7e4a8523588eda1189d, type: 3}
       propertyPath: m_Name

@@ -6,7 +6,7 @@ using TMPro;
 
 public class DrawManager : MonoBehaviour
 {
-	public List<Card> drawPileCards = new List<Card>();
+	public List<Card> UnitDeck = new List<Card>();
 
 	public int startingHandSize;
 
@@ -14,13 +14,11 @@ public class DrawManager : MonoBehaviour
 	public int maxHandSize;
 	public int currentHandSize;
 	private HandManager handManager;
-	private DiscardManager discardManager;
 	public TextMeshProUGUI drawPileCount;
 
 	void Start()
 	{
 		handManager = FindObjectOfType<HandManager>();
-		discardManager = FindObjectOfType<DiscardManager>();
 	}
 
 	void Update()
@@ -31,11 +29,9 @@ public class DrawManager : MonoBehaviour
 		}
 	}
 
-	public void CreateDrawPile(List<Card> cardsToAdd)
+	public void CreateUnitDeck(List<Card> cardsToAdd)
 	{
-		drawPileCards.AddRange(cardsToAdd);
-		//Utility.Shuffle(drawPileCards);
-		UpdateDrawPileNumber();
+		UnitDeck.AddRange(cardsToAdd);
 	}
 
 	public void FirstHandSetup(int numberOfDrawCards, int setHandSize)
@@ -49,42 +45,17 @@ public class DrawManager : MonoBehaviour
 
 	public void DrawCard(HandManager handManager)
 	{
-		if (drawPileCards.Count == 0)
-		{
-			ShuffleDiscardIntoDeck();
-		}
 
 		if (currentHandSize < maxHandSize)
 		{
-			Card nextCard = drawPileCards[currentIndex];
+			Card nextCard = UnitDeck[currentIndex];
 			handManager.AddCard(nextCard);
-			drawPileCards.RemoveAt(currentIndex);
-			UpdateDrawPileNumber();
+			UnitDeck.RemoveAt(currentIndex);
 
-			if (drawPileCards.Count > 0)
+			if (UnitDeck.Count > 0)
 			{
-				currentIndex %= drawPileCards.Count;
+				currentIndex %= UnitDeck.Count;
 			}
 		}
-	}
-
-	private void ShuffleDiscardIntoDeck()
-	{
-		if (discardManager == null)
-		{
-			discardManager = FindObjectOfType<DiscardManager>();
-		}
-
-		if (discardManager != null && discardManager.discardCardsCount > 0)
-		{
-			drawPileCards = discardManager.PullAllCardsInDiscard();
-			//Utility.Shuffle(drawPileCards);
-			currentIndex = 0;
-		}
-	}
-
-	private void UpdateDrawPileNumber()
-	{
-		drawPileCount.text = drawPileCards.Count.ToString();
 	}
 }

@@ -4,12 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using GridGambitProd;
 
-public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
 	private RectTransform rectTransform;
-	private Canvas canvas;
-	private RectTransform canvsRectTransform;
-	private int currentState = 0;
+	[SerializeField] private int currentState = 0;
 	private Vector3 ogScale;
 	private Quaternion ogRotation;
 	private Vector3 ogPos;
@@ -17,47 +15,25 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
 	[SerializeField] private float hoverScale = 1.1f;
 	[SerializeField] private Vector2 cardPlay;
-	[SerializeField] private Vector3 playPosition;
 	[SerializeField] private GameObject highlightEffect;
 	[SerializeField] private GameObject playArrow;
-	[SerializeField] private float dragDelay = 0.1f;
-
-	//Check play position/mouse position is same no matter the resolution
-	[SerializeField] private int cardPlayDivider = 4;
-	[SerializeField] private float cardPlayMultiplier = 1f;
-	[SerializeField] private bool needUpdateCardPlayPosition = false;
-	[SerializeField] private int playPositionYDivider = 2;
-	[SerializeField] private float playPositionYMultiplier = 1f;
-	[SerializeField] private int playPositionXDivider = -3;
-	[SerializeField] private float playPositionXMultiplier = 1.2f;
-	[SerializeField] private bool needUpdatePlayPosition = false;
 
 	private LayerMask gridLayerMask;
 	private LayerMask unitLayerMask;
 	private Card cardData;
 	private CardDisplay cardDisplay;
 	private HandManager handManager;
-	private DiscardManager discardManager;
 
 	void Awake()
 	{
 		rectTransform = GetComponent<RectTransform>();
-		canvas = GetComponentInParent<Canvas>();
-
-		if (canvas != null)
-		{
-			canvsRectTransform = canvas.GetComponent<RectTransform>();
-		}
 
 		ogScale = rectTransform.localScale;
 		ogPos = rectTransform.localPosition;
 		ogRotation = rectTransform.localRotation;
 
-		UpdateCardPlayPosition();
-		UpdatePlayPosition();
 		gridManager = FindObjectOfType<GridManager>();
 		handManager = FindObjectOfType<HandManager>();
-		discardManager = FindObjectOfType<DiscardManager>();
 		cardDisplay = GetComponent<CardDisplay>();
 
 		gridLayerMask = LayerMask.GetMask("Grid");
@@ -67,16 +43,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
 	void Update()
 	{
-		if (needUpdateCardPlayPosition)
-		{
-			UpdateCardPlayPosition();
-		}
-
-		if (needUpdatePlayPosition)
-		{
-			UpdatePlayPosition();
-		}
-
 		if (cardData != cardDisplay.cardData)
 		{
 			cardData = cardDisplay.cardData;
@@ -89,17 +55,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 				HandleHoverState();
 				break;
 			case 2:
-				HandleDragState();
-				if (!Input.GetMouseButton(0))
-				{
-					TransitionToState0();
-				}
-				break;
-			case 3:
 				HandlePlayState();
-				break;
-			case 4:
-				HandleMoveState();
 				break;
 		}
 	}
@@ -142,19 +98,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		if (currentState == 1)
 		{
 			currentState = 2;
-		}
-	}
-
-	public void OnDrag(PointerEventData eventData)
-	{
-		if (currentState == 2)
-		{
-			if (rectTransform.localPosition.y > cardPlay.y)
-			{
-				currentState = 3;
-				playArrow.SetActive(true);
-				rectTransform.localPosition = Vector3.Lerp(rectTransform.position, playPosition, dragDelay);
-			}
+			playArrow.SetActive(true);
 		}
 	}
 
@@ -164,12 +108,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 		rectTransform.localScale = ogScale * hoverScale;
 	}
 
-	private void HandleDragState()
-	{
-		rectTransform.localRotation = Quaternion.identity;
-		rectTransform.position = Vector3.Lerp(rectTransform.position, Input.mousePosition, dragDelay);
-	}
-
 	private void HandlePlayState()
 	{
 		if (!GameManager.Instance.playingCard)
@@ -177,19 +115,12 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 			GameManager.Instance.playingCard = true;
 		}
 
-		rectTransform.localPosition = playPosition;
-		rectTransform.localRotation = Quaternion.identity;
-
 		if (!Input.GetMouseButton(0))
 		{
 			//shoot raycast down from mouse
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-			if (cardData is UnitCard unitCard)
-			{
-				TryUnitCardPlay(ray, unitCard);
-			}
-			else if (cardData is SpellCard spellCard)
+			if (cardData is SpellCard spellCard)
 			{
 				TrySpellCardPlay(ray, spellCard);
 			}
@@ -199,33 +130,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 			}
 
 			TransitionToState0();
-		}
-
-		if (Input.mousePosition.y < cardPlay.y)
-		{
-			currentState = 2;
-			playArrow.SetActive(false);
-		}
-	}
-
-	private void TryUnitCardPlay(Ray ray, UnitCard unitCard)
-	{
-		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
-
-		//check if gridcell has been hit
-		if (hit.collider != null && hit.collider.GetComponent<GridCell>())
-		{
-			GridCell cell = hit.collider.GetComponent<GridCell>();
-			Vector2 cellPos = cell.gridIndex;
-
-			if (gridManager.AddObjectToGrid(unitCard.unitPrefab, cellPos))
-			{
-				handManager.cardsInHand.Remove(gameObject);
-				discardManager.AddCardToDiscard(cardData);
-				handManager.UpdateHandVisuals();
-				Debug.Log("spawned character");
-				Destroy(gameObject);
-			}
 		}
 	}
 
@@ -244,9 +148,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 			unit.DestroyUnit();
 
 			handManager.cardsInHand.Remove(gameObject);
-			discardManager.AddCardToDiscard(cardData);
 			handManager.UpdateHandVisuals();
 			Debug.Log("played spell");
+			handManager.ClearHand();
 			Destroy(gameObject);
 		}
 	}
@@ -266,38 +170,12 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 			gridManager.moveableObject = movableUnit;
 			gridManager.MoveObjectOnGrid(cell.gridIndex, moveCard);
 			handManager.cardsInHand.Remove(gameObject);
-			discardManager.AddCardToDiscard(cardData);
 			handManager.UpdateHandVisuals();
 			Debug.Log("played Move");
+			handManager.ClearHand();
 			Destroy(gameObject);
 		}
 	}
 
-	private void HandleMoveState()
-	{
-
-	}
-
-	private void UpdateCardPlayPosition()
-	{
-		if (cardPlayDivider != 0 && canvsRectTransform != null)
-		{
-			float segment = cardPlayMultiplier / cardPlayDivider;
-
-			cardPlay.y = canvsRectTransform.rect.height * segment;
-		}
-	}
-
-	private void UpdatePlayPosition()
-	{
-		if (canvsRectTransform != null && playPositionYDivider != 0 && playPositionXDivider != 0)
-		{
-			float segmentX = playPositionXMultiplier / playPositionXDivider;
-			float segmentY = playPositionYMultiplier / playPositionYDivider;
-
-			playPosition.x = canvsRectTransform.rect.width * segmentX;
-			playPosition.y = canvsRectTransform.rect.height * segmentY;
-		}
-	}
 }
 
