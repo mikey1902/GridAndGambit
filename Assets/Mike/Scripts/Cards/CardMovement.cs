@@ -120,9 +120,9 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 			//shoot raycast down from mouse
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-			if (cardData is SpellCard spellCard)
+			if (cardData is AttackCard attackCard)
 			{
-				TrySpellCardPlay(ray, spellCard);
+				TryAttackCardPlay(ray, attackCard);
 			}
 			else if (cardData is MoveCard moveCard)
 			{
@@ -133,7 +133,7 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 		}
 	}
 
-	private void TrySpellCardPlay(Ray ray, SpellCard spellCard)
+	private void TryAttackCardPlay(Ray ray, AttackCard attackCard)
 	{
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
 

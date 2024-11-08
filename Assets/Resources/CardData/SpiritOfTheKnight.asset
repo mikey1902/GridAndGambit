@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d73eb1cdf67d0144493df2ee8b4622b6, type: 3}
-  m_Name: Ignite
+  m_Script: {fileID: 11500000, guid: bd9ee0114e2770a489f2123c65a01d15, type: 3}
+  m_Name: SpiritOfTheKnight
   m_EditorClassIdentifier: 
-  cardName: Ignite
-  cardType: 2
-  cardSprite: {fileID: 21300000, guid: a08ee008efa91fe4b97d58347067383d, type: 3}
-  cardText: Deals damage to unit
-  damage: 1
+  cardName: Spirit Of The Knight
+  cardType: 1
+  cardSprite: {fileID: 21300000, guid: f162453983b15c646aecc71c1d35a92a, type: 3}
+  cardText: 
+  moveDistance: 4
+  moveType: 2

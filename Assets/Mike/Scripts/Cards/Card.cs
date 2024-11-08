@@ -14,10 +14,9 @@ namespace GridGambitProd
 
 		public enum CardType
 		{
-			Unit,
-			Structure,
-			Spell,
-			Move
+			Attack,
+			Move,
+			Support,
 		}
 	}
 }

@@ -12,23 +12,25 @@ public class CardDisplay : MonoBehaviour
 
 	public Image cardImage;
 	public Image displayImage;
-	public Image[] typeImages;
 	public TMP_Text nameText;
 	public TMP_Text cardText;
 
-	public GameObject unitValues;
-	public GameObject spellValues;
-	public GameObject unitLabel;
-	public GameObject spellLabel;
+	public GameObject AttackValues;
+	public GameObject RangeValues;
 
-	//unit cards
-
-	//spell cards
+	//Attack cards
 	public TMP_Text damageText;
+	public TMP_Text rangeText;
+
+	//Move cards
+	public TMP_Text moveDistText;
+
+	//Support cards
+	public TMP_Text suppAmountText;
 
 	private Color[] typeColors =
 	{
-		Color.green, Color.cyan, Color.red, Color.blue
+		Color.red, Color.green, Color.cyan
 	};
 
 	public void UpdateCard()
@@ -40,50 +42,43 @@ public class CardDisplay : MonoBehaviour
 		displayImage.sprite = cardData.cardSprite;
 		cardText.text = cardData.cardText;
 
-		//Enables the type symbols depending on the type of the card
-		switch (cardData.cardType) 
+		//dependant card changes
+		if (cardData is AttackCard attackCard)
 		{
-			case Card.CardType.Unit:
-				typeImages[0].gameObject.SetActive(true);
-				break;
-
-			case Card.CardType.Structure:
-				typeImages[1].gameObject.SetActive(true);
-				break;
-
-			case Card.CardType.Spell:
-				typeImages[2].gameObject.SetActive(true);
-				break;
-
-			case Card.CardType.Move:
-				typeImages[3].gameObject.SetActive(true);
-				break;
+			UpdateAttackCard(attackCard);
 		}
-
-		////dependant card changes
-		//if (cardData is UnitCard unitCard)
-		//{
-		//	UpdateUnitCard(unitCard);
-		//}
-		//else if (cardData is SpellCard spellCard)
-		//{
-		//	UpdateSpellCard(spellCard);
-		//}
+		else if (cardData is MoveCard moveCard)
+		{
+			UpdateMoveCard(moveCard);
+		}
+		else if (cardData is SupportCard supportCard)
+		{
+			UpdateSupportCard(supportCard);
+		}
 	}
 
-	//private void UpdateUnitCard(UnitCard unitCard)
-	//{
-	//	spellValues.SetActive(false);
-	//	unitValues.SetActive(true);
-	//	unitLabel.SetActive(true);
-	//}
+	private void UpdateAttackCard(AttackCard attackCard)
+	{
+		AttackValues.SetActive(true);
+		RangeValues.SetActive(true);
 
-	//private void UpdateSpellCard(SpellCard spellCard)
-	//{
-	//	unitValues.SetActive(false);
-	//	spellValues.SetActive(true);
-	//	spellLabel.SetActive(true);
+		damageText.text = attackCard.damage.ToString();
+		rangeText.text = attackCard.range.ToString();
+	}
 
-	//	damageText.text = spellCard.damage.ToString();
-	//}
+	private void UpdateMoveCard(MoveCard moveCard)
+	{
+		AttackValues.SetActive(false);
+		RangeValues.SetActive(true);
+
+		moveDistText.text = moveCard.moveDistance.ToString();
+	}
+
+	private void UpdateSupportCard(SupportCard supportCard)
+	{
+		AttackValues.SetActive(false);
+		RangeValues.SetActive(true);
+
+		suppAmountText.text = supportCard.supportAmount.ToString();
+	}
 }
