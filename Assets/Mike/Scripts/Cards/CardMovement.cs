@@ -14,7 +14,6 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 	private GridManager gridManager;
 
 	[SerializeField] private float hoverScale = 1.1f;
-	[SerializeField] private Vector2 cardPlay;
 	[SerializeField] private GameObject highlightEffect;
 	[SerializeField] private GameObject playArrow;
 

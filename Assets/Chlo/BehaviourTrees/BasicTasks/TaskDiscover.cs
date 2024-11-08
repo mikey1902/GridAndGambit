@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GridGambitProd;
 
 using BehaviourTree;
 using Vector2 = System.Numerics.Vector2;
@@ -14,7 +15,7 @@ public class TaskDiscover : BTNode
     }*/
    
  
-    private List<SpellCard> currentPool;
+    private List<Card> currentPool;
     private int reps;
  
     
@@ -24,7 +25,7 @@ public class TaskDiscover : BTNode
    
    
    
-   public TaskDiscover(Transform unit, List<SpellCard> cardPool, int repeatNum)
+   public TaskDiscover(Transform unit, List<Card> cardPool, int repeatNum)
    {
       reps = repeatNum;
       currentPool = cardPool;
