@@ -23,7 +23,7 @@ public class AreaSelect : MonoBehaviour
 
     public void directedMove(Vector2 orig, Vector2 orient, string type, int len, GameObject moveableObject)
     {
-        a = returnDamageGroup(type, orig, orient, len);
+        a = returnPath(type, orig, orient, len);
         Debug.Log(a[1]);
         b = new List<GameObject>();
         for (var i = 0; i < a.Length; i++)
@@ -58,7 +58,7 @@ public class AreaSelect : MonoBehaviour
     /*
         public Vector2[] flpPattern(int pattern, Vector2 Origin)
         {
-            Vector2[] ret = returnDamageGroup(pattern, Origin);
+            Vector2[] ret = returnPath(pattern, Origin);
             var modRet = new Vector2[ret.Length];
             var z = 0;
             foreach (var item in ret)
@@ -91,7 +91,7 @@ public class AreaSelect : MonoBehaviour
         return Orient.ToString();
     }
 
-    public Vector2[] returnDamageGroup(string pattern, Vector2 Origin, Vector2 Orient, int len)
+    public Vector2[] returnPath(string pattern, Vector2 Origin, Vector2 Orient, int len)
     {
         int[,] populateLine(Vector2 orient, int len)
         {
@@ -101,7 +101,6 @@ public class AreaSelect : MonoBehaviour
                 currentPattern[i, 0] = (int)(orient.x * i);  // Set the x coordinate
                 currentPattern[i, 1] = (int)(orient.y * i);  // Set the y coordinate
             }
-
             return currentPattern;
         }
         switch (pattern)
