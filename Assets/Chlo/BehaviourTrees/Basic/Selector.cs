@@ -11,7 +11,6 @@ namespace BehaviourTree
         public Selector(List<BTNode> children): base(children){}
         public override NodeState Evaluate()
         {
-            bool anyChildIsRunning = false;
             foreach (BTNode node in children)
             {
                 switch (node.Evaluate())
