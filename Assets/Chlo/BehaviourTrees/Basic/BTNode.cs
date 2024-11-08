@@ -15,10 +15,16 @@ namespace BehaviourTree
     public class BTNode
     {
         protected NodeState state;
-
-        private Dictionary<string, object> dataContext = new Dictionary<string,object>();
+        
         public BTNode parent;
-        protected List<BTNode> children = new List<BTNode>();
+        protected List<BTNode> children = new List<BTNode>();  
+        
+        private Dictionary<string, object> dataContext = new Dictionary<string,object>();
+
+        public BTNode()
+        {
+            parent = null;
+        }
         public BTNode(List<BTNode> children)
         {
             foreach (var node in children)
@@ -26,6 +32,7 @@ namespace BehaviourTree
                 AttachChild(node);
             }
         }
+        
         private void AttachChild(BTNode node)
         {
         node.parent = this;
