@@ -168,7 +168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7722465735005576322
 RectTransform:
   m_ObjectHideFlags: 0
@@ -399,7 +399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.4}
+  m_AnchoredPosition: {x: 0, y: 1.2}
   m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3618231979490194185
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0.5916729}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -623,20 +623,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a266ba9b92863a4db298e0dddf55231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   hoverScale: 1.1
   cardPlay: {x: 0, y: 450}
-  playPosition: {x: -400, y: 450, z: 0}
   highlightEffect: {fileID: 159782245370422807}
   playArrow: {fileID: 8086586243553815273}
-  dragDelay: 0.1
-  cardPlayDivider: 4
-  cardPlayMultiplier: 1
-  needUpdateCardPlayPosition: 0
-  playPositionYDivider: 2
-  playPositionYMultiplier: 1
-  playPositionXDivider: -3
-  playPositionXMultiplier: 1.2
-  needUpdatePlayPosition: 0
 --- !u!1 &3463200909058707598
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,8 +663,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.678}
-  m_SizeDelta: {x: 1.2, y: 2.5}
+  m_AnchoredPosition: {x: 0, y: 0.69648874}
+  m_SizeDelta: {x: 1.2, y: 2.536978}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &648405114481969310
 CanvasRenderer:
@@ -1130,7 +1121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5296050258553064198
 RectTransform:
   m_ObjectHideFlags: 0

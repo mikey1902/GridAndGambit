@@ -40,7 +40,7 @@ public class patternSelect : MonoBehaviour
     {
         
        
-                pth = AreaSelect.call(gameObject.GetComponent<gridInteg>().Gcord, orient, card, 3);
+               // pth = AreaSelect.call(gameObject.GetComponent<gridInteg>().Gcord, orient, card, 3);
                 //pathFind.startFunc(plC, gameObject.GetComponent<gridInteg>().Gcord, gameObject, 4, "SP");   
         
     }

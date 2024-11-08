@@ -8,11 +8,10 @@ public class HandManager : MonoBehaviour
 	public GameObject cardPF;
 	public List<GameObject> cardsInHand = new List<GameObject>();
 	public Transform handTransform;
-	public List<Card> tempList = new List<Card>();
-	public float verticalCardSpace = 50f;
-	public float horizontalCardSpace = 120f;
-	public float handSpread = -10f;
-	public int maxHandSize = 10;
+
+	public float verticalCardSpace = 0f;
+	public float horizontalCardSpace = 300f;
+	public int maxHandSize;
 
 	void Start()
 	{
@@ -25,13 +24,17 @@ public class HandManager : MonoBehaviour
 			//Instantiate card and add it to the list
 			GameObject newCard = Instantiate(cardPF, handTransform.position, Quaternion.identity, handTransform);
 			cardsInHand.Add(newCard);
-			tempList.Add(cardData);
+
 			//set the instantiated card's data
 			newCard.GetComponent<CardDisplay>().cardData = cardData;
 			newCard.GetComponent<CardDisplay>().UpdateCard();
 		}
 
 		UpdateHandVisuals();
+	}
+	public void MaxHandSizeSetup(int setMaxHandSize)
+	{
+		maxHandSize = setMaxHandSize;
 	}
 
 	public void UpdateHandVisuals()
@@ -48,10 +51,6 @@ public class HandManager : MonoBehaviour
 
 		for (int i = 0; i < cardCount; i++)
 		{
-			//Creates the rotation for the current card in the list and then sets it to the card
-			float rotationAngle = (handSpread * (i - (cardCount - 1) / 2f));
-			cardsInHand[i].transform.localRotation = Quaternion.Euler(0f, 0f, rotationAngle);
-
 			float horizontalCardOffset = (horizontalCardSpace * (i - (cardCount - 1) / 2f));
 
 			float positionNormalized = (2f * i / (cardCount - 1) - 1f); //Normalizes card position between -1 and 1
@@ -59,6 +58,14 @@ public class HandManager : MonoBehaviour
 
 			//sets the cards new position
 			cardsInHand[i].transform.localPosition = new Vector3(horizontalCardOffset, verticalCardOffset, 0f);
+		}
+	}
+
+	public void ClearHand()
+	{
+		foreach(GameObject card in cardsInHand)
+		{
+			Destroy(card);
 		}
 	}
 }

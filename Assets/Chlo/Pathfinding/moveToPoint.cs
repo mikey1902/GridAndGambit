@@ -19,12 +19,12 @@ public class moveToPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        path = pathOutput.GetComponent<AreaSelect>().path;
-        if (Input.GetKeyDown(KeyCode.W)){
-            mvCoroutine = StartCoroutine(sMoveObject(path, gameObject, 1.0f));
+        //path = pathOutput.GetComponent<AreaSelect>().path;
+        //if (Input.GetKeyDown(KeyCode.W)){
+        //    mvCoroutine = StartCoroutine(sMoveObject(path, gameObject, 1.0f));
           
 
-        }
+        //}
     }
 
     

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public DeckManager DeckManager { get; private set; }
 
 	public bool playingCard = false;
+	public bool playingMove = false;
 
 	private void Awake()
 	{

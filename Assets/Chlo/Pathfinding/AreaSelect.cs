@@ -9,6 +9,8 @@ public class AreaSelect : MonoBehaviour
     private int[,] definePattern;
     public GameObject chessObj;
     public GridManager createGrid;
+    private moveToPoint moveToPoint;
+    private Coroutine mvCoroutine;
 
     public GameObject chessUnit;
     public List<GameObject> path;
@@ -16,18 +18,10 @@ public class AreaSelect : MonoBehaviour
 	void Awake()
 	{
         createGrid = gameObject.GetComponent<GridManager>();
+        moveToPoint = gameObject.GetComponent<moveToPoint>();
 	}
-	void Start()
-    {
-    
-    }
 
-    void Update(){
-        if(Input.GetKeyDown("space")){
-        path = call(chessUnit.GetComponent<gridInteg>().gcord, new Vector2(-1, 1), "S", 4);
-        }
-    }
-    public List<GameObject> call(Vector2 orig, Vector2 orient, string type, int len)
+    public void directedMove(Vector2 orig, Vector2 orient, string type, int len, GameObject moveableObject)
     {
         a = returnPath(type, orig, orient, len);
         Debug.Log(a[1]);
@@ -38,11 +32,11 @@ public class AreaSelect : MonoBehaviour
             if (b[i] != null)
             {
                 b[i] = GetNodeFromVec(a[i], createGrid.cellTransforms);
-                GameObject show = Instantiate(fodder);
-                show.transform.position = b[i].transform.position;
+                //GameObject show = Instantiate(fodder);
+                //show.transform.position = b[i].transform.position;
             }
         }
-        return b;
+        mvCoroutine = StartCoroutine(moveToPoint.sMoveObject(b, moveableObject, 1.0f));
     }
 
     public GameObject? GetNodeFromVec(Vector2 xy, List<Transform> GC)
