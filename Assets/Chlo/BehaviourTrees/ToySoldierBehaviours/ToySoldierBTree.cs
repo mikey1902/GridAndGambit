@@ -10,7 +10,7 @@ public class ToySoldierBTree : BTree
     protected override BTNode SetupTree()
     {
         BTNode root = new TaskSearch(transform, waypoints);
-
         return root;
+        
     }
 }
