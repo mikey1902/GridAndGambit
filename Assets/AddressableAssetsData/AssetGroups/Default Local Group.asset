@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 604c67109ed14af46a6318bfa9f7262d
-  m_SerializeEntries:
-  - m_GUID: 3c7358d884554b84eb70595652a633e0
-    m_Address: FMODStudioSettings
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: da1248ff90397264cae9de897c43fa3c, type: 2}
   m_SchemaSet:
