@@ -14,6 +14,8 @@ public class gridInteg : MonoBehaviour
             gcord = value;  
         }
     }
+    //Placeholder
+    public bool isOurs { get; set; }
 
     void Update()
     {

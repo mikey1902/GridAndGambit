@@ -9,6 +9,8 @@ public class AreaSelect : MonoBehaviour
     private int[,] definePattern;
     public GameObject chessObj;
     public GridManager createGrid;
+    private moveToPoint moveToPoint;
+    private Coroutine mvCoroutine;
 
     public GameObject chessUnit;
     public List<GameObject> path;
@@ -16,20 +18,12 @@ public class AreaSelect : MonoBehaviour
 	void Awake()
 	{
         createGrid = gameObject.GetComponent<GridManager>();
+        moveToPoint = gameObject.GetComponent<moveToPoint>();
 	}
-	void Start()
-    {
-    
-    }
 
-    void Update(){
-        if(Input.GetKeyDown("space")){
-        path = call(chessUnit.GetComponent<gridInteg>().gcord, new Vector2(-1, 1), "S", 4);
-        }
-    }
-    public List<GameObject> call(Vector2 orig, Vector2 orient, string type, int len)
+    public void directedMove(Vector2 orig, Vector2 orient, string type, int len, GameObject moveableObject)
     {
-        a = returnDamageGroup(type, orig, orient, len);
+        a = returnPath(type, orig, orient, len);
         Debug.Log(a[1]);
         b = new List<GameObject>();
         for (var i = 0; i < a.Length; i++)
@@ -38,11 +32,11 @@ public class AreaSelect : MonoBehaviour
             if (b[i] != null)
             {
                 b[i] = GetNodeFromVec(a[i], createGrid.cellTransforms);
-                GameObject show = Instantiate(fodder);
-                show.transform.position = b[i].transform.position;
+                //GameObject show = Instantiate(fodder);
+                //show.transform.position = b[i].transform.position;
             }
         }
-        return b;
+        mvCoroutine = StartCoroutine(moveToPoint.sMoveObject(b, moveableObject, 1.0f));
     }
 
     public GameObject? GetNodeFromVec(Vector2 xy, List<Transform> GC)
@@ -64,7 +58,7 @@ public class AreaSelect : MonoBehaviour
     /*
         public Vector2[] flpPattern(int pattern, Vector2 Origin)
         {
-            Vector2[] ret = returnDamageGroup(pattern, Origin);
+            Vector2[] ret = returnPath(pattern, Origin);
             var modRet = new Vector2[ret.Length];
             var z = 0;
             foreach (var item in ret)
@@ -97,7 +91,7 @@ public class AreaSelect : MonoBehaviour
         return Orient.ToString();
     }
 
-    public Vector2[] returnDamageGroup(string pattern, Vector2 Origin, Vector2 Orient, int len)
+    public Vector2[] returnPath(string pattern, Vector2 Origin, Vector2 Orient, int len)
     {
         int[,] populateLine(Vector2 orient, int len)
         {
@@ -107,7 +101,6 @@ public class AreaSelect : MonoBehaviour
                 currentPattern[i, 0] = (int)(orient.x * i);  // Set the x coordinate
                 currentPattern[i, 1] = (int)(orient.y * i);  // Set the y coordinate
             }
-
             return currentPattern;
         }
         switch (pattern)

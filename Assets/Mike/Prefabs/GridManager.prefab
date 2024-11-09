@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8179842812910669824}
   - component: {fileID: 5649830998936514581}
   - component: {fileID: 1591938914301375886}
+  - component: {fileID: 6368618781567669393}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5649830998936514581
 MonoBehaviour:
@@ -46,7 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsOnGrid: []
+  cellTransforms: []
   cellPrefab: {fileID: 4184581097308111931, guid: 1caf0d156b5af4c4381b8f1b52693ff9, type: 3}
+  moveableObject: {fileID: 0}
+  highlightedCells: []
   width: 8
   height: 8
 --- !u!114 &1591938914301375886
@@ -63,5 +67,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fodder: {fileID: 360262440654651145, guid: 92bfed307d6231d41822d8ea47c65c2e, type: 3}
   chessObj: {fileID: 4759673853468368008}
-  createGrid: {fileID: 0}
+  createGrid: {fileID: 5649830998936514581}
   chessUnit: {fileID: 0}
+  path: []
+--- !u!114 &6368618781567669393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4759673853468368008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9310b67195877ea40b1b01092edcd8e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: []
+  pathOutput: {fileID: 0}
+  pubDirs: []

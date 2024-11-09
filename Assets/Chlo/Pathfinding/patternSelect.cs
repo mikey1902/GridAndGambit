@@ -38,13 +38,9 @@ public class patternSelect : MonoBehaviour
    
     public void ultizeCard(Vector2 orient)
     {
-        bool returnRand(int min, int max)
-        {
-            Randoms rand = new System.Random();
-            return Convert.ToBoolean(rand.Next(min, max));
-        }
+        
        
-                pth = AreaSelect.call(gameObject.GetComponent<gridInteg>().Gcord, orient, card, 3);
+               // pth = AreaSelect.call(gameObject.GetComponent<gridInteg>().Gcord, orient, card, 3);
                 //pathFind.startFunc(plC, gameObject.GetComponent<gridInteg>().Gcord, gameObject, 4, "SP");   
         
     }

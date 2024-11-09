@@ -31,9 +31,9 @@ Transform:
   m_Children:
   - {fileID: 3963671063474266925}
   - {fileID: 8404314681017555091}
-  - {fileID: 5931609392036617415}
+  - {fileID: 233531929901544542}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4043823555757878019
 MonoBehaviour:
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de793fa20168e114fa213d554f2fafab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playingCard: 0
+  playingMove: 0
 --- !u!1001 &2013330360406406540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108,7 +110,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8db99cdcf4a47504785f1abf24ead124, type: 3}
---- !u!4 &5931609392036617415 stripped
+--- !u!4 &233531929901544542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1787195979514397138, guid: 8db99cdcf4a47504785f1abf24ead124, type: 3}
   m_PrefabInstance: {fileID: 2013330360406406540}
@@ -187,6 +189,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1550750852045930554}
     m_Modifications:
+    - target: {fileID: 948489913030601335, guid: 6dfbee43f9caf7e4a8523588eda1189d, type: 3}
+      propertyPath: maxHandSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 948489913030601335, guid: 6dfbee43f9caf7e4a8523588eda1189d, type: 3}
+      propertyPath: startingHandSize
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3127945397589829819, guid: 6dfbee43f9caf7e4a8523588eda1189d, type: 3}
       propertyPath: m_Name
       value: DeckManager
