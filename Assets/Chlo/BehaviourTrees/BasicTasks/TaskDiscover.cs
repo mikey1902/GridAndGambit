@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using GridGambitProd;
-
+using static GridGambitProd.GridGambitUtil;
 using BehaviourTree;
 using Vector2 = System.Numerics.Vector2;
 
@@ -32,19 +32,7 @@ public class TaskDiscover : BTNode
    {
       reps = repeatNum;
       _waitTime = waitTime;
-      if (discoverStr.Length <= 1)
-      { 
-          currentPool = new List<Card>();
-         foreach(string item in discoverStr)
-         {
-           currentPool = Enumerable.Union(currentPool, Resources.LoadAll<Card>(item)).ToList();
-         }
-      }
-      else
-      {
-          currentPool = Resources.LoadAll<Card>(discoverStr[0]).ToList();
-          Debug.Log(currentPool.ElementAt(0));
-      }
+      currentPool = ReturnCardPool(true, discoverStr);
       _enemyContainer = enemyContainer;
       _transform = unit;
    }
