@@ -15,21 +15,24 @@ public class TaskDiscover : BTNode
         currentPosition = gameObject.
     }*/
 
-   public List<Card> selectedCards;
+    public List<Card> selectedCards = new List<Card>();
     private List<Card> currentPool;
+    private EnemyContainer _enemyContainer;
     private int reps;
- 
+
+    private float _waitTime;
     public Transform _transform;
     public float waitCounter = 0f;
     private float waitTime = 1f;
-    private bool waitingForDiscover = false;
+    private bool waitForPreviousNode = false;
    
    
    
-   public TaskDiscover(Transform unit,  int repeatNum, params string[] discoverStr)
+   public TaskDiscover(Transform unit,  int repeatNum, EnemyContainer enemyContainer, float waitTime, params string[] discoverStr)
    {
       reps = repeatNum;
-      if (discoverStr.Length > 1)
+      _waitTime = waitTime;
+      if (discoverStr.Length <= 1)
       { 
           currentPool = new List<Card>();
          foreach(string item in discoverStr)
@@ -40,30 +43,37 @@ public class TaskDiscover : BTNode
       else
       {
           currentPool = Resources.LoadAll<Card>(discoverStr[0]).ToList();
+          Debug.Log(currentPool.ElementAt(0));
       }
-      selectedCards = unit.gameObject.GetComponent<EnemyContainer>().discoverChoices;
+      _enemyContainer = enemyContainer;
       _transform = unit;
    }
-   
-    public override NodeState Evaluate()
-    {
-       // for(var i = 0; i < reps; i++)
-         if (waitingForDiscover)
-         {
-            waitCounter += Time.deltaTime;
-            if (waitCounter >= waitTime)
-                waitingForDiscover = false;
-         }
-         else
-         {
-             for (int j = 0; j < 3; j++)
-             {
-                 selectedCards.Add(currentPool.ElementAt(Random.Range(0, currentPool.Count)));
-             } 
-         }
-         state = NodeState.RUNNING;
-        return state;
-    }
-    
-    
+
+   public override NodeState Evaluate()
+   {
+    /*   if (waitForPreviousNode)
+       {
+           waitCounter += Time.deltaTime;
+           if (waitCounter >= _waitTime)
+               waitForPreviousNode = false;
+       }*/
+     /*  else
+       {*/
+           if (!_enemyContainer.discoverChoices[0])
+           {
+               for (int j = 0; j < 3; j++)
+               {
+                   _enemyContainer.discoverChoices[j] = currentPool.ElementAt(Random.Range(0, currentPool.Count - 1));
+               }
+
+               // _transform.gameObject.GetComponent<EnemyContainer>().discoverChoices.Add()
+               //  }
+               state = NodeState.SUCCESS;
+               return state;
+           }
+           
+   //    }
+ state = NodeState.FAILURE;
+           return state;
+   }
 }

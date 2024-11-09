@@ -8,49 +8,50 @@ using BehaviourTree;
 using Vector2 = System.Numerics.Vector2;
 
 
-public class TaskPlayCard : BTNode
+public class TaskCheckCard : BTNode
 {
 
-    private EnemyContainer _enemyContainer;
-    private Card ChosenCard;
-    public float waitCounter = 0f;
-    private float _waitTime;
-
+    
     private Card selectedCard;
     private int reps;
-    [SerializeField] private GridGambitProd.Card.CardType _cardType;
+    private EnemyContainer _enemyContainer;
     public Transform _transform;
+    public float waitCounter = 0f;
+    private float _waitTime = 1f;
     private bool waitingForPreviousNode = false;
 
 
-    public TaskPlayCard(Transform unit, Card selectCard, EnemyContainer enemyContainer, float waitTime)
+    public TaskCheckCard(Transform unit, EnemyContainer enemyContainer, float waitTime)
     {
       //  selectedCards = unit.gameObject.GetComponent<EnemyContainer>().discoverChoices;
+      waitingForPreviousNode = true;
       _enemyContainer = enemyContainer;
-      ChosenCard = selectCard;
-      _cardType = ChosenCard.cardType;
-      _waitTime = waitTime;
       _transform = unit;
+      
     }
 
 
     public override NodeState Evaluate()
     {
+        
          if (waitingForPreviousNode)
          {
              //code for delay goes here
             waitCounter += Time.deltaTime;
             if (waitCounter >= _waitTime)
                 waitingForPreviousNode = false;
+            selectedCard = _enemyContainer.discoverChoices[Random.Range(0, _enemyContainer.discoverChoices.Length)];
          }
          else
          {
-           switch (_cardType)
+           switch (selectedCard.cardType)
            {
-               case Card.CardType.Attack:
+               case GridGambitProd.Card.CardType.Attack:
+                   Debug.Log(selectedCard.cardType.ToString()); 
 
                    break;
-               case Card.CardType.Support:
+               case GridGambitProd.Card.CardType.Support:
+                   Debug.Log(selectedCard.cardType.ToString()); 
 
                    break;
                
@@ -58,7 +59,6 @@ public class TaskPlayCard : BTNode
                    Debug.Log("wth boi, what u doin - Not implemented yet");
                    break;
            }
-           Debug.Log(selectedCard.cardType.ToString()); 
            _enemyContainer.cardToPlay = selectedCard;
          }
          state = NodeState.SUCCESS;

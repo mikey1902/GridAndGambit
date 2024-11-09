@@ -1,8 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GridGambitProd;
+using JetBrains.Annotations;
+
 public class EnemyContainer : MonoBehaviour
 {
-    public List<Card> discoverChoices = new List<Card>();
+    public bool isPlayingCard = false;
+    public Card[] discoverChoices; 
+    public Card cardToPlay;
+  
+    private void Awake()
+    { 
+        discoverChoices = new Card[3];
+    }
+
 }
