@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 
 	public OptionsManager OptionsManager { get; private set; }
 	public AudioManager AudioManager { get; private set; }
-	public DeckManager DeckManager { get; private set; }
 
 	public bool playingCard = false;
 	public bool playingMove = false;
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
 	{
 		OptionsManager = GetComponentInChildren<OptionsManager>();
 		AudioManager = GetComponentInChildren<AudioManager>();
-		DeckManager = GetComponentInChildren<DeckManager>();
 
 		if(OptionsManager == null)
 		{
@@ -59,19 +57,6 @@ public class GameManager : MonoBehaviour
 			{
 				Instantiate(prefab, transform.position, Quaternion.identity, transform);
 				AudioManager = GetComponentInChildren<AudioManager>();
-			}
-		}
-		if (DeckManager == null)
-		{
-			GameObject prefab = Resources.Load<GameObject>("Prefabs/DeckManager");
-			if (prefab == null)
-			{
-				Debug.Log($"DeckManager prefab not found");
-			}
-			else
-			{
-				Instantiate(prefab, transform.position, Quaternion.identity, transform);
-				DeckManager = GetComponentInChildren<DeckManager>();
 			}
 		}
 	}

@@ -14,7 +14,6 @@ public class DrawManager : MonoBehaviour
 	public int maxHandSize;
 	public int currentHandSize;
 	private HandManager handManager;
-	public TextMeshProUGUI drawPileCount;
 
 	void Start()
 	{
@@ -34,10 +33,10 @@ public class DrawManager : MonoBehaviour
 		UnitDeck.AddRange(cardsToAdd);
 	}
 
-	public void FirstHandSetup(int numberOfDrawCards, int setHandSize)
+	public void FirstHandSetup(int HandSize)
 	{
-		maxHandSize = setHandSize;
-		for(int i = 0; i < numberOfDrawCards; i++)
+		maxHandSize = HandSize;
+		for(int i = 0; i < HandSize; i++)
 		{
 			DrawCard(handManager);
 		}
