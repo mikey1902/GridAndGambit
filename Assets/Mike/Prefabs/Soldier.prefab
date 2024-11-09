@@ -95,7 +95,7 @@ MonoBehaviour:
   CardsInResources: []
   isDestroyed: 0
   hasActed: 0
-  CDTypeFolderName: CardData
+  CDTypeFolderName: P_PawnCards
 --- !u!114 &5780569136883626721
 MonoBehaviour:
   m_ObjectHideFlags: 0

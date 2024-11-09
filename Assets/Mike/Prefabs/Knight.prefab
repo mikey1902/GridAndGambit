@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6902010225711152701}
   - component: {fileID: -9084966146018896665}
   - component: {fileID: -6845678215375374344}
+  - component: {fileID: 4925263130725932540}
   m_Layer: 7
   m_Name: Knight
   m_TagString: Untagged
@@ -91,7 +92,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48b6698dccfbf846be3c139766bf007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardsInResources: []
   isDestroyed: 0
+  hasActed: 0
+  CDTypeFolderName: 
+--- !u!114 &4925263130725932540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127464556148948338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ae2bf11c9875f4caf8218598ece8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitDeck: []
+  startingHandSize: 0
+  maxHandSize: 0
+  currentHandSize: 0
 --- !u!1 &7398404985392954993
 GameObject:
   m_ObjectHideFlags: 0
