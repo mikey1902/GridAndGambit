@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25361ba0bfc7b548b442d4ded3fd95c, type: 3}
   m_Name: DivinePunishment
   m_EditorClassIdentifier: 
-  cardName: Purify
+  cardName: Divine Punishment
   cardType: 2
-  cardSprite: {fileID: -1388486042, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Heal 3 HP and cleanse
+  cardSprite: {fileID: -579725436, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardText: "Both this an the select piece can\xB4t move unitl next turn"
   hasExtraEffect: 1
-  supportAmount: 3
-  supportType: 0
-  range: 4
+  supportAmount: 0
+  supportType: 1
+  range: 6

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73eb1cdf67d0144493df2ee8b4622b6, type: 3}
   m_Name: Penitence
   m_EditorClassIdentifier: 
-  cardName: Divine Bolt
+  cardName: Penitence
   cardType: 0
   cardSprite: {fileID: -804667674, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: 
-  hasExtraEffect: 0
-  damage: 4
-  range: 6
+  cardText: Hits up to 3 Different Enemies.
+  hasExtraEffect: 1
+  damage: 3
+  range: 4

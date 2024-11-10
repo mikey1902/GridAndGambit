@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9ee0114e2770a489f2123c65a01d15, type: 3}
   m_Name: Repent
   m_EditorClassIdentifier: 
-  cardName: Do No Harm
+  cardName: Repent
   cardType: 1
   cardSprite: {fileID: -1234761571, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: "Teleport to an Enemy and become Inmune until next turn. You can\xB4t
-    cast Attack Abilities next turn."
+  cardText: Knockback all Enemies. Knockback (3)
   hasExtraEffect: 1
   damage: 0
-  moveDistance: 0
+  moveDistance: 3
   moveType: 3

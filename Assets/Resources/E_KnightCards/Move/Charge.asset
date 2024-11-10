@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd9ee0114e2770a489f2123c65a01d15, type: 3}
-  m_Name: Vanish
+  m_Name: Charge
   m_EditorClassIdentifier: 
-  cardName: Vanish
+  cardName: Charge
   cardType: 1
-  cardSprite: {fileID: -370961514, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Move an ally piece next to this one.
+  cardSprite: {fileID: -569082693, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardText: Move forward & Grant +2 dmg to nearby Allies for 1 turn.
   hasExtraEffect: 1
-  damage: 0
-  moveDistance: 6
+  damage: 5
+  moveDistance: 4
   moveType: 3
