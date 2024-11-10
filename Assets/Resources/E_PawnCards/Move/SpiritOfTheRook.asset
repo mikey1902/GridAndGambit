@@ -15,7 +15,8 @@ MonoBehaviour:
   cardName: Spirit of the Rook
   cardType: 1
   cardSprite: {fileID: -790599577, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Move like a Rook & Gain a Random Rook Card
-  hasExtraEffect: 1
+  cardText: Move like a Rook
+  hasExtraEffect: 0
+  damage: 0
   moveDistance: 4
   moveType: 0

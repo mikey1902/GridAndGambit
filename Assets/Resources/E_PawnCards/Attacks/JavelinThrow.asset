@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73eb1cdf67d0144493df2ee8b4622b6, type: 3}
   m_Name: JavelinThrow
   m_EditorClassIdentifier: 
-  cardName: Arrow Shot
+  cardName: Javelin Throw
   cardType: 0
   cardSprite: {fileID: 198872190, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: 
