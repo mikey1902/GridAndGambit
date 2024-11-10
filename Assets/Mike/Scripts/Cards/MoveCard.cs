@@ -13,5 +13,6 @@ public class MoveCard : Card
         Orthogonal,
         Diagonal,
         LShape,
+        Omnidirectional,
     }
 }

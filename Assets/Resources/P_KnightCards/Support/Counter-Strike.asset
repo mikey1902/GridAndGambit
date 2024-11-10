@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25361ba0bfc7b548b442d4ded3fd95c, type: 3}
   m_Name: Counter-Strike
   m_EditorClassIdentifier: 
-  cardName: Enforce
+  cardName: Counter-Strike
   cardType: 2
-  cardSprite: {fileID: 739342557, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Gain +1 Damage for 2 turns
+  cardSprite: {fileID: -370961514, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardText: Become Inmune to Damage unitl next turn. Return the next instance of
+    damage dealt to this piece and lose inmmunity.
   hasExtraEffect: 1
-  supportAmount: 1
+  supportAmount: 0
   supportType: 0
   range: 0

@@ -19,4 +19,4 @@ MonoBehaviour:
   hasExtraEffect: 1
   damage: 5
   moveDistance: 4
-  moveType: 0
+  moveType: 3
