@@ -28,7 +28,7 @@ public class TaskCheckCard : BTNode
         _enemyContainer = enemyContainer;
         _transform = unit;
         _waitTime = waitTime;
-        
+
 //        Debug.Log(selectedCard);
     }
 
@@ -47,35 +47,42 @@ public class TaskCheckCard : BTNode
             //Random.Range(0, _enemyContainer.discoverChoices.Length
             selectedCard = _enemyContainer.discoverChoices[0];
             Debug.Log(selectedCard);
-            switch (selectedCard.cardType)
+
+            foreach (var VARIABLE in _enemyContainer.discoverChoices)
             {
-                case GridGambitProd.Card.CardType.Attack:
-                    Debug.Log(selectedCard.cardType.ToString());
+                switch (selectedCard.cardType)
+                {
+                    case GridGambitProd.Card.CardType.Attack:
+                        Debug.Log(selectedCard.cardType.ToString());
 
-                    
-                    
-                    break;
-                case GridGambitProd.Card.CardType.Support:
-                    Debug.Log(selectedCard.cardType.ToString());
 
-                    break;
+                        break;
+                    case GridGambitProd.Card.CardType.Support:
+                        Debug.Log(selectedCard.cardType.ToString());
 
-                default:
-                    Debug.Log("wth boi, what u doin - Not implemented yet");
-                    break;
+
+                        break;
+                    default:
+                        Debug.Log("wth boi, what u doin - Not implemented yet");
+                        break;
+                }
+
+                _enemyContainer.CardToPlay = selectedCard;
+                Debug.Log("Finished TaskCheckCard");
+                state = NodeState.SUCCESS;
+                return state;
             }
-            
-            _enemyContainer.CardToPlay = selectedCard;
-            Debug.Log("Finished TaskCheckCard");
-            state = NodeState.SUCCESS;
+
+            state = NodeState.FAILURE;
             return state;
         }
-        state = NodeState.FAILURE;
+
+        state = NodeState.SUCCESS;
         return state;
 
+
+
+
+
     }
-
 }
-    
-
-

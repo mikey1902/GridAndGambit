@@ -27,9 +27,9 @@ public class ToySoldierBTree : BTree
                 //new TaskPlayCard(transform, container.CardToPlay, container, 1f),
 
             }),
-        new Sequence(new List<BTNode> {
+       /* new Sequence(new List<BTNode> {
         new TaskCheckCard(transform, container)
-        });
+        });*/
 
         //new TaskTryMoving(transform, container, )
         // new TaskSearch(transform, waypoints),
