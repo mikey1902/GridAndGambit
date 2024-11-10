@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73eb1cdf67d0144493df2ee8b4622b6, type: 3}
   m_Name: Punch
   m_EditorClassIdentifier: 
-  cardName: Tower Shot
+  cardName: Punch
   cardType: 0
   cardSprite: {fileID: 479905756, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: 
   hasExtraEffect: 0
   damage: 4
-  range: 3
+  range: 1
