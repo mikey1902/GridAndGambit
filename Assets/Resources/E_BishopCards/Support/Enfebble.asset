@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b25361ba0bfc7b548b442d4ded3fd95c, type: 3}
-  m_Name: DivineSight
+  m_Name: Enfebble
   m_EditorClassIdentifier: 
   cardName: Divine Sight
   cardType: 2

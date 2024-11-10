@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b25361ba0bfc7b548b442d4ded3fd95c, type: 3}
-  m_Name: DivineSight
+  m_Name: DivinePunishment
   m_EditorClassIdentifier: 
-  cardName: Divine Sight
+  cardName: Purify
   cardType: 2
-  cardSprite: {fileID: 1717361482, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Give +2 Damage to another piece
-  hasExtraEffect: 0
-  supportAmount: 2
+  cardSprite: {fileID: -1388486042, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardText: Heal 3 HP and cleanse
+  hasExtraEffect: 1
+  supportAmount: 3
   supportType: 0
-  range: 3
+  range: 4
