@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Back Kick
   cardType: 0
   cardSprite: {fileID: 479905756, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Hits Twice
+  cardText: Hits Twice. Knockback (1)
   hasExtraEffect: 1
   damage: 2
   range: 1

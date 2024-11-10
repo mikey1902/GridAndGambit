@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b25361ba0bfc7b548b442d4ded3fd95c, type: 3}
-  m_Name: NoQuarter
+  m_Name: BrickUp
   m_EditorClassIdentifier: 
-  cardName: No Quarter
+  cardName: Brick Up
   cardType: 2
-  cardSprite: {fileID: 95342866, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Grant allies in range +2 Damage and 2 Armor for 2 turns
+  cardSprite: {fileID: -241933981, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardText: Gain 5 Armor for 3 turns
   hasExtraEffect: 1
-  supportAmount: 2
+  supportAmount: 5
   supportType: 0
-  range: 3
+  range: 0
