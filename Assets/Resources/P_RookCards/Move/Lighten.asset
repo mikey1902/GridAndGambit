@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25361ba0bfc7b548b442d4ded3fd95c, type: 3}
-  m_Name: Patch
+  m_Script: {fileID: 11500000, guid: bd9ee0114e2770a489f2123c65a01d15, type: 3}
+  m_Name: Lighten
   m_EditorClassIdentifier: 
-  cardName: Patch
-  cardType: 2
-  cardSprite: {fileID: -2043333513, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Heal 1 HP to yourself or a close Ally
+  cardName: Lighten
+  cardType: 1
+  cardSprite: {fileID: 447409311, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardText: Lose all Armor, gain that much movement.
   hasExtraEffect: 1
-  supportAmount: 1
-  supportType: 0
-  range: 1
+  damage: 0
+  moveDistance: 0
+  moveType: 0

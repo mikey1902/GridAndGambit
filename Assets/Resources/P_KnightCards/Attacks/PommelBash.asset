@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25361ba0bfc7b548b442d4ded3fd95c, type: 3}
-  m_Name: Patch
+  m_Script: {fileID: 11500000, guid: d73eb1cdf67d0144493df2ee8b4622b6, type: 3}
+  m_Name: PommelBash
   m_EditorClassIdentifier: 
-  cardName: Patch
-  cardType: 2
-  cardSprite: {fileID: -2043333513, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
-  cardText: Heal 1 HP to yourself or a close Ally
+  cardName: Pommel Bash
+  cardType: 0
+  cardSprite: {fileID: -164947489, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardText: Knockback (2)
   hasExtraEffect: 1
-  supportAmount: 1
-  supportType: 0
+  damage: 6
   range: 1
