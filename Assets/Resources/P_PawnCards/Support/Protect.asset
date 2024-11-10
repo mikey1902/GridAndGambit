@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Protect
   cardType: 2
-  cardSprite: {fileID: 739342557, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardSprite: {fileID: -241933981, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Give 2 Armor to another piece
   hasExtraEffect: 1
   supportAmount: 2

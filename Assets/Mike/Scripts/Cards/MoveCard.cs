@@ -1,17 +1,17 @@
-using System.Collections.Generic;
-using UnityEngine;
 using GridGambitProd;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Move Card", menuName = "Card/Move")]
 public class MoveCard : Card
 {
-	public int moveDistance;
-	public MoveType moveType;
+    public int damage;
+    public int moveDistance;
+    public MoveType moveType;
 
-	public enum MoveType
-	{
-		Orthogonal,
-		Diagonal,
-		LShape,
-	}
+    public enum MoveType
+    {
+        Orthogonal,
+        Diagonal,
+        LShape,
+    }
 }
