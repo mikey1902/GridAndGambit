@@ -24,16 +24,24 @@ namespace GridGambitProd
     public class GridGambitUtil : MonoBehaviour
     {
 
-
+       public static string[] ReturnModifiedDirectoryArr(string[] items, string directoryModification)
+        {
+            for (var i = 0; i < items.Length; i++)
+            {
+                items[i] = new string(directoryModification + items[i]);
+            }
+            return items;
+        }
         //Concatinates all the pools()
         public static List<Card> ReturnCardPool(bool doesShuffle, params string[] poolNames)
         {
             var rnd = new Rand();
             List<Card> currentPool = new List<Card>();
-
-            if (poolNames.Length <= 1) {
+            Debug.Log(poolNames.Length);
+            if (poolNames.Length > 1) {
                 foreach (string item in poolNames) {
-                    currentPool = Enumerable.Union(currentPool, Resources.LoadAll<Card>(item)).ToList();
+                    currentPool = Enumerable.Concat(currentPool, Resources.LoadAll<Card>(item)).ToList();
+                    Debug.Log(item);
                 }
             } else {
                 currentPool = Resources.LoadAll<Card>(poolNames[0]).ToList();
@@ -41,6 +49,7 @@ namespace GridGambitProd
             if (doesShuffle) return currentPool.OrderBy(item => rnd.Next()).ToList();
             return currentPool;
         }
+      
 
 
 

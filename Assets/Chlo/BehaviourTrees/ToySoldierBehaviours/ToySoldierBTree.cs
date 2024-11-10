@@ -20,7 +20,7 @@ public class ToySoldierBTree : BTree
         /*BTNode root = new TaskSearch(transform, waypoints);
         return root;*/
         BTNode root = new Sequence(new List<BTNode> {
-            new TaskDiscover(transform, 1, container, 0f, "CardData"),
+            new TaskDiscover(transform, 1, container, 0f, relatedCardPools),
             new TaskCheckCard(transform, container, 1f), 
             //break out of sequence if can't play cards. or decide whether or not to try and move first (currently random)
           //  new TaskPlayCard(transform, container.cardToPlay, container, 1f),
