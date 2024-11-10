@@ -401,7 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayingCard: 0
   discoverChoices: []
-  cardToPlay: {fileID: 0}
+  CardToPlay: {fileID: 0}
 --- !u!1 &1625549217
 GameObject:
   m_ObjectHideFlags: 0

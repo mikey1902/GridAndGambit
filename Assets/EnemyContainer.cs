@@ -8,8 +8,8 @@ using JetBrains.Annotations;
 public class EnemyContainer : MonoBehaviour
 {
     public bool isPlayingCard = false;
-    public Card[] discoverChoices; 
-    public Card cardToPlay;
+    public Card[] discoverChoices;
+    public Card CardToPlay;
   
     private void Awake()
     { 

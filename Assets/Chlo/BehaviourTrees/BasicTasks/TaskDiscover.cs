@@ -53,15 +53,9 @@ public class TaskDiscover : BTNode
                {
                    _enemyContainer.discoverChoices[j] = currentPool.ElementAt(Random.Range(0, currentPool.Count - 1));
                }
-
-               // _transform.gameObject.GetComponent<EnemyContainer>().discoverChoices.Add()
-               //  }
-               state = NodeState.SUCCESS;
-               return state;
+               
            }
-           
-   //    }
- state = NodeState.FAILURE;
+           state = NodeState.SUCCESS;
            return state;
    }
 }

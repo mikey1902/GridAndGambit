@@ -14,25 +14,43 @@ public class ToySoldierBTree : BTree
      {
          container = this.GetComponent<EnemyContainer>();
      }
-
+//LAZY UNIT
     protected override BTNode SetupTree()
     {
         /*BTNode root = new TaskSearch(transform, waypoints);
         return root;*/
-        BTNode root = new Sequence(new List<BTNode> {
-            new TaskDiscover(transform, 1, container, 0f, relatedCardPools),
-            new TaskCheckCard(transform, container, 1f), 
-            //break out of sequence if can't play cards. or decide whether or not to try and move first (currently random)
-          //  new TaskPlayCard(transform, container.cardToPlay, container, 1f),
-          /*  new Sequence(new List<BTNode> {
-                //
-           
-                //new TaskEndTurn
-                }),*/
-            
-           // new TaskSearch(transform, waypoints),
-            
-            });
+        BTNode root = new Selector(new List<BTNode>{
+            new Sequence(new List<BTNode>
+            {
+                new TaskDiscover(transform, 1, container, 1f, relatedCardPools),
+                new TaskCheckCard(transform, container, 1f),
+                //new TaskPlayCard(transform, container.CardToPlay, container, 1f),
+
+            }),
+        new Sequence(new List<BTNode> {
+        new TaskCheckCard(transform, container)
+        });
+
+        //new TaskTryMoving(transform, container, )
+        // new TaskSearch(transform, waypoints),
+        //
+        //new TaskCheckCard()
+
+        /*new Sequence(new List<BTNode> {
+
+            //new TaskTryMove(transform, )
+        }),
+        //break out of sequence if can't play cards. or decide whether or not to try and move first (currently random)
+      //  new TaskPlayCard(transform, container.cardToPlay, container, 1f),
+      /*  new Sequence(new List<BTNode> {
+            //
+
+            //new TaskEndTurn
+            }),*/
+
+        // new TaskSearch(transform, waypoints),
+
+    });
         return root;
         
     }

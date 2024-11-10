@@ -43,25 +43,26 @@ public class TaskPlayCard : BTNode
             if (waitCounter >= _waitTime)
                 waitingForPreviousNode = false;
          }
-         else
+        /* else
          {
            switch (_cardType)
            {
-               case Card.CardType.Attack:
+               case GridGambitProd.Card.CardType.Attack:
+                   Debug.Log(selectedCard.cardType.ToString());
 
                    break;
-               case Card.CardType.Support:
+               case GridGambitProd.Card.CardType.Support:
+                   Debug.Log(selectedCard.cardType.ToString());
 
                    break;
                
                default:
                    Debug.Log("wth boi, what u doin - Not implemented yet");
                    break;
-           }
-           Debug.Log(selectedCard.cardType.ToString()); 
-           _enemyContainer.cardToPlay = selectedCard;
-         }
-         state = NodeState.SUCCESS;
+           }*/
+         
+       //  }
+         state = NodeState.RUNNING;
         return state;
     }
     
