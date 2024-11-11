@@ -49,6 +49,12 @@ namespace GridGambitProd
             if (doesShuffle) return currentPool.OrderBy(item => rnd.Next()).ToList();
             return currentPool;
         }
+        public static HandManager GetHandManager()
+		{
+            HandManager handManager;
+            handManager = FindObjectOfType<HandManager>();
+            return handManager;
+        }
       
 
 

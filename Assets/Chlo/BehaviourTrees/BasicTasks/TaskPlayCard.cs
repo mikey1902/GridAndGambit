@@ -22,7 +22,7 @@ public class TaskPlayCard : BTNode
 
 	public Transform _transform;
 	private bool waitingForPreviousNode;
-
+	public HandManager handManager;
 
 	public TaskPlayCard(Transform target, Transform unit, Card selectCard, EnemyContainer enemyContainer, float waitTime)
 	{
@@ -50,6 +50,9 @@ public class TaskPlayCard : BTNode
 		else
 		{
 			ChosenCard = _enemyContainer.CardToPlay;
+			handManager = GridGambitUtil.GetHandManager();
+			handManager.AddCard(ChosenCard);
+
 			//    _transform.gameObject.SetActive(false);
 
 			///    Debug.Log(ChosenCard.Typing);
@@ -81,3 +84,4 @@ public class TaskPlayCard : BTNode
 		return state;
 	}
 }
+
