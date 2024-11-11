@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using Rand = System.Random;
 namespace GridGambitProd
@@ -20,10 +21,14 @@ namespace GridGambitProd
             Support,
         }
     }
-
+    public struct CardInfo
+    {
+        public int Score; 
+        public Card GenCard; 
+        public int Typing;
+    }
     public class GridGambitUtil : MonoBehaviour
     {
-
        public static string[] ReturnModifiedDirectoryArr(string[] items, string directoryModification)
         {
             for (var i = 0; i < items.Length; i++)

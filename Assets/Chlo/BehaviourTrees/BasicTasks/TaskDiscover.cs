@@ -10,31 +10,18 @@ using Vector2 = System.Numerics.Vector2;
 
 public class TaskDiscover : BTNode
 {
-   /* public TaskSearch(Vector2 currentPosition, Vector2[] waypoints)
-    {
-        currentPosition = gameObject.
-    }*/
-
-    public List<Card> selectedCards = new List<Card>();
-    private List<Card> currentPool;
+   private List<Card> currentPool;
     private EnemyContainer _enemyContainer;
-    private int reps;
 
-    private float _waitTime;
-    public Transform _transform;
-    public float waitCounter = 0f;
-    private float waitTime = 1f;
+    private float waitTime;
     private bool waitForPreviousNode = false;
    
    
    
-   public TaskDiscover(Transform unit,  int repeatNum, EnemyContainer enemyContainer, float waitTime, params string[] discoverStr)
+   public TaskDiscover(EnemyContainer enemyContainer, params string[] discoverStr)
    {
-      reps = repeatNum;
-      _waitTime = waitTime;
       currentPool = ReturnCardPool(true, discoverStr);
       _enemyContainer = enemyContainer;
-      _transform = unit;
    }
 
    public override NodeState Evaluate()
@@ -52,10 +39,10 @@ public class TaskDiscover : BTNode
                for (int j = 0; j < 3; j++)
                {
                    _enemyContainer.discoverChoices[j] = currentPool.ElementAt(Random.Range(0, currentPool.Count - 1));
-               }
-               
+               }    
+                        
            }
            state = NodeState.SUCCESS;
-           return state;
+           return state; 
    }
 }

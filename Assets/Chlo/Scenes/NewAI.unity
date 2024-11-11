@@ -317,8 +317,8 @@ MonoBehaviour:
   - {fileID: 1625549218}
   - {fileID: 130968292}
   relatedCardPools:
-  - P_PawnCards/Attacks
-  - P_PawnCards/Support
+  - E_PawnCards/Attacks
+  - E_PawnCards/Support
   container: {fileID: 0}
 --- !u!212 &1313690473
 SpriteRenderer:

@@ -12,59 +12,66 @@ public class TaskPlayCard : BTNode
 {
 
     private EnemyContainer _enemyContainer;
-    private Card ChosenCard;
-    public float waitCounter = 0f;
+    private CardInfo ChosenCard;
+    public float waitCounter;
     private float _waitTime;
 
-    private Card selectedCard;
+    private CardInfo selectedCard;
     private int reps;
-    [SerializeField] private GridGambitProd.Card.CardType _cardType;
+ 
     public Transform _transform;
-    private bool waitingForPreviousNode = false;
+    private bool waitingForPreviousNode;
 
 
-    public TaskPlayCard(Transform unit, Card selectCard, EnemyContainer enemyContainer, float waitTime)
+    public TaskPlayCard(Transform unit, CardInfo selectCard, EnemyContainer enemyContainer, float waitTime)
     {
       //  selectedCards = unit.gameObject.GetComponent<EnemyContainer>().discoverChoices;
       _enemyContainer = enemyContainer;
       ChosenCard = selectCard;
-      _cardType = ChosenCard.cardType;
+      waitCounter = 0f;
       _waitTime = waitTime;
       _transform = unit;
+      waitingForPreviousNode = true;
     }
 
 
     public override NodeState Evaluate()
     {
-         if (waitingForPreviousNode)
-         {
-             //code for delay goes here
+        if (waitingForPreviousNode)
+        {
+          
+            //code for delay goes here
             waitCounter += Time.deltaTime;
             if (waitCounter >= _waitTime)
                 waitingForPreviousNode = false;
-         }
-        /* else
-         {
-           switch (_cardType)
-           {
-               case GridGambitProd.Card.CardType.Attack:
-                   Debug.Log(selectedCard.cardType.ToString());
+            
+        }
+        else
+        {
+            _transform.gameObject.SetActive(false);
+            /* else
+             {
+               switch (_cardType)
+               {
+                   case GridGambitProd.Card.CardType.Attack:
+                       Debug.Log(selectedCard.cardType.ToString());
 
-                   break;
-               case GridGambitProd.Card.CardType.Support:
-                   Debug.Log(selectedCard.cardType.ToString());
+                       break;
+                   case GridGambitProd.Card.CardType.Support:
+                       Debug.Log(selectedCard.cardType.ToString());
 
-                   break;
-               
-               default:
-                   Debug.Log("wth boi, what u doin - Not implemented yet");
-                   break;
-           }*/
-         
-       //  }
-         state = NodeState.RUNNING;
+                       break;
+
+                   default:
+                       Debug.Log("wth boi, what u doin - Not implemented yet");
+                       break;
+               }*/
+
+            //  }
+            state = NodeState.SUCCESS;
+            return state;
+        }
+        state = NodeState.RUNNING;
         return state;
     }
-    
-    
 }

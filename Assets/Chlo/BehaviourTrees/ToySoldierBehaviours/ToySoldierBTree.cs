@@ -22,11 +22,16 @@ public class ToySoldierBTree : BTree
         BTNode root = new Selector(new List<BTNode>{
             new Sequence(new List<BTNode>
             {
-                new TaskDiscover(transform, 1, container, 1f, relatedCardPools),
-                new TaskCheckCard(transform, container, 1f),
-                //new TaskPlayCard(transform, container.CardToPlay, container, 1f),
-
+                //Create a task to check container
+                new TaskDiscover( container, relatedCardPools),
+                new TaskCheckCard(transform, container, 5f),//CHECKS EACH CARD AND ORDERS THEM BY SCORE
+                //- READS DISCOVER LIST AND ATTEMPTS TO PLAY EACH LOOKING FROM FIRST DECENDING
+                //IF NONE CURRENTLY PLAYABLE, RETURNS FAILURE, WHICH MOVES TO NEXT SEQUENCE
+                new TaskPlayCard(transform, container.CardToPlay, container, 2f),
             }),
+             
+            
+          //  ,
        /* new Sequence(new List<BTNode> {
         new TaskCheckCard(transform, container)
         });*/
