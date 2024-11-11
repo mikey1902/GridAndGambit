@@ -12,18 +12,18 @@ public class TaskTryMove : BTNode
 {
 
     private EnemyContainer _enemyContainer;
-    private CardInfo ChosenCard;
+    private Card ChosenCard;
     public float waitCounter;
     private float _waitTime;
 
-    private CardInfo selectedCard;
+    private Card selectedCard;
     private int reps;
  
     public Transform _transform;
     private bool waitingForPreviousNode;
 
 
-    public TaskTryMove(Transform unit, CardInfo selectCard, EnemyContainer enemyContainer, float waitTime)
+    public TaskTryMove(Transform unit, Card selectCard, EnemyContainer enemyContainer, float waitTime)
     {
       //  selectedCards = unit.gameObject.GetComponent<EnemyContainer>().discoverChoices;
       _enemyContainer = enemyContainer;

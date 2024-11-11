@@ -13,6 +13,7 @@ namespace GridGambitProd
         public Sprite cardSprite;
         public string cardText;
         public bool hasExtraEffect;
+        public int cardScore;
 
         public enum CardType
         {
@@ -20,15 +21,6 @@ namespace GridGambitProd
             Move,
             Support,
         }
-    }
-    public struct CardInfo
-    {
-        public int Score;
-        public Card GenCard;
-        public object smpCard; 
-        public int Typing;
-        public int PropertyOne,PropertyTwo,propertyThree;
-        
     }
     public class GridGambitUtil : MonoBehaviour
     {

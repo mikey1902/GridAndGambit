@@ -40,7 +40,7 @@ public class ToySoldierBTree : BTree
                 //IF NONE CURRENTLY PLAYABLE, RETURNS FAILURE, WHICH MOVES TO NEXT SEQUENCE
             }),
              }),
-            new TaskPlayCard(container.Target, transform, container.CardToPlay, container, 0f),
+            new TaskPlayCard(container.Target, transform, null, container, 0f),
       });
              
         return root;

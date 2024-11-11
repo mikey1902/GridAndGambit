@@ -18,7 +18,7 @@ public class TaskCheckCard : BTNode
     public float waitCounter = 0f;
     private float _waitTime;
     private bool waitingForPreviousNode = false;
-    public CardInfo[] cds;
+    public Card[] cds;
 
     public TaskCheckCard(Transform unit, EnemyContainer enemyContainer, float waitTime, bool greed)
     {
@@ -47,32 +47,30 @@ public class TaskCheckCard : BTNode
             
                 for (var i = 0; i < _enemyContainer.discoverChoices.Length; i++)
                 {
-                    cds[i] = new CardInfo();
-                    cds[i].GenCard = _enemyContainer.discoverChoices[i];
-                    cds[i].smpCard = _enemyContainer.discoverChoices[i];
-                    switch (cds[i].GenCard.cardType)
+                    cds[i] = _enemyContainer.discoverChoices[i];
+                    switch (cds[i].cardType)
                     {
-                        case GridGambitProd.Card.CardType.Attack:
+                        case Card.CardType.Attack:
                             Debug.Log("attack");
-                            AttackCard atkC = (AttackCard)cds[i].smpCard;
-                            cds[i].Score = atkC.damage;
-                            Debug.Log(atkC.damage);
-                            cds[i].Typing = 0;
+
+                            AttackCard atkC = (AttackCard)cds[i];
+                            cds[i].cardScore = atkC.damage;
+                            //cds[i].Typing = 0;
                             break;
-                        case GridGambitProd.Card.CardType.Support:
+                        case Card.CardType.Support:
                             Debug.Log("support");
 
-                            SupportCard supC = (SupportCard)cds[i].smpCard;
-                            cds[i].Score = (supC.supportAmount + supC.range);
-                            cds[i].Typing = 1;
+                            SupportCard supC = (SupportCard)cds[i];
+                            cds[i].cardScore = (supC.supportAmount + supC.range);
+                            //cds[i].Typing = 1;
 
                             break;
-                        case GridGambitProd.Card.CardType.Move:
+                        case Card.CardType.Move:
                             Debug.Log("move");
 
-                            MoveCard mveC = (MoveCard)cds[i].smpCard;
-                            cds[i].Score = (mveC.moveDistance);
-                            cds[i].Typing = 2;
+                            MoveCard mveC = (MoveCard)cds[i];
+                            cds[i].cardScore = (mveC.moveDistance);
+                            //cds[i].Typing = 2;
                             break;
 
                         default:
@@ -83,11 +81,12 @@ public class TaskCheckCard : BTNode
 
                 //_enemyContainer.Target = GameObject.Find("FriendlyUnit").transform;
                 _enemyContainer.CardToPlay = cds[0];
-                _enemyContainer.discoverCard =_enemyContainer.CardToPlay.GenCard;
+                //Debug.Log("the cards name " + _enemyContainer.CardToPlay.cardType);
+                _enemyContainer.discoverCard =_enemyContainer.CardToPlay;
                 state = NodeState.SUCCESS;
                 return state;
             }
-        Debug.Log("greed switch is real");
+        //Debug.Log("greed switch is real");
         state = NodeState.FAILURE;
         return state;
             }

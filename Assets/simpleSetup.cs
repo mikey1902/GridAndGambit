@@ -23,7 +23,7 @@ public class simpleSetup : MonoBehaviour
     void Update()
     {
         OverHealth = HP - initHp;
-       OverHealth =  Math.Clamp(OverHealth, 0, 50);
+        OverHealth =  Math.Clamp(OverHealth, 0, 50);
         if (dead == true) Destroy(this.gameObject);
         
     }
