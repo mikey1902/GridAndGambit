@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Patch
   cardType: 2
-  cardSprite: {fileID: 739342557, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardSprite: {fileID: -2043333513, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Heal 1 HP to yourself or a close Ally
   hasExtraEffect: 1
   supportAmount: 1

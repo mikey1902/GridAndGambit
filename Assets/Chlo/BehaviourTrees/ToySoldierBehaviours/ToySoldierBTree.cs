@@ -10,30 +10,67 @@ public class ToySoldierBTree : BTree
     public static float speed = 2f;
     public string[] relatedCardPools;
     public EnemyContainer container;
+    public Transform target;
      void Awake()
      {
+         
          container = this.GetComponent<EnemyContainer>();
      }
-
+//LAZY UNIT
     protected override BTNode SetupTree()
     {
         /*BTNode root = new TaskSearch(transform, waypoints);
         return root;*/
-        BTNode root = new Sequence(new List<BTNode> {
-            new TaskDiscover(transform, 1, container, 0f, "CardData"),
-            new TaskCheckCard(transform, container, 1f), 
-            //break out of sequence if can't play cards. or decide whether or not to try and move first (currently random)
-          //  new TaskPlayCard(transform, container.cardToPlay, container, 1f),
-          /*  new Sequence(new List<BTNode> {
-                //
-           
-                //new TaskEndTurn
-                }),*/
-            
-           // new TaskSearch(transform, waypoints),
-            
-            });
+        BTNode root = new Sequence(new List<BTNode>
+        {
+            new TaskDiscover(container, relatedCardPools),
+            new Selector(new List<BTNode>{
+         // new TaskCheckCard(transform, container, 5f),
+           new Sequence(new List<BTNode>
+           { 
+               new TaskCheckCard(transform, container, 3f, false),
+           }),
+//new TaskTryMove(transform, container.CardToPlay, container, 2f),
+            new Sequence(new List<BTNode>
+            {
+                //Code for Moving closer to Target
+                //Create a task to check container
+                new TaskCheckCard(transform, container, 3f, true),//CHECKS EACH CARD AND ORDERS THEM BY SCORE
+                //- READS DISCOVER LIST AND ATTEMPTS TO PLAY EACH LOOKING FROM FIRST DECENDING
+                //IF NONE CURRENTLY PLAYABLE, RETURNS FAILURE, WHICH MOVES TO NEXT SEQUENCE
+            }),
+             }),
+            new TaskPlayCard(container.Target, transform, null, container, 0f),
+      });
+             
         return root;
         
+        
+        
+        
+               /* new Sequence(new List<BTNode> {
+        new TaskCheckCard(transform, container)
+        });*/
+
+        //new TaskTryMoving(transform, container, )
+        // new TaskSearch(transform, waypoints),
+        //
+        //new TaskCheckCard()
+
+        /*new Sequence(new List<BTNode> {
+
+            //new TaskTryMove(transform, )
+        }),
+        //break out of sequence if can't play cards. or decide whether or not to try and move first (currently random)
+      //  new TaskPlayCard(transform, container.cardToPlay, container, 1f),
+      /*  new Sequence(new List<BTNode> {
+            //
+
+            //new TaskEndTurn
+            }),*/
+
+        // new TaskSearch(transform, waypoints),
+
+   
     }
 }
