@@ -7,18 +7,25 @@ public class Unit : MonoBehaviour
 {
 	public List<Card> CardsInResources = new List<Card>();
 	public bool isDestroyed = false;
-	public bool hasActed = false;
 	public string CDTypeFolderName;
+	public UnitMoveType unitMoveType;
+	public int moveDistance = 1;
 	private GridManager gridManager;
 	private DrawManager drawManager;
 	private HandManager handManager;
 
-	private bool discoverReady = true;
-	private LayerMask unitLayerMask;
+	public bool discoverReady = true;
+	public bool moveReady = true;
+
+	public enum UnitMoveType
+	{
+		Orthogonal,
+		Diagonal,
+		LShape,
+	}
 
 	void Awake()
 	{
-		unitLayerMask = LayerMask.GetMask("Units");
 		gridManager = FindObjectOfType<GridManager>();
 		handManager = FindObjectOfType<HandManager>();
 		drawManager = GetComponent<DrawManager>();
@@ -34,23 +41,33 @@ public class Unit : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetMouseButtonUp(0) && discoverReady == true)
-		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
-			if (hit.collider != null && hit.collider.GetComponent<Unit>().hasActed == false)
-			{
-				DiscoverSetup();
-				hit.collider.GetComponent<Unit>().hasActed = true;
-			}
-		}
 	}
+
 	public void DiscoverSetup()
 	{
 		handManager.MaxHandSizeSetup(3);
 		drawManager.CreateUnitDeck(CardsInResources);
 		drawManager.FirstHandSetup(3);
 		discoverReady = false;
+	}
+	public bool MoveSetup(Vector2 cellPos)
+	{
+			switch (unitMoveType)
+			{
+				case UnitMoveType.Orthogonal:
+					gridManager.OrthogonalMovement(cellPos, moveDistance);
+					return true;
+
+				case UnitMoveType.Diagonal:
+					gridManager.DiagonalMovement(cellPos, moveDistance);
+					return true;
+
+				case UnitMoveType.LShape:
+					gridManager.LShapeMovement(cellPos, moveDistance);
+					return true;
+			}
+		moveReady = false;
+		return false;
 	}
 	public void DestroyUnit()
 	{

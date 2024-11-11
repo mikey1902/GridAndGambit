@@ -167,7 +167,7 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 			GridCell cell = hit2.collider.GetComponent<GridCell>();
 
 			gridManager.moveableObject = movableUnit;
-			gridManager.MoveObjectOnGrid(cell.gridIndex, moveCard);
+			//gridManager.MoveObjectOnGrid(cell.gridIndex, moveCard);
 			handManager.cardsInHand.Remove(gameObject);
 			handManager.UpdateHandVisuals();
 			Debug.Log("played Move");

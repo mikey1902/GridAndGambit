@@ -91,7 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48b6698dccfbf846be3c139766bf007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardsInResources: []
   isDestroyed: 0
+  CDTypeFolderName: 
+  unitMoveType: 1
 --- !u!1 &7398404985392954993
 GameObject:
   m_ObjectHideFlags: 0

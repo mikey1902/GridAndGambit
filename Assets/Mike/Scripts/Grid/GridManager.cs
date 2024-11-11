@@ -14,9 +14,11 @@ public class GridManager : MonoBehaviour
 	public int width = 8;
 	public int height = 8;
 	private AreaSelect areaSelect;
+	private List<Vector2> moveCells = new List<Vector2>();
 
 	private Vector2 gmCellPos;
 	private int gmMoveDistance;
+	public bool movingUnit = false;
 
 	void Awake()
 	{
@@ -87,31 +89,9 @@ public class GridManager : MonoBehaviour
 		else return false;
 	}
 
-	public bool MoveObjectOnGrid(Vector2 cellPos, MoveCard moveCard)
+	public void OrthogonalMovement(Vector2 cellPos, int moveDistance)
 	{
-		if (cellPos.x >= 0 && cellPos.x < width && cellPos.y >= 0 && cellPos.y < height)
-		{
-			switch (moveCard.moveType)
-			{
-				case MoveCard.MoveType.Orthogonal:
-					OrthogonalMovement(cellPos, moveCard.moveDistance);
-					return true;
-
-				case MoveCard.MoveType.Diagonal:
-					DiagonalMovement(cellPos, moveCard.moveDistance);
-					return true;
-
-				case MoveCard.MoveType.LShape:
-					LShapeMovement(cellPos, moveCard.moveDistance);
-					return true;
-			}
-		}
-		return false;
-	}
-
-	private void OrthogonalMovement(Vector2 cellPos, int moveDistance)
-	{
-		List<Vector2> moveCells = new List<Vector2>();
+		movingUnit = true;
 		gmCellPos = cellPos;
 		gmMoveDistance = moveDistance;
 
@@ -155,12 +135,12 @@ public class GridManager : MonoBehaviour
 		moveSelect(highlightedCells);
 	}
 
-	private void DiagonalMovement(Vector2 cellPos, int moveDistance)
+	public void DiagonalMovement(Vector2 cellPos, int moveDistance)
 	{
 
 	}
 
-	private void LShapeMovement(Vector2 cellPos, int moveDistance)
+	public void LShapeMovement(Vector2 cellPos, int moveDistance)
 	{
 
 	}
@@ -169,6 +149,15 @@ public class GridManager : MonoBehaviour
 	{
 		Debug.Log((orient - gmCellPos).normalized);
 		areaSelect.directedMove(gmCellPos,(orient - gmCellPos).normalized, "S", gmMoveDistance + 1, moveableObject);
+		foreach (Vector2 moveCell in moveCells)
+		{
+			GameObject moveableCell = SearchGrid(moveCell);
+			moveableCell.GetComponent<GridCell>().DisableHighlight();
+		}
+		moveDeSelect(highlightedCells);
+		highlightedCells.Clear();
+		moveCells.Clear();
+		movingUnit = false;
 	}
 
 	private void moveSelect(List<GameObject> moveableCells)
@@ -176,6 +165,13 @@ public class GridManager : MonoBehaviour
 		foreach (GameObject moveCell in moveableCells)
 		{
 			moveCell.GetComponent<GridCell>().cellMoveHighlighted = true;
+		}
+	}
+	private void moveDeSelect(List<GameObject> moveableCells)
+	{
+		foreach (GameObject moveCell in moveableCells)
+		{
+			moveCell.GetComponent<GridCell>().cellMoveHighlighted = false;
 		}
 	}
 

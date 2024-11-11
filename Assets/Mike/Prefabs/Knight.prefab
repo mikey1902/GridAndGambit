@@ -94,8 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardsInResources: []
   isDestroyed: 0
-  hasActed: 0
   CDTypeFolderName: 
+  unitMoveType: 2
 --- !u!114 &4925263130725932540
 MonoBehaviour:
   m_ObjectHideFlags: 0
