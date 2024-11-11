@@ -19,18 +19,32 @@ public class ToySoldierBTree : BTree
     {
         /*BTNode root = new TaskSearch(transform, waypoints);
         return root;*/
-        BTNode root = new Selector(new List<BTNode>{
+        BTNode root = new Sequence(new List<BTNode>
+        {
+            new TaskDiscover(container, relatedCardPools),
+            new Selector(new List<BTNode>{
+         // new TaskCheckCard(transform, container, 5f),
+           new Sequence(new List<BTNode>
+           { 
+               new TaskCheckCard(transform, container, 3f, false),
+           }),
+//new TaskTryMove(transform, container.CardToPlay, container, 2f),
             new Sequence(new List<BTNode>
             {
+                //Code for Moving closer to Target
                 //Create a task to check container
-                new TaskDiscover( container, relatedCardPools),
-                new TaskCheckCard(transform, container, 5f),//CHECKS EACH CARD AND ORDERS THEM BY SCORE
+                new TaskCheckCard(transform, container, 3f, true),//CHECKS EACH CARD AND ORDERS THEM BY SCORE
                 //- READS DISCOVER LIST AND ATTEMPTS TO PLAY EACH LOOKING FROM FIRST DECENDING
                 //IF NONE CURRENTLY PLAYABLE, RETURNS FAILURE, WHICH MOVES TO NEXT SEQUENCE
-                new TaskPlayCard(transform, container.CardToPlay, container, 2f),
             }),
-             
+             }),
+            new TaskPlayCard(transform, container.CardToPlay, container, 1f),
+
             
+            
+          
+             
+           
           //  ,
        /* new Sequence(new List<BTNode> {
         new TaskCheckCard(transform, container)
