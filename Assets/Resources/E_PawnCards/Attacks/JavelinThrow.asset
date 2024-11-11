@@ -17,5 +17,3 @@ MonoBehaviour:
   cardSprite: {fileID: 198872190, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: 
   hasExtraEffect: 0
-  damage: 2
-  range: 2

@@ -16,6 +16,7 @@ public class TaskPlayCard : BTNode
     public float waitCounter;
     private float _waitTime;
 
+    private Transform _target;
     private CardInfo selectedCard;
     private int reps;
  
@@ -23,7 +24,7 @@ public class TaskPlayCard : BTNode
     private bool waitingForPreviousNode;
 
 
-    public TaskPlayCard(Transform unit, CardInfo selectCard, EnemyContainer enemyContainer, float waitTime)
+    public TaskPlayCard(Transform target, Transform unit, CardInfo selectCard, EnemyContainer enemyContainer, float waitTime)
     {
       //  selectedCards = unit.gameObject.GetComponent<EnemyContainer>().discoverChoices;
       _enemyContainer = enemyContainer;
@@ -32,6 +33,7 @@ public class TaskPlayCard : BTNode
       _waitTime = waitTime;
       _transform = unit;
       waitingForPreviousNode = true;
+     _target = target;
     }
 
 
@@ -44,30 +46,50 @@ public class TaskPlayCard : BTNode
             waitCounter += Time.deltaTime;
             if (waitCounter >= _waitTime)
                 waitingForPreviousNode = false;
-            
         }
         else
         {
-            _transform.gameObject.SetActive(false);
-            /* else
-             {
-               switch (_cardType)
-               {
-                   case GridGambitProd.Card.CardType.Attack:
-                       Debug.Log(selectedCard.cardType.ToString());
+        //    _transform.gameObject.SetActive(false);
+            
+       
+            
+            Debug.Log(ChosenCard.Typing);
+           switch(ChosenCard.Typing)
+            {
+             case 0://Attack
+                 int atc = ChosenCard.Score; 
+                 Debug.Log(atc); 
+                 break;   
+            
+               case 1:/*Support
+                                             SupportCard stc = (SupportCard)ChosenCard.GenCard;
+                                             _target.gameObject.GetComponent<simpleSetup>().HP -= stc.supportAmount; 
+               
+                                             break;     */  
+             case 2: //Move
+                     
+                 MoveCard mtc = (MoveCard)ChosenCard.GenCard;
+               //  trg.HP -= mtc.damage; 
+                 break;
+             
+              
+             default:
+                     Debug.Log("Chosen card is unknown");
+                 break;
+            }
 
-                       break;
-                   case GridGambitProd.Card.CardType.Support:
-                       Debug.Log(selectedCard.cardType.ToString());
 
-                       break;
-
-                   default:
-                       Debug.Log("wth boi, what u doin - Not implemented yet");
-                       break;
-               }*/
-
-            //  }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             state = NodeState.SUCCESS;
             return state;
         }

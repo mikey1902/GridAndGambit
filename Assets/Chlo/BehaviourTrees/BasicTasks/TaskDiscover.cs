@@ -43,7 +43,6 @@ public class TaskDiscover : BTNode
                         
            }
 
-          // Debug.Log("TaskDiscover Success");
            state = NodeState.SUCCESS;
            return state; 
    }

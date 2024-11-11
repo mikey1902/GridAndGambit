@@ -37,7 +37,7 @@ public class TaskCheckCard : BTNode
     {
         if (waitingForPreviousNode)
         {
-            Debug.Log(waitCounter);
+      
             waitCounter += Time.deltaTime;
             if (waitCounter > _waitTime)
                 waitingForPreviousNode = false;
@@ -49,21 +49,25 @@ public class TaskCheckCard : BTNode
 
                 for (var i = 0; i < _enemyContainer.discoverChoices.Length; i++)
                 {
-                    cds[i] = new CardInfo { GenCard = _enemyContainer.discoverChoices[i] };
+                    cds[i] = new CardInfo();
+                    cds[i].GenCard = _enemyContainer.discoverChoices[i];
                     switch (cds[i].GenCard.cardType)
                     {
                         case GridGambitProd.Card.CardType.Attack:
+                            Debug.Log("attack");
                             AttackCard atkC = (AttackCard)cds[i].GenCard;
                             cds[i].Score = atkC.damage;
                             cds[i].Typing = 0;
                             break;
                         case GridGambitProd.Card.CardType.Support:
+                            Debug.Log("support");
 
                             SupportCard supC = (SupportCard)cds[i].GenCard;
                             cds[i].Score = (supC.supportAmount + supC.range);
                             cds[i].Typing = 1;
                             break;
                         case GridGambitProd.Card.CardType.Move:
+                            Debug.Log("move");
 
                             MoveCard mveC = (MoveCard)cds[i].GenCard;
                             cds[i].Score = (mveC.moveDistance);
@@ -76,12 +80,14 @@ public class TaskCheckCard : BTNode
                     }
                 }
 
+                //_enemyContainer.Target = GameObject.Find("FriendlyUnit").transform;
                 _enemyContainer.CardToPlay = cds[0];
-                Debug.Log("Finished TaskCheckCard");
+                _enemyContainer.discoverCard =_enemyContainer.CardToPlay.GenCard;
                 state = NodeState.SUCCESS;
                 return state;
-            }Debug.Log("greed switch is real");
-                                     state = NodeState.FAILURE;
-                                          return state;
+            }
+        Debug.Log("greed switch is real");
+        state = NodeState.FAILURE;
+        return state;
             }
     }

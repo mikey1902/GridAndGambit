@@ -10,8 +10,10 @@ public class ToySoldierBTree : BTree
     public static float speed = 2f;
     public string[] relatedCardPools;
     public EnemyContainer container;
+    public Transform target;
      void Awake()
      {
+         
          container = this.GetComponent<EnemyContainer>();
      }
 //LAZY UNIT
@@ -38,14 +40,7 @@ public class ToySoldierBTree : BTree
                 //IF NONE CURRENTLY PLAYABLE, RETURNS FAILURE, WHICH MOVES TO NEXT SEQUENCE
             }),
              }),
-            new TaskPlayCard(transform, container.CardToPlay, container, 1f),
-
-            
-            
-          
-             
-           
-          //  ,
+            new TaskPlayCard(container.Target, transform, container.CardToPlay, container, 0f),
        /* new Sequence(new List<BTNode> {
         new TaskCheckCard(transform, container)
         });*/
