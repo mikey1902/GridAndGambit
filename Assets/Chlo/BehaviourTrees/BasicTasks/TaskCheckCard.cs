@@ -45,31 +45,32 @@ public class TaskCheckCard : BTNode
         else if(!waitingForPreviousNode && _greed == false)
         {
             
-            
-
                 for (var i = 0; i < _enemyContainer.discoverChoices.Length; i++)
                 {
                     cds[i] = new CardInfo();
                     cds[i].GenCard = _enemyContainer.discoverChoices[i];
+                    cds[i].smpCard = _enemyContainer.discoverChoices[i];
                     switch (cds[i].GenCard.cardType)
                     {
                         case GridGambitProd.Card.CardType.Attack:
                             Debug.Log("attack");
-                            AttackCard atkC = (AttackCard)cds[i].GenCard;
+                            AttackCard atkC = (AttackCard)cds[i].smpCard;
                             cds[i].Score = atkC.damage;
+                            Debug.Log(atkC.damage);
                             cds[i].Typing = 0;
                             break;
                         case GridGambitProd.Card.CardType.Support:
                             Debug.Log("support");
 
-                            SupportCard supC = (SupportCard)cds[i].GenCard;
+                            SupportCard supC = (SupportCard)cds[i].smpCard;
                             cds[i].Score = (supC.supportAmount + supC.range);
                             cds[i].Typing = 1;
+
                             break;
                         case GridGambitProd.Card.CardType.Move:
                             Debug.Log("move");
 
-                            MoveCard mveC = (MoveCard)cds[i].GenCard;
+                            MoveCard mveC = (MoveCard)cds[i].smpCard;
                             cds[i].Score = (mveC.moveDistance);
                             cds[i].Typing = 2;
                             break;

@@ -41,7 +41,14 @@ public class ToySoldierBTree : BTree
             }),
              }),
             new TaskPlayCard(container.Target, transform, container.CardToPlay, container, 0f),
-       /* new Sequence(new List<BTNode> {
+      });
+             
+        return root;
+        
+        
+        
+        
+               /* new Sequence(new List<BTNode> {
         new TaskCheckCard(transform, container)
         });*/
 
@@ -64,8 +71,6 @@ public class ToySoldierBTree : BTree
 
         // new TaskSearch(transform, waypoints),
 
-    });
-        return root;
-        
+   
     }
 }

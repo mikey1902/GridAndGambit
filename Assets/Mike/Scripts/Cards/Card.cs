@@ -23,9 +23,12 @@ namespace GridGambitProd
     }
     public struct CardInfo
     {
-        public int Score; 
-        public Card GenCard; 
+        public int Score;
+        public Card GenCard;
+        public object smpCard; 
         public int Typing;
+        public int PropertyOne,PropertyTwo,propertyThree;
+        
     }
     public class GridGambitUtil : MonoBehaviour
     {

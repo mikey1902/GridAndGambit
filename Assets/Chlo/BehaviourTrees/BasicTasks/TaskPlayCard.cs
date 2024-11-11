@@ -53,24 +53,29 @@ public class TaskPlayCard : BTNode
             
        
             
-            Debug.Log(ChosenCard.Typing);
+        ///    Debug.Log(ChosenCard.Typing);
            switch(ChosenCard.Typing)
             {
              case 0://Attack
-                 int atc = ChosenCard.Score; 
-                 Debug.Log(atc); 
+               AttackCard atc = ChosenCard.smpCard as AttackCard; 
+                 Debug.Log(atc.damage); 
+                 //_target.gameObject.GetComponent<simpleSetup>().HP -= atc.damage;
                  break;   
             
-               case 1:/*Support
-                                             SupportCard stc = (SupportCard)ChosenCard.GenCard;
-                                             _target.gameObject.GetComponent<simpleSetup>().HP -= stc.supportAmount; 
+               case 1://Support 
+                   SupportCard stc = ChosenCard.smpCard as SupportCard;
+                   Debug.Log(stc.supportAmount); 
+
+                  // Debug.Log(stc.supportAmount); 
+
+                 //  _target.gameObject.GetComponent<simpleSetup>().HP += stc.supportAmount;
+                  break;      
                
-                                             break;     */  
-             case 2: //Move
-                     
-                 MoveCard mtc = (MoveCard)ChosenCard.GenCard;
+           /*  case 2: //Move
                //  trg.HP -= mtc.damage; 
-                 break;
+                 MoveCard mtc = (MoveCard)ChosenCard.smpCard; 
+                 Debug.Log(mtc.moveDistance); 
+                 break;*/
              
               
              default:
