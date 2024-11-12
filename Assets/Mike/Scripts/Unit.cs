@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
 	public bool isDestroyed = false;
 	public string CDTypeFolderName;
 	public UnitMoveType unitMoveType;
-	public int moveDistance = 1;
+	public int moveDistance = 2;
 	private GridManager gridManager;
 	private DrawManager drawManager;
 	private HandManager handManager;
@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour
 		gridManager = FindObjectOfType<GridManager>();
 		handManager = FindObjectOfType<HandManager>();
 		drawManager = GetComponent<DrawManager>();
-		
+
 	}
 	void Start()
 	{
@@ -52,21 +52,21 @@ public class Unit : MonoBehaviour
 	}
 	public bool MoveSetup(Vector2 cellPos)
 	{
-			switch (unitMoveType)
-			{
-				case UnitMoveType.Orthogonal:
-					gridManager.OrthogonalMovement(cellPos, moveDistance);
-					return true;
-
-				case UnitMoveType.Diagonal:
-					gridManager.DiagonalMovement(cellPos, moveDistance);
-					return true;
-
-				case UnitMoveType.LShape:
-					gridManager.LShapeMovement(cellPos, moveDistance);
-					return true;
-			}
 		moveReady = false;
+		switch (unitMoveType)
+		{
+			case UnitMoveType.Orthogonal:
+				gridManager.OrthogonalMovement(cellPos, moveDistance);
+				return true;
+
+			case UnitMoveType.Diagonal:
+				gridManager.DiagonalMovement(cellPos, moveDistance);
+				return true;
+
+			case UnitMoveType.LShape:
+				gridManager.LShapeMovement(cellPos, moveDistance);
+				return true;
+		}
 		return false;
 	}
 	public void DestroyUnit()

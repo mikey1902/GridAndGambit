@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 2017608777087168641}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &-9084966146018896665
 BoxCollider2D:
@@ -95,6 +95,9 @@ MonoBehaviour:
   isDestroyed: 0
   CDTypeFolderName: 
   unitMoveType: 1
+  moveDistance: 1
+  discoverReady: 1
+  moveReady: 1
 --- !u!1 &7398404985392954993
 GameObject:
   m_ObjectHideFlags: 0

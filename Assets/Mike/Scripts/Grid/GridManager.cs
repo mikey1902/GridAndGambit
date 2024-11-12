@@ -13,23 +13,24 @@ public class GridManager : MonoBehaviour
 	public List<GameObject> highlightedCells = new List<GameObject>();
 	public int width = 8;
 	public int height = 8;
-	private AreaSelect areaSelect;
+
 	private List<Vector2> moveCells = new List<Vector2>();
-
-	private Vector2 gmCellPos;
-	private int gmMoveDistance;
 	public bool movingUnit = false;
-
-	void Awake()
-	{
-		areaSelect = GetComponent<AreaSelect>();
-	}
+	private Vector2 cellPosWorld;
+	public bool moveChose = false;
+	public Vector2 movingCell;
 
 	void Start()
 	{
 		createNodeGrid();
 	}
-
+	void Update()
+	{
+		if (moveChose == true)
+		{
+			HandleMovement();
+		}
+	}
 	void createNodeGrid()
 	{
 		gridCells = new GameObject[width, height];
@@ -91,9 +92,8 @@ public class GridManager : MonoBehaviour
 
 	public void OrthogonalMovement(Vector2 cellPos, int moveDistance)
 	{
+		//CHECK FOR OBSTACLES IN THIS METHOD AT SOME POINT
 		movingUnit = true;
-		gmCellPos = cellPos;
-		gmMoveDistance = moveDistance;
 
 		Vector2 spacePos;
 
@@ -137,18 +137,116 @@ public class GridManager : MonoBehaviour
 
 	public void DiagonalMovement(Vector2 cellPos, int moveDistance)
 	{
+		movingUnit = true;
 
+		Vector2 spacePos;
+
+		for (int direction = 0; direction < 4; direction++)
+		{
+			for (int spaces = 1; spaces < moveDistance + 1; spaces++)
+			{
+				switch (direction)
+				{
+					case 0:
+						spacePos = new Vector2(cellPos.x + spaces, cellPos.y + spaces);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 1:
+						spacePos = new Vector2(cellPos.x + spaces, cellPos.y - spaces);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 2:
+						spacePos = new Vector2(cellPos.x - spaces, cellPos.y - spaces);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 3:
+						spacePos = new Vector2(cellPos.x - spaces, cellPos.y + spaces);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+				}
+			}
+		}
+
+		foreach (Vector2 moveCell in moveCells)
+		{
+			GameObject moveableCell = SearchGrid(moveCell);
+			moveableCell.GetComponent<GridCell>().HighlightMoveCell();
+			highlightedCells.Add(moveableCell);
+		}
+		moveSelect(highlightedCells);
 	}
 
 	public void LShapeMovement(Vector2 cellPos, int moveDistance)
 	{
+		movingUnit = true;
 
+		Vector2 spacePos;
+
+		for (int direction = 0; direction < 8; direction++)
+		{
+			for (int spaces = 1; spaces < moveDistance + 1; spaces++)
+			{
+				switch (direction)
+				{
+					case 0:
+						spacePos = new Vector2(cellPos.x - 1, cellPos.y + 1 + spaces);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 1:
+						spacePos = new Vector2(cellPos.x + 1, cellPos.y + 1 + spaces);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 2:
+						spacePos = new Vector2(cellPos.x - 1, cellPos.y - 1 - spaces);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 3:
+						spacePos = new Vector2(cellPos.x + 1, cellPos.y - 1 - spaces);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 4:
+						spacePos = new Vector2(cellPos.x + 1 + spaces, cellPos.y - 1);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 5:
+						spacePos = new Vector2(cellPos.x + 1 + spaces, cellPos.y + 1);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 6:
+						spacePos = new Vector2(cellPos.x - 1 - spaces, cellPos.y - 1);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+
+					case 7:
+						spacePos = new Vector2(cellPos.x - 1 - spaces, cellPos.y + 1);
+						if (CheckIndexNull(spacePos)) moveCells.Add(spacePos);
+						break;
+				}
+			}
+		}
+
+		foreach (Vector2 moveCell in moveCells)
+		{
+			GameObject moveableCell = SearchGrid(moveCell);
+			moveableCell.GetComponent<GridCell>().HighlightMoveCell();
+			highlightedCells.Add(moveableCell);
+		}
+		moveSelect(highlightedCells);
 	}
 
 	public void moveChosen(Vector2 orient)
 	{
-		Debug.Log((orient - gmCellPos).normalized);
-		areaSelect.directedMove(gmCellPos,(orient - gmCellPos).normalized, "S", gmMoveDistance + 1, moveableObject);
+		moveChose = true;
+		movingCell = orient;
 		foreach (Vector2 moveCell in moveCells)
 		{
 			GameObject moveableCell = SearchGrid(moveCell);
@@ -195,5 +293,17 @@ public class GridManager : MonoBehaviour
 		}
 		else 
 			return false;
+	}
+
+	private void HandleMovement()
+	{
+		cellPosWorld = new Vector2(movingCell.x - (float)3.5, movingCell.y - (float)3.5);
+		moveableObject.transform.position = Vector2.MoveTowards(moveableObject.transform.position, cellPosWorld, 2 * Time.deltaTime);
+
+		if (Vector2.Distance(moveableObject.transform.position, cellPosWorld) < 0.01f)
+		{
+			moveChose = false;
+			Debug.Log("destination reached yipee!!!");
+		}
 	}
 }

@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 2017608777087168641}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &-9084966146018896665
 BoxCollider2D:
@@ -94,8 +94,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardsInResources: []
   isDestroyed: 0
-  hasActed: 0
   CDTypeFolderName: P_PawnCards
+  unitMoveType: 0
+  moveDistance: 1
+  discoverReady: 1
+  moveReady: 1
 --- !u!114 &5780569136883626721
 MonoBehaviour:
   m_ObjectHideFlags: 0
