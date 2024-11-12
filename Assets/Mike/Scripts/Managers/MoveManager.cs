@@ -22,9 +22,10 @@ public class MoveManager : MonoBehaviour
 
 	void Update()
 	{
-
-		PlayerAction();
-
+		if(GameManager.Instance.gameState == GameState.PLAYER)
+		{
+			PlayerAction();
+		}
 	}
 
 	private void PlayerAction()

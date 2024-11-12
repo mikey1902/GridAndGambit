@@ -1,18 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
+public enum GameState
+{
+	START,
+	PLAYER,
+	ENEMY,
+	WON,
+	LOST
+}
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
-
-	private int playerHealth;
-
 	public OptionsManager OptionsManager { get; private set; }
 	public AudioManager AudioManager { get; private set; }
 
+	//prefabs for spawning on start
+	//public GameObject enemyPrefab;
+	//public GameObject[] PiecePrefabs;
+
+	public GameState gameState;
+	public TMP_Text stateText;
 	public bool playingCard = false;
 	public bool playingMove = false;
+	public Unit[] playerPieces;
 
 	private void Awake()
 	{
@@ -26,6 +41,8 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+
+		playerPieces = FindObjectsOfType<Unit>();
 	}
 
 	private void InitializeManagers()
@@ -61,9 +78,36 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public int PlayerHealth
+	private void Start()
 	{
-		get { return playerHealth; }
-		set { playerHealth = value; }
+		gameState = GameState.START;
+		stateText.text = gameState.ToString();
+		SetupCombat();
+	}
+
+	private void SetupCombat()
+	{
+		//spawn pieces on level start
+
+		gameState = GameState.PLAYER;
+		stateText.text = gameState.ToString();
+	}
+
+	public void StartPlayerTurn()
+	{
+		gameState = GameState.PLAYER;
+		stateText.text = gameState.ToString();
+
+		foreach(Unit unit in playerPieces)
+		{
+			unit.moveReady = true;
+			unit.discoverReady = true;
+		}
+	}
+
+	public void EndPlayerTurn()
+	{
+		gameState = GameState.ENEMY;
+		stateText.text = gameState.ToString();
 	}
 }
