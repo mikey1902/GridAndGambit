@@ -13,7 +13,7 @@ namespace GridGambitProd
         public Sprite cardSprite;
         public string cardText;
         public bool hasExtraEffect;
-        public int cardScore;
+        public float cardScore;
 
         public enum CardType
         {
