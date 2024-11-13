@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Brick Up
   cardType: 2
+  imageType: 1
   cardSprite: {fileID: -241933981, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Gain 5 Armor for 3 turns
   hasExtraEffect: 1
+  cardScore: 0
   supportAmount: 5
   supportType: 0
   range: 0

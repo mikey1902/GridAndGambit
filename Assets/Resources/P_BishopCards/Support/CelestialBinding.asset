@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Celestial Binding
   cardType: 2
+  imageType: 2
   cardSprite: {fileID: 2025532901, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Stop the movement of another piece unitl next turn.
   hasExtraEffect: 1
+  cardScore: 0
   supportAmount: 0
   supportType: 1
   range: 6

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Lighten
   cardType: 1
+  imageType: 1
   cardSprite: {fileID: 447409311, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Lose all Armor, gain that much movement.
   hasExtraEffect: 1
+  cardScore: 0
   damage: 0
   moveDistance: 0
   moveType: 0

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Light Surge
   cardType: 0
+  imageType: 2
   cardSprite: {fileID: 1485912186, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Hits up to 3 Different Enemies
   hasExtraEffect: 1
+  cardScore: 0
   damage: 2
   range: 5

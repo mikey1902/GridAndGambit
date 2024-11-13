@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Pommel Bash
   cardType: 0
+  imageType: 3
   cardSprite: {fileID: -164947489, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Knockback (2)
   hasExtraEffect: 1
+  cardScore: 0
   damage: 6
   range: 1

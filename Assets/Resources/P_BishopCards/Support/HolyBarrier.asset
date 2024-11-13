@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Holy Barrier
   cardType: 2
+  imageType: 2
   cardSprite: {fileID: -241933981, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Give 4 Armor for 2 turns. Can be self casted
   hasExtraEffect: 1
+  cardScore: 0
   supportAmount: 4
   supportType: 0
   range: 3

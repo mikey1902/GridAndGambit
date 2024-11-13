@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Leap Strike
   cardType: 1
+  imageType: 3
   cardSprite: {fileID: -1307059962, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Move Again and deal Damage where you land.
   hasExtraEffect: 1
+  cardScore: 0
   damage: 7
   moveDistance: 4
   moveType: 2

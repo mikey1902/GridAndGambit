@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: PiercingStrike
   cardType: 0
+  imageType: 3
   cardSprite: {fileID: -619808510, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: 
   hasExtraEffect: 0
+  cardScore: 0
   damage: 5
   range: 1

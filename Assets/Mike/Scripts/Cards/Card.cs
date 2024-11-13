@@ -10,6 +10,7 @@ namespace GridGambitProd
 
         public string cardName;
         public CardType cardType;
+        public ImageType imageType;
         public Sprite cardSprite;
         public string cardText;
         public bool hasExtraEffect;
@@ -20,6 +21,14 @@ namespace GridGambitProd
             Attack,
             Move,
             Support,
+        }
+
+        public enum ImageType
+        {
+            Pawn,
+            Rook,
+            Bishop,
+            Knight
         }
     }
     public class GridGambitUtil : MonoBehaviour

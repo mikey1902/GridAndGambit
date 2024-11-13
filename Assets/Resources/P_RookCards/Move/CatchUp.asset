@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Catch Up
   cardType: 1
+  imageType: 1
   cardSprite: {fileID: -1341189835, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: "Reach an ally\xB4s side"
   hasExtraEffect: 1
+  cardScore: 0
   damage: 0
   moveDistance: 4
   moveType: 3

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Precision Stab
   cardType: 0
+  imageType: 3
   cardSprite: {fileID: 2022066493, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: On Kill, Double this cards Damage
   hasExtraEffect: 1
+  cardScore: 0
   damage: 1
   range: 1

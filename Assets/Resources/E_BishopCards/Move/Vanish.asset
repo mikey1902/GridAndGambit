@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Vanish
   cardType: 1
+  imageType: 2
   cardSprite: {fileID: -370961514, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Move an ally piece next to this one.
   hasExtraEffect: 1
+  cardScore: 0
   damage: 0
   moveDistance: 6
   moveType: 3

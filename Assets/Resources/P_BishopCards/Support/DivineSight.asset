@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Divine Sight
   cardType: 2
+  imageType: 2
   cardSprite: {fileID: 1717361482, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Give +2 Damage to another piece
   hasExtraEffect: 0
+  cardScore: 0
   supportAmount: 2
   supportType: 0
   range: 3

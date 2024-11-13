@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 2017608777087168641}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &-9084966146018896665
 BoxCollider2D:
@@ -94,8 +94,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardsInResources: []
   isDestroyed: 0
-  CDTypeFolderName: 
+  CDTypeFolderName: P_KnightCards
   unitMoveType: 2
+  moveDistance: 1
+  discoverReady: 1
+  moveReady: 1
 --- !u!114 &4925263130725932540
 MonoBehaviour:
   m_ObjectHideFlags: 0

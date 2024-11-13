@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Aid
   cardType: 1
+  imageType: 2
   cardSprite: {fileID: -790599577, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: "Reach an ally\xB4s side"
   hasExtraEffect: 1
+  cardScore: 0
   damage: 0
   moveDistance: 2
   moveType: 3

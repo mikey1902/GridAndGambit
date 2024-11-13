@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Do No Harm
   cardType: 1
+  imageType: 2
   cardSprite: {fileID: -1234761571, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: "Teleport to an Enemy and become Inmune until next turn. You can\xB4t
     cast Attack Abilities next turn."
   hasExtraEffect: 1
+  cardScore: 0
   damage: 0
   moveDistance: 0
   moveType: 3

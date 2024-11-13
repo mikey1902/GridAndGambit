@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Smite
   cardType: 0
+  imageType: 2
   cardSprite: {fileID: -579725436, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Must Channel for 1 turn.
   hasExtraEffect: 1
+  cardScore: 0
   damage: 10
   range: 3

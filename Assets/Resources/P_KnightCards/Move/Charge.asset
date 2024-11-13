@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Charge
   cardType: 1
+  imageType: 3
   cardSprite: {fileID: -569082693, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Move forward & Grant +2 dmg to nearby Allies for 1 turn.
   hasExtraEffect: 1
+  cardScore: 0
   damage: 5
   moveDistance: 4
   moveType: 3
