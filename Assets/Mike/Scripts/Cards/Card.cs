@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Rand = System.Random;
+using UnitMoveType = Unit.UnitMoveType;
 namespace GridGambitProd
 {
     public class Card : ScriptableObject
@@ -22,6 +23,9 @@ namespace GridGambitProd
             Support,
         }
     }
+   
+    
+    
     public class GridGambitUtil : MonoBehaviour
     {
        public static string[] ReturnModifiedDirectoryArr(string[] items, string directoryModification)
@@ -55,14 +59,36 @@ namespace GridGambitProd
             handManager = FindObjectOfType<HandManager>();
             return handManager;
         }
-      
+        public static bool MoveSetup(GridManager gridManager, Vector2 cellPos, int moveDistance, UnitMoveType unitMoveType)
+        {
+            switch (unitMoveType)
+            {
+                case UnitMoveType.Orthogonal:
+                    gridManager.OrthogonalMovement(cellPos, moveDistance);
+                    return true;
 
+                case UnitMoveType.Diagonal:
+                    gridManager.DiagonalMovement(cellPos, moveDistance);
+                    return true;
 
-
+                case UnitMoveType.LShape:
+                    gridManager.LShapeMovement(cellPos, moveDistance);
+                    return true;
+            }
+            return false;
+        }
     }
 
 
 
 
 
+    
+    
+    
+    
+    
+    
 }
+
+

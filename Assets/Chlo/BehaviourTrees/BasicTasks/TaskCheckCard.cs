@@ -56,6 +56,7 @@ public class TaskCheckCard : BTNode
                             AttackCard atkC = (AttackCard)cds[i];
                             cds[i].cardScore = (float)atkC.damage + (float)atkC.range/2;
                             //cds[i].Typing = 0;
+                            
                             break;
                         case Card.CardType.Support:
                             Debug.Log("support");
@@ -78,6 +79,7 @@ public class TaskCheckCard : BTNode
                             break;
                     }
                 }
+                
                 _enemyContainer.discoverChoices = _enemyContainer.discoverChoices.OrderByDescending(item => item.cardScore).ToList();
                 _enemyContainer.discoverCard = _enemyContainer.discoverChoices.First();
                 state = NodeState.SUCCESS;

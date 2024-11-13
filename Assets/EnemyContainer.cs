@@ -7,16 +7,19 @@ using JetBrains.Annotations;
 
 public class EnemyContainer : MonoBehaviour
 {
-    public bool isPlayingCard = false;
+    public bool isPlayingCard;
+    public bool moveReady;
+    public GridManager gridManager;
     public List<Card> discoverChoices;
     public Card CardToPlay;
     public Card discoverCard;
-    public Card[] CardInfos;
     public Transform Target;
+    public MoveManager moveManager;
     private void Awake()
     { 
         discoverChoices = new List<Card>();
-        
+        gridManager = FindObjectOfType<GridManager>();
+        moveManager = FindObjectOfType<MoveManager>();
     }
 
 }

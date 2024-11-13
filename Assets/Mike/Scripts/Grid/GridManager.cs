@@ -10,7 +10,7 @@ public class GridManager : MonoBehaviour
 	public GameObject[,] gridCells;
 	public GameObject cellPrefab;
 	public GameObject moveableObject;
-	public List<GameObject> highlightedCells = new List<GameObject>();
+	public List<GameObject> highlightedCells;
 	public int width = 8;
 	public int height = 8;
 

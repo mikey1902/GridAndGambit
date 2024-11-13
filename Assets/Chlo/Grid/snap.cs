@@ -30,7 +30,8 @@ public class snap : MonoBehaviour
                         nearest = allGridable[i];
                         gameObject.GetComponent<GridCell>().cellOccupied = true;
                         nearest.GetComponent<gridInteg>().gcord = gameObject.GetComponent<GridCell>().gridIndex;
-                      }
+                       // if (gameObject.gameObject.GetComponent<GridCell>().cellOccupied == true)
+                    }
                     }
                 else
                 {

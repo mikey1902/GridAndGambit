@@ -6,14 +6,15 @@ using UnityEngine;
 
 public class ToySoldierBTree : BTree
 {
-    public UnityEngine.Transform[] waypoints;
+   // public UnityEngine.Transform[] waypoints;
     public static float speed = 2f;
     public string[] relatedCardPools;
+    private GridManager gridManager;
     public EnemyContainer container;
     public Transform target;
      void Awake()
      {
-         
+         gridManager = gameObject.GetComponent<EnemyContainer>().gridManager;
          container = this.GetComponent<EnemyContainer>();
      }
 //LAZY UNIT
@@ -29,6 +30,7 @@ public class ToySoldierBTree : BTree
            new Sequence(new List<BTNode>
            { 
                new TaskCheckCard(transform, container, 3f, false),
+               
            }),
 //new TaskTryMove(transform, container.CardToPlay, container, 2f),
             new Sequence(new List<BTNode>
@@ -40,8 +42,11 @@ public class ToySoldierBTree : BTree
                 //IF NONE CURRENTLY PLAYABLE, RETURNS FAILURE, WHICH MOVES TO NEXT SEQUENCE
             }),
              }),
+            
             new TaskPlayCard(container.Target, transform, null, container, 0f),
-      });
+            new TaskMove(container, 3, gridManager, target, 5f),
+            
+        });
              
         return root;
         

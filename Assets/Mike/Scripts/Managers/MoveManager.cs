@@ -55,6 +55,6 @@ public class MoveManager : MonoBehaviour
 				clickedUnit.MoveSetup(clickedCell.gridIndex);
 			}
 		}
-
+	
 	}
 }
