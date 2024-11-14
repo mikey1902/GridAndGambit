@@ -49,14 +49,37 @@ public class TaskPlayCard : BTNode
 		}
 		else
 		{
-			ChosenCard = _enemyContainer.CardToPlay;
-			handManager = GridGambitUtil.GetHandManager();
-			handManager.AddCard(ChosenCard);
+			List<Card> ourLs = _enemyContainer.discoverChoices;
 
+			foreach (Card c in ourLs)
+			{
+				//int field;
+				bool canBePlayed = false; 
+				if (c is AttackCard attackCard)
+				{
+					_target = GridGambitProd.GridGambitUtil.FindNearestTarget(_enemyContainer.transform, false);
+
+					canBePlayed = true;
+					//	_target.gameObject.GetComponent<simpleSetup>().HP -= attackCard.damage;
+				}
+				else if (c is SupportCard supportCard)
+				{
+					_target = GridGambitProd.GridGambitUtil.FindNearestTarget(_enemyContainer.transform, false);
+	
+					
+					//	_target.gameObject.GetComponent<simpleSetup>().HP += supportCard.supportAmount;
+				}
+
+
+				if (canBePlayed) break;
+				
+			}
+
+			ChosenCard = _enemyContainer.CardToPlay;
 			//    _transform.gameObject.SetActive(false);
 
 			///    Debug.Log(ChosenCard.Typing);
-			if (ChosenCard is AttackCard attackCard)
+			/*	if (ChosenCard is AttackCard attackCard)
 			{
 				Debug.Log(attackCard.damage);
 				_target.gameObject.GetComponent<simpleSetup>().HP -= attackCard.damage;
@@ -65,12 +88,9 @@ public class TaskPlayCard : BTNode
 			{
 				Debug.Log(supportCard.supportAmount);
 				_target.gameObject.GetComponent<simpleSetup>().HP += supportCard.supportAmount;
-			}
+			}*/
 			// Debug.Log(stc.supportAmount); 
-			else
-			{
-				//Debug.Log(ChosenCard.cardName);
-			}
+			
 
 			/*  case 2: //Move
 				//  trg.HP -= mtc.damage; 

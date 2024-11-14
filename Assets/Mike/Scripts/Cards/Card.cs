@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using Rand = System.Random;
@@ -28,6 +30,18 @@ namespace GridGambitProd
     
     public class GridGambitUtil : MonoBehaviour
     {
+        [ItemCanBeNull]
+        public static Transform FindNearestTarget(Transform self, bool friendly)
+        {
+         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Unit");
+         IEnumerable<GameObject> nearestUnfriendlys = from allObject in allObjects where allObject.GetComponent<Unit>() != null select allObject.gameObject;
+         IEnumerable<GameObject> nearestFriends = from allObject in allObjects where allObject.GetComponent<Unit>() == null select allObject.gameObject;
+
+         if (friendly)
+             return nearestFriends.ToList()
+                 .OrderByDescending(item => Vector2.Distance(item.transform.position, self.position)).ToList().First().transform;
+           return nearestUnfriendlys.ToList().OrderByDescending(item => Vector2.Distance(item.transform.position, self.position)).ToList().First().transform;
+        }
        public static string[] ReturnModifiedDirectoryArr(string[] items, string directoryModification)
         {
             for (var i = 0; i < items.Length; i++)

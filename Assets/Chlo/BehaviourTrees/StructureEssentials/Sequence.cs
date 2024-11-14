@@ -18,7 +18,6 @@ namespace BehaviourTree
                 {
                     case NodeState.FAILURE:
                         return state;
-                        break;
                     case NodeState.SUCCESS:
                         continue;
                     case NodeState.RUNNING:

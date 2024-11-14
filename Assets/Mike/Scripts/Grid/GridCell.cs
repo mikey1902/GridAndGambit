@@ -83,6 +83,32 @@ public class GridCell : MonoBehaviour
 			gridManager.moveChosen(GridIndex);
 		}
 	}
+	
+	
+	
+	private void OnCollisionEnter2D(Collision2D coll)
+	{
+		// If the Collider2D component is enabled on the collided object
+		if (coll.gameObject.layer == 7 )
+		{
+			// Disables the Collider2D component
+			cellHighlight.gameObject.SetActive(true);
+			cellOccupied = true;
+			highlightSpriteRenderer.color = occupiedColor;
+			cellMoveHighlighted = false;
+			
+		}
+	}
+	private void OnCollisionExit2D(Collision2D coll)
+	{
+		if (coll.gameObject.layer == 7)
+		{
+			cellOccupied = false;
+			cellHighlight.SetActive(false);
+			highlightSpriteRenderer.color = originalColor;
+		}
+	}
+	
 
 	public void HighlightOccupiedCell()
 	{
@@ -90,7 +116,7 @@ public class GridCell : MonoBehaviour
 	}
 	public void HighlightMoveCell()
 	{
-		cellSpriteRenderer.material.color = MoveableColor;
+		if (!cellOccupied) cellSpriteRenderer.material.color = MoveableColor;
 	}
 
 	public void DisableHighlight()

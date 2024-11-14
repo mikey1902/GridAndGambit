@@ -17,7 +17,7 @@ public class TaskMove : BTNode
     private List<Card> currentPool;
     private EnemyContainer _enemyContainer;
     private float waitTime;
-    private bool waitForPreviousNode = false;
+    private bool waitForPreviousNode;
     private bool waitingForMove;
     private GridManager _gridManager;
     private Transform _target;
@@ -34,11 +34,8 @@ public class TaskMove : BTNode
 public TaskMove(EnemyContainer enemyContainer, int distance, GridManager gridManager, Transform target, float waitTime)
     {
         _enemyContainer = enemyContainer;
-
         _gridManager = gridManager;
-
-        waitCounter = waitCounter;
-       gridManager.movingUnit = true;
+        gridManager.movingUnit = true;
         _target = target;
         pathLis = new List<moveOb>();
         _waitTime = waitTime;
@@ -62,32 +59,34 @@ public TaskMove(EnemyContainer enemyContainer, int distance, GridManager gridMan
         {
             if (notHadTurn)
             {
-                UnityEngine.Vector2 a = _enemyContainer.gameObject.transform.position;
-                int x = Mathf.FloorToInt(a.x + 3.5f);
-                int y = Mathf.FloorToInt(a.y + 3.5f);
-                Vector2 gridSOmething = new Vector2(x, y);
+                Vector2 ourPosition = _enemyContainer.gameObject.transform.position;
+                int x = Mathf.FloorToInt(ourPosition.x + 3.5f);
+                int y = Mathf.FloorToInt(ourPosition.y + 3.5f);
+                Vector2 localPos = new Vector2(x, y);
                 _gridManager.moveableObject = _enemyContainer.gameObject;
-
-
-                MoveSetup(_gridManager, gridSOmething, 2,
-                    Unit.UnitMoveType.Diagonal);
+                
+                MoveSetup(_gridManager, localPos, 1,
+                    Unit.UnitMoveType.Orthogonal);
+                //Figure Out Path
                 foreach (GameObject cell in _gridManager.highlightedCells)
                 {
                     moveOb mv = new moveOb();
                     mv.Score = Vector2.Distance(_target.position, cell.transform.position);
                     mv.Cell = cell;
                     Debug.Log(cell.GetComponent<GridCell>().GridIndex + " " + mv.Score);
-                    pathLis.Add(mv);
-                    
+                    if (!cell.GetComponent<GridCell>().cellOccupied) pathLis.Add(mv);
                 }
+                //Order by the best path - via Distance To Target
                 pathLis = pathLis.OrderBy(item => item.Score).ToList();
                 _gridManager.moveChosen(pathLis.First().Cell.gameObject.GetComponent<GridCell>().GridIndex);
+                
+                
                 _gridManager.moveChose = true;
                 waitingForMove = _gridManager.movingUnit;
+                //Complete Turn
                 notHadTurn = false;
                 state = NodeState.SUCCESS;
                 return state;
-
             }
 
         }

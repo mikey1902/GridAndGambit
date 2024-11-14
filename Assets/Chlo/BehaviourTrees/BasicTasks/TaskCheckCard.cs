@@ -7,7 +7,6 @@ using GridGambitProd;
 using BehaviourTree;
 using Vector2 = System.Numerics.Vector2;
 
-
 public class TaskCheckCard : BTNode
 {
 
@@ -79,7 +78,6 @@ public class TaskCheckCard : BTNode
                             break;
                     }
                 }
-                
                 _enemyContainer.discoverChoices = _enemyContainer.discoverChoices.OrderByDescending(item => item.cardScore).ToList();
                 _enemyContainer.discoverCard = _enemyContainer.discoverChoices.First();
                 state = NodeState.SUCCESS;

@@ -181,6 +181,8 @@ public class GridManager : MonoBehaviour
 
 	public void LShapeMovement(Vector2 cellPos, int moveDistance)
 	{
+		
+		
 		movingUnit = true;
 
 		Vector2 spacePos;

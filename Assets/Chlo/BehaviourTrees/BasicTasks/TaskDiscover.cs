@@ -13,9 +13,12 @@ public class TaskDiscover : BTNode
    private List<Card> currentPool;
     private EnemyContainer _enemyContainer;
 
+    
+        //WAIT FOR ANIMATIONS FIRST
+    /*
     private float waitTime;
     private bool waitForPreviousNode = false;
-   
+   */
    
    
    public TaskDiscover(EnemyContainer enemyContainer, params string[] discoverStr)
