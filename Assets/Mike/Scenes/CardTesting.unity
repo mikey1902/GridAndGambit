@@ -973,7 +973,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2767425130131964238, guid: c29cbd7423e1d9d49b55341ccb0c2453, type: 3}
       propertyPath: m_Name
-      value: baddie
+      value: w
       objectReference: {fileID: 0}
     - target: {fileID: 2767425130131964238, guid: c29cbd7423e1d9d49b55341ccb0c2453, type: 3}
       propertyPath: m_Layer
@@ -989,11 +989,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5411244187632730811, guid: c29cbd7423e1d9d49b55341ccb0c2453, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -2.51
       objectReference: {fileID: 0}
     - target: {fileID: 5411244187632730811, guid: c29cbd7423e1d9d49b55341ccb0c2453, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5411244187632730811, guid: c29cbd7423e1d9d49b55341ccb0c2453, type: 3}
       propertyPath: m_LocalPosition.z
