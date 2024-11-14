@@ -12,6 +12,7 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 	private Quaternion ogRotation;
 	private Vector3 ogPos;
 	private GridManager gridManager;
+	public GameObject unitPlaying;
 
 	[SerializeField] private float hoverScale = 1.1f;
 	[SerializeField] private GameObject highlightEffect;
@@ -22,6 +23,7 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 	private Card cardData;
 	private CardDisplay cardDisplay;
 	private HandManager handManager;
+	private BattleManager battleManager;
 
 	void Awake()
 	{
@@ -33,6 +35,7 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
 		gridManager = FindObjectOfType<GridManager>();
 		handManager = FindObjectOfType<HandManager>();
+		battleManager = FindObjectOfType<BattleManager>();
 		cardDisplay = GetComponent<CardDisplay>();
 
 		gridLayerMask = LayerMask.GetMask("Grid");
@@ -136,15 +139,18 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 	{
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
 
-		if (hit.collider != null && hit.collider.GetComponent<Unit>())
+		if (hit.collider != null && hit.collider.GetComponent<PlayerUnit>())
 		{
 			if (!GameManager.Instance.playingMove)
 			{
 				GameManager.Instance.playingMove = true;
 			}
 
-			Unit unit = hit.collider.GetComponent<Unit>();
-			unit.DestroyUnit();
+			//PUT BATTLE FUNCTION HERE RIZZ!!!
+			if(checkRange(hit, attackCard) == true)
+			{
+				battleManager.AttackCardEffect(attackCard, hit.collider.gameObject);
+			}
 
 			handManager.cardsInHand.Remove(gameObject);
 			handManager.UpdateHandVisuals();
@@ -159,11 +165,11 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
 		RaycastHit2D hit2 = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
 
-		if (hit.collider != null && hit.collider.GetComponent<Unit>())
+		if (hit.collider != null && hit.collider.GetComponent<PlayerUnit>())
 		{
 			Debug.Log("MoveCard Hit");
 			GameObject movableUnit = hit.collider.gameObject;
-			Unit unit = hit.collider.GetComponent<Unit>();
+			PlayerUnit unit = hit.collider.GetComponent<PlayerUnit>();
 			GridCell cell = hit2.collider.GetComponent<GridCell>();
 
 			gridManager.moveableObject = movableUnit;
@@ -176,5 +182,28 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 		}
 	}
 
+	private bool checkRange(RaycastHit2D hit, AttackCard card)
+	{
+		float unitDistance = Vector2.Distance(unitPlaying.transform.position, hit.collider.gameObject.transform.position);
+
+		if (unitDistance < 1.5)
+		{
+			unitDistance = 1;
+		}
+		else
+		{
+			unitDistance = (unitDistance / 1.5f) + 1;
+			unitDistance = Mathf.Floor(unitDistance);
+		}
+
+		if (unitDistance <= card.range)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 

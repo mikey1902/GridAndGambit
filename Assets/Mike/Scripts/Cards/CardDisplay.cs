@@ -21,6 +21,11 @@ public class CardDisplay : MonoBehaviour
 	public GameObject rookImage;
 	public GameObject knightImage;
 
+	public GameObject healthSymbol;
+	public GameObject extraEffectSymbol;
+	public GameObject rangeSymbol;
+	public GameObject damageSymbol;
+
 	//Attack cards
 	public GameObject attackCardImage;
 	public TMP_Text damageText;
@@ -80,6 +85,9 @@ public class CardDisplay : MonoBehaviour
 	private void UpdateAttackCard(AttackCard attackCard)
 	{
 		attackCardImage.SetActive(true);
+		damageSymbol.SetActive(true);
+		rangeSymbol.SetActive(true);
+
 		damageText.text = attackCard.damage.ToString();
 		rangeText.text = attackCard.range.ToString();
 	}
@@ -87,12 +95,17 @@ public class CardDisplay : MonoBehaviour
 	private void UpdateMoveCard(MoveCard moveCard)
 	{
 		moveCardImage.SetActive(true);
+		extraEffectSymbol.SetActive(true);
+
 		moveDistText.text = moveCard.moveDistance.ToString();
 	}
 
 	private void UpdateSupportCard(SupportCard supportCard)
 	{
 		supportCardImage.SetActive(true);
+		healthSymbol.SetActive(true);
+		rangeSymbol.SetActive(true);
+
 		suppAmountText.text = supportCard.supportAmount.ToString();
 		rangeText.text = supportCard.range.ToString();
 	}

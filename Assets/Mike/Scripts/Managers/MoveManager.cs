@@ -34,9 +34,9 @@ public class MoveManager : MonoBehaviour
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
-			if (hit.collider != null && hit.collider.GetComponent<Unit>().discoverReady == true)
+			if (hit.collider != null && hit.collider.GetComponent<PlayerUnit>().discoverReady == true)
 			{
-				Unit clickedUnit = hit.collider.GetComponent<Unit>();
+				PlayerUnit clickedUnit = hit.collider.GetComponent<PlayerUnit>();
 				clickedUnit.DiscoverSetup();
 			}
 		}
@@ -46,9 +46,9 @@ public class MoveManager : MonoBehaviour
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
 			RaycastHit2D hit2 = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, gridLayerMask);
 
-			if (hit.collider != null && hit.collider.GetComponent<Unit>().moveReady == true)
+			if (hit.collider != null && hit.collider.GetComponent<PlayerUnit>().moveReady == true)
 			{
-				Unit clickedUnit = hit.collider.GetComponent<Unit>();
+				PlayerUnit clickedUnit = hit.collider.GetComponent<PlayerUnit>();
 				GridCell clickedCell = hit2.collider.GetComponent<GridCell>();
 
 				gridManager.moveableObject = clickedUnit.gameObject;

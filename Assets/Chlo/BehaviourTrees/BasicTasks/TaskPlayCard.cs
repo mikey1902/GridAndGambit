@@ -51,7 +51,6 @@ public class TaskPlayCard : BTNode
 		{
 			ChosenCard = _enemyContainer.CardToPlay;
 			handManager = GridGambitUtil.GetHandManager();
-			handManager.AddCard(ChosenCard);
 
 			//    _transform.gameObject.SetActive(false);
 

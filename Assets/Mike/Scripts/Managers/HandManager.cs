@@ -17,7 +17,7 @@ public class HandManager : MonoBehaviour
 	{
 	}
 
-	public void AddCard(Card cardData)
+	public void AddCard(Card cardData, GameObject playingUnit)
 	{
 		if (cardsInHand.Count < maxHandSize)
 		{
@@ -28,6 +28,7 @@ public class HandManager : MonoBehaviour
 			//set the instantiated card's data
 			newCard.GetComponent<CardDisplay>().cardData = cardData;
 			newCard.GetComponent<CardDisplay>().UpdateCard();
+			newCard.GetComponent<CardMovement>().unitPlaying = playingUnit;
 		}
 
 		UpdateHandVisuals();

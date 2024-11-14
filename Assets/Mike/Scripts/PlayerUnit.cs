@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using GridGambitProd;
 
-public class Unit : MonoBehaviour
+public class PlayerUnit : MonoBehaviour
 {
 	public List<Card> CardsInResources = new List<Card>();
-	public bool isDestroyed = false;
 	public string CDTypeFolderName;
 	public UnitMoveType unitMoveType;
 	public int moveDistance = 2;
@@ -68,13 +67,5 @@ public class Unit : MonoBehaviour
 				return true;
 		}
 		return false;
-	}
-	public void DestroyUnit()
-	{
-		isDestroyed = true;
-		if (isDestroyed)
-		{
-			Destroy(gameObject);
-		}
 	}
 }
