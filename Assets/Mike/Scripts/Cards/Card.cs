@@ -88,6 +88,7 @@ namespace GridGambitProd
             return items;
         }
         //Concatinates all the pools()
+       
         
         public static HandManager GetHandManager()
 		{

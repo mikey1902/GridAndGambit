@@ -15,6 +15,7 @@ public class EnemyContainer : MonoBehaviour
     public Card discoverCard;
     public Transform Target;
     public MoveManager moveManager;
+    public int MoveAmount;
     private void Awake()
     { 
         discoverChoices = new List<Card>();

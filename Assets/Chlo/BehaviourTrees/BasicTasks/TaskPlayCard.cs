@@ -58,7 +58,7 @@ public class TaskPlayCard : BTNode
 				{
 					targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, false).First()
 						.transform;
-					if (attackCard.range > Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position))
+					if (attackCard.range > Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position)- _enemyContainer.MoveAmount)
 						canBePlayed = true;
 				}
 				else if (c is SupportCard supportCard)
@@ -67,7 +67,7 @@ public class TaskPlayCard : BTNode
 					{
 						targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, true)
 							.ElementAt(1).transform;
-						float dst = Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position);
+						float dst = Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position) - _enemyContainer.MoveAmount;
 						canBePlayed = true;
 					}
 					else if (supportCard.canPlayOnSelf)
