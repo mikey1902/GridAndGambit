@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Empower
   cardType: 2
+  imageType: 2
   cardSprite: {fileID: 1485912186, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Give +3 Damage to another piece
   hasExtraEffect: 1
+  cardScore: 0
   supportAmount: 3
   supportType: 0
   range: 3

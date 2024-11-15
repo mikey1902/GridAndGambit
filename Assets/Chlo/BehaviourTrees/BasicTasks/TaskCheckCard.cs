@@ -53,7 +53,7 @@ public class TaskCheckCard : BTNode
                             Debug.Log("attack");
 
                             AttackCard atkC = (AttackCard)cds[i];
-                            cds[i].cardScore = (float)atkC.damage + (float)atkC.range/2;
+                            cds[i].cardScore = (float)atkC.damage*2 + (float)atkC.range;
                             //cds[i].Typing = 0;
                             
                             break;
@@ -61,7 +61,7 @@ public class TaskCheckCard : BTNode
                             Debug.Log("support");
 
                             SupportCard supC = (SupportCard)cds[i];
-                            cds[i].cardScore =  (supC.supportAmount + supC.range * 1.5f);
+                            cds[i].cardScore =  (supC.supportAmount + (supC.range));
                             //cds[i].Typing = 1;
 
                             break;

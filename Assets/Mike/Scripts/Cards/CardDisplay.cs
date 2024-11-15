@@ -11,35 +11,41 @@ public class CardDisplay : MonoBehaviour
 	public Card cardData;
 
 	public Image cardImage;
-	public Image displayImage;
 	public TMP_Text nameText;
 	public TMP_Text cardText;
 
-	public GameObject AttackValues;
-	public GameObject RangeValues;
+	//public Image displayImage;
+	//im dumb im dumb im dumb fix the images im dumb
+	public GameObject pawnImage;
+	public GameObject bishopImage;
+	public GameObject rookImage;
+	public GameObject knightImage;
+
+	public GameObject healthSymbol;
+	public GameObject extraEffectSymbol;
+	public GameObject rangeSymbol;
+	public GameObject damageSymbol;
 
 	//Attack cards
+	public GameObject attackCardImage;
 	public TMP_Text damageText;
 	public TMP_Text rangeText;
 
 	//Move cards
+	public GameObject moveCardImage;
 	public TMP_Text moveDistText;
 
 	//Support cards
+	public GameObject supportCardImage;
 	public TMP_Text suppAmountText;
-
-	private Color[] typeColors =
-	{
-		Color.red, Color.green, Color.cyan
-	};
 
 	public void UpdateCard()
 	{
-
 		//all cards
-		cardImage.color = typeColors[(int)cardData.cardType];
 		nameText.text = cardData.cardName;
-		displayImage.sprite = cardData.cardSprite;
+
+		//displayImage.sprite = cardData.cardSprite;
+
 		cardText.text = cardData.cardText;
 
 		//dependant card changes
@@ -55,12 +61,32 @@ public class CardDisplay : MonoBehaviour
 		{
 			UpdateSupportCard(supportCard);
 		}
+
+		switch (cardData.imageType)
+		{
+			case Card.ImageType.Pawn:
+				pawnImage.SetActive(true);
+				break;
+
+			case Card.ImageType.Bishop:
+				bishopImage.SetActive(true);
+				break;
+
+			case Card.ImageType.Rook:
+				rookImage.SetActive(true);
+				break;
+
+			case Card.ImageType.Knight:
+				knightImage.SetActive(true);
+				break;
+		}
 	}
 
 	private void UpdateAttackCard(AttackCard attackCard)
 	{
-		AttackValues.SetActive(true);
-		RangeValues.SetActive(true);
+		attackCardImage.SetActive(true);
+		damageSymbol.SetActive(true);
+		rangeSymbol.SetActive(true);
 
 		damageText.text = attackCard.damage.ToString();
 		rangeText.text = attackCard.range.ToString();
@@ -68,17 +94,19 @@ public class CardDisplay : MonoBehaviour
 
 	private void UpdateMoveCard(MoveCard moveCard)
 	{
-		AttackValues.SetActive(false);
-		RangeValues.SetActive(true);
+		moveCardImage.SetActive(true);
+		extraEffectSymbol.SetActive(true);
 
 		moveDistText.text = moveCard.moveDistance.ToString();
 	}
 
 	private void UpdateSupportCard(SupportCard supportCard)
 	{
-		AttackValues.SetActive(false);
-		RangeValues.SetActive(true);
+		supportCardImage.SetActive(true);
+		healthSymbol.SetActive(true);
+		rangeSymbol.SetActive(true);
 
 		suppAmountText.text = supportCard.supportAmount.ToString();
+		rangeText.text = supportCard.range.ToString();
 	}
 }

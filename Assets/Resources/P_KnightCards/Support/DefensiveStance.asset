@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Defensive Stance
   cardType: 2
+  imageType: 3
   cardSprite: {fileID: -241933981, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Gain 4 Armor unitl next turn.
   hasExtraEffect: 1
+  cardScore: 0
   supportAmount: 4
   supportType: 0
   range: 0

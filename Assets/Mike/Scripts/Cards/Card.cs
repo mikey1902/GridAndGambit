@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using Rand = System.Random;
-using UnitMoveType = Unit.UnitMoveType;
+using UnitMoveType = PlayerUnit.UnitMoveType;
 namespace GridGambitProd
 {
     public class Card : ScriptableObject
@@ -13,10 +13,12 @@ namespace GridGambitProd
 
         public string cardName;
         public CardType cardType;
+        public ImageType imageType;
         public Sprite cardSprite;
         public string cardText;
         public bool hasExtraEffect;
         public float cardScore;
+        public bool canPlayOnSelf;
 
         public enum CardType
         {
@@ -24,35 +26,29 @@ namespace GridGambitProd
             Move,
             Support,
         }
+
+        public enum ImageType
+        {
+            Pawn,
+            Rook,
+            Bishop,
+            Knight
+        }
     }
    
     
     
     public class GridGambitUtil : MonoBehaviour
     {
-        [ItemCanBeNull]
-        public static List<GameObject> FindNearestTarget(Transform self, bool friendly)
-        {
-         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Unit");
-         IEnumerable<GameObject> nearestUnfriendlys = from allObject in allObjects where allObject.GetComponent<Unit>() != null select allObject.gameObject;
-         IEnumerable<GameObject> nearestFriends = from allObject in allObjects where allObject.GetComponent<Unit>() == null select allObject.gameObject;
-
-         if (friendly)
-             return nearestFriends.ToList()
-                 .OrderByDescending(item => Vector2.Distance(item.transform.position, self.position)).ToList();
-
-         return nearestUnfriendlys.ToList()
-             .OrderByDescending(item => Vector2.Distance(item.transform.position, self.position)).ToList();
-        }
-       public static string[] ReturnModifiedDirectoryArr(string[] items, string directoryModification)
-        {
-            for (var i = 0; i < items.Length; i++)
-            {
-                items[i] = new string(directoryModification + items[i]);
-            }
-            return items;
-        }
-        //Concatinates all the pools()
+        
+        /// <summary>
+        /// MIKE USE THIS METHOD!! it'll save ur life someday
+        ///
+        /// 
+        /// </summary>
+        /// <param name="doesShuffle"></param>
+        /// <param name="poolNames"></param>
+        /// <returns></returns>
         public static List<Card> ReturnCardPool(bool doesShuffle, params string[] poolNames)
         {
             var rnd = new Rand();
@@ -69,6 +65,30 @@ namespace GridGambitProd
             if (doesShuffle) return currentPool.OrderBy(item => rnd.Next()).ToList();
             return currentPool;
         }
+        
+        [ItemCanBeNull]
+        public static List<GameObject> FindNearestTarget(Transform self, bool friendly)
+        {
+         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Unit");
+         IEnumerable<GameObject> nearestUnfriendly = from item in allObjects where item.name != "baddie" select item;
+         IEnumerable<GameObject> nearestFriends = from item in allObjects where item.name == "baddie" select item;
+         if (friendly)
+         {
+             return nearestFriends.ToList().OrderBy(item => Vector2.Distance(item.transform.position, self.position))
+                 .ToList();
+         }
+         return nearestUnfriendly.ToList().OrderBy(item => Vector2.Distance(item.transform.position, self.position)).ToList();
+        }
+       public static string[] ReturnModifiedDirectoryArr(string[] items, string directoryModification)
+        {
+            for (var i = 0; i < items.Length; i++)
+            {
+                items[i] = new string(directoryModification + items[i]);
+            }
+            return items;
+        }
+        //Concatinates all the pools()
+        
         public static HandManager GetHandManager()
 		{
             HandManager handManager;

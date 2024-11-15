@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Ram
   cardType: 1
+  imageType: 1
   cardSprite: {fileID: -1307059962, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Reach an Enemy. Deal Damage to it and YOURSELF equal to the distance
     travelled.
   hasExtraEffect: 1
+  cardScore: 0
   damage: 0
   moveDistance: 10
   moveType: 0

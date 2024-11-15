@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Scatter
   cardType: 0
+  imageType: 3
   cardSprite: {fileID: -1341189835, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Hits ALL units in Range. +1 Damage per Unit hit.
   hasExtraEffect: 1
+  cardScore: 0
   damage: 1
   range: 3

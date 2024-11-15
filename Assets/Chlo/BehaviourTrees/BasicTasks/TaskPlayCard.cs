@@ -5,6 +5,7 @@ using UnityEngine;
 using GridGambitProd;
 
 using BehaviourTree;
+using JetBrains.Annotations;
 using Vector2 = UnityEngine.Vector2;
 
 
@@ -19,12 +20,11 @@ public class TaskPlayCard : BTNode
 	private Transform _target;
 	private Card selectedCard;
 	private int reps;
-
+	private Transform targ;
 	public Transform _transform;
 	private bool waitingForPreviousNode;
-	public HandManager handManager;
 
-	public TaskPlayCard(Transform target, Transform unit, EnemyContainer enemyContainer, float waitTime)
+	public TaskPlayCard([CanBeNull] Transform target, Transform unit, EnemyContainer enemyContainer, float waitTime)
 	{
 		//  selectedCards = unit.gameObject.GetComponent<EnemyContainer>().discoverChoices;
 		_enemyContainer = enemyContainer;
@@ -49,7 +49,6 @@ public class TaskPlayCard : BTNode
 		else
 		{
 			List<Card> ourLs = _enemyContainer.discoverChoices;
-			ChosenCard = _enemyContainer.CardToPlay;
 
 			foreach (Card c in ourLs)
 			{
@@ -57,24 +56,38 @@ public class TaskPlayCard : BTNode
 				bool canBePlayed = false;
 				if (c is AttackCard attackCard)
 				{
-					_enemyContainer.Target = GridGambitUtil.FindNearestTarget(_enemyContainer.transform, false).First().transform;
-					if (attackCard.range >
-					    Vector2.Distance(_target.position, _enemyContainer.gameObject.transform.position))
+					targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, false).First()
+						.transform;
+					if (attackCard.range > Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position))
 						canBePlayed = true;
-					ChosenCard = attackCard;		
-
 				}
 				else if (c is SupportCard supportCard)
 				{
-					_enemyContainer.Target = GridGambitUtil.FindNearestTarget(_enemyContainer.transform, true).First().transform;
-					if (supportCard.range >
-					    Vector2.Distance(_target.position, _enemyContainer.gameObject.transform.position))
+					if (!supportCard.canPlayOnSelf)
+					{
+						targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, true)
+							.ElementAt(1).transform;
+						float dst = Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position);
 						canBePlayed = true;
-					ChosenCard = supportCard;		
-				} if (canBePlayed) break;
+					}
+					else if (supportCard.canPlayOnSelf)
+					{
+						canBePlayed = true;
+					}
+				}
+
+				if (canBePlayed)
+				{
+					_enemyContainer.discoverCard = c;
+					Debug.Log(c.name);
+					break;
+				}
+				
 			}
+
+
+			_enemyContainer.Target = targ;
 			
-		
 			
 		
 			state = NodeState.SUCCESS;

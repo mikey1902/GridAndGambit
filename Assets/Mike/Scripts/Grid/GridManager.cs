@@ -245,10 +245,10 @@ public class GridManager : MonoBehaviour
 		moveSelect(highlightedCells);
 	}
 
-	public void moveChosen(Vector2 orient)
+	public void moveChosen(Vector2 clickedCell)
 	{
 		moveChose = true;
-		movingCell = orient;
+		movingCell = clickedCell;
 		foreach (Vector2 moveCell in moveCells)
 		{
 			GameObject moveableCell = SearchGrid(moveCell);

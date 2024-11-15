@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public enum GameState
@@ -11,6 +12,12 @@ public enum GameState
 	ENEMY,
 	WON,
 	LOST
+}
+
+public enum PlayerState
+{
+	Move,
+	Action
 }
 
 public class GameManager : MonoBehaviour
@@ -24,10 +31,13 @@ public class GameManager : MonoBehaviour
 	//public GameObject[] PiecePrefabs;
 
 	public GameState gameState;
+	public PlayerState playerState;
 	public TMP_Text stateText;
+	public Image moveButton;
+	public Image actionButton;
 	public bool playingCard = false;
 	public bool playingMove = false;
-	public Unit[] playerPieces;
+	public PlayerUnit[] playerPieces;
 
 	private void Awake()
 	{
@@ -42,7 +52,7 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		playerPieces = FindObjectsOfType<Unit>();
+		playerPieces = FindObjectsOfType<PlayerUnit>();
 	}
 
 	private void InitializeManagers()
@@ -98,7 +108,7 @@ public class GameManager : MonoBehaviour
 		gameState = GameState.PLAYER;
 		stateText.text = gameState.ToString();
 
-		foreach(Unit unit in playerPieces)
+		foreach(PlayerUnit unit in playerPieces)
 		{
 			unit.moveReady = true;
 			unit.discoverReady = true;
@@ -109,5 +119,15 @@ public class GameManager : MonoBehaviour
 	{
 		gameState = GameState.ENEMY;
 		stateText.text = gameState.ToString();
+	}
+
+	public void SwitchToMove()
+	{
+		playerState = PlayerState.Move;
+	}
+
+	public void SwitchToAction()
+	{
+		playerState = PlayerState.Action;
 	}
 }

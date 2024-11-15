@@ -64,9 +64,10 @@ public TaskMove(EnemyContainer enemyContainer, int distance, GridManager gridMan
                 int y = Mathf.FloorToInt(ourPosition.y + 3.5f);
                 Vector2 localPos = new Vector2(x, y);
                 _gridManager.moveableObject = _enemyContainer.gameObject;
-                
-                MoveSetup(_gridManager, localPos, 1,
-                    Unit.UnitMoveType.Orthogonal);
+
+                _target = _enemyContainer.Target;
+                MoveSetup(_gridManager, localPos, 2,
+                    PlayerUnit.UnitMoveType.Diagonal);
                 //Figure Out Path
                 foreach (GameObject cell in _gridManager.highlightedCells)
                 {

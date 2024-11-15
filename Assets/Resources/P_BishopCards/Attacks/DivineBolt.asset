@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Divine Bolt
   cardType: 0
+  imageType: 2
   cardSprite: {fileID: -804667674, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: 
   hasExtraEffect: 0
+  cardScore: 0
   damage: 4
   range: 6

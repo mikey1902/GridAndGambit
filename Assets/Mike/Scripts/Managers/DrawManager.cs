@@ -48,7 +48,7 @@ public class DrawManager : MonoBehaviour
 		if (currentHandSize < maxHandSize)
 		{
 			Card nextCard = UnitDeck[currentIndex];
-			handManager.AddCard(nextCard);
+			handManager.AddCard(nextCard, gameObject);
 			UnitDeck.RemoveAt(currentIndex);
 
 			if (UnitDeck.Count > 0)

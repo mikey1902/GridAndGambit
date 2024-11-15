@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Punch
   cardType: 0
+  imageType: 1
   cardSprite: {fileID: 479905756, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: 
   hasExtraEffect: 0
+  cardScore: 0
   damage: 4
   range: 1

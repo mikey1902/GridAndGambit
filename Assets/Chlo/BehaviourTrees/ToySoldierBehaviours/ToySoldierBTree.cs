@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using BehaviourTree;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class ToySoldierBTree : BTree
@@ -11,7 +12,7 @@ public class ToySoldierBTree : BTree
     public string[] relatedCardPools;
     private GridManager gridManager;
     public EnemyContainer container;
-    public Transform target;
+    
      void Awake()
      {
          gridManager = gameObject.GetComponent<EnemyContainer>().gridManager;
@@ -29,7 +30,7 @@ public class ToySoldierBTree : BTree
          // new TaskCheckCard(transform, container, 5f),
            new Sequence(new List<BTNode>
            { 
-               new TaskCheckCard(transform, container, 3f, false),
+               new TaskCheckCard(transform, container, 2f, false),
                
            }),
 //new TaskTryMove(transform, container.CardToPlay, container, 2f),
@@ -37,14 +38,16 @@ public class ToySoldierBTree : BTree
             {
                 //Code for Moving closer to Target
                 //Create a task to check container
-                new TaskCheckCard(transform, container, 3f, true),//CHECKS EACH CARD AND ORDERS THEM BY SCORE
+                new TaskCheckCard(transform, container, 2f, true),//CHECKS EACH CARD AND ORDERS THEM BY SCORE
                 //- READS DISCOVER LIST AND ATTEMPTS TO PLAY EACH LOOKING FROM FIRST DECENDING
                 //IF NONE CURRENTLY PLAYABLE, RETURNS FAILURE, WHICH MOVES TO NEXT SEQUENCE
             }),
              }),
+            new TaskPlayCard( container.Target, transform, container, 3f),
+            new TaskMove(container, 3, gridManager, container.Target, 5f),
+           // new TaskRealPlay(),
             
-            new TaskPlayCard(container.Target, transform, container, 3f),
-            new TaskMove(container, 3, gridManager, target, 5f),
+            
             
         });
              

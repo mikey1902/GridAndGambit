@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Counter-Strike
   cardType: 2
+  imageType: 3
   cardSprite: {fileID: -370961514, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Become Inmune to Damage unitl next turn. Return the next instance of
     damage dealt to this piece and lose inmmunity.
   hasExtraEffect: 1
+  cardScore: 0
   supportAmount: 0
   supportType: 0
   range: 0
