@@ -14,6 +14,7 @@ public class EnemyContainer : MonoBehaviour
     public Card CardToPlay;
     public Card discoverCard;
     public Transform Target;
+    public BattleManager battleManager;
     public MoveManager moveManager;
     public int MoveAmount;
     private void Awake()
@@ -21,6 +22,7 @@ public class EnemyContainer : MonoBehaviour
         discoverChoices = new List<Card>();
         gridManager = FindObjectOfType<GridManager>();
         moveManager = FindObjectOfType<MoveManager>();
+        battleManager = FindObjectOfType<BattleManager>();
     }
 
 }
