@@ -84,8 +84,6 @@ public class GridCell : MonoBehaviour
 		}
 	}
 	
-	
-	
 	private void OnCollisionEnter2D(Collision2D coll)
 	{
 		// If the Collider2D component is enabled on the collided object
@@ -94,7 +92,6 @@ public class GridCell : MonoBehaviour
 			// Disables the Collider2D component
 			cellHighlight.gameObject.SetActive(true);
 			cellOccupied = true;
-			highlightSpriteRenderer.color = occupiedColor;
 			cellMoveHighlighted = false;
 			
 		}
@@ -105,7 +102,6 @@ public class GridCell : MonoBehaviour
 		{
 			cellOccupied = false;
 			cellHighlight.SetActive(false);
-			highlightSpriteRenderer.color = originalColor;
 		}
 	}
 	

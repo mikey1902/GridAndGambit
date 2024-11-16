@@ -33,8 +33,7 @@ public class GameManager : MonoBehaviour
 	public GameState gameState;
 	public PlayerState playerState;
 	public TMP_Text stateText;
-	public Image moveButton;
-	public Image actionButton;
+	public TMP_Text playerStateText;
 	public bool playingCard = false;
 	public bool playingMove = false;
 	public PlayerUnit[] playerPieces;
@@ -91,7 +90,9 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		gameState = GameState.START;
+		playerState = PlayerState.Move;
 		stateText.text = gameState.ToString();
+		playerStateText.text = playerState.ToString();
 		SetupCombat();
 	}
 
@@ -124,10 +125,12 @@ public class GameManager : MonoBehaviour
 	public void SwitchToMove()
 	{
 		playerState = PlayerState.Move;
+		playerStateText.text = playerState.ToString();
 	}
 
 	public void SwitchToAction()
 	{
 		playerState = PlayerState.Action;
+		playerStateText.text = playerState.ToString();
 	}
 }

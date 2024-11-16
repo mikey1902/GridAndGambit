@@ -30,7 +30,7 @@ public class MoveManager : MonoBehaviour
 
 	private void PlayerAction()
 	{
-		if (Input.GetMouseButtonUp(0) && GameManager.Instance.playingCard == false)
+		if (Input.GetMouseButtonUp(0) && GameManager.Instance.playingCard == false && GameManager.Instance.playerState == PlayerState.Action)
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
@@ -40,7 +40,7 @@ public class MoveManager : MonoBehaviour
 				clickedUnit.DiscoverSetup();
 			}
 		}
-		if (Input.GetMouseButtonUp(1) && gridManager.movingUnit == false)
+		if (Input.GetMouseButtonUp(1) && gridManager.movingUnit == false && GameManager.Instance.playerState == PlayerState.Move)
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);

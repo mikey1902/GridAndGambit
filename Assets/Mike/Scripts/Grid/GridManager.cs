@@ -15,6 +15,7 @@ public class GridManager : MonoBehaviour
 	public int height = 8;
 
 	private List<Vector2> moveCells = new List<Vector2>();
+	private Vector2 gridOffset;
 	public bool movingUnit = false;
 	private Vector2 cellPosWorld;
 	public bool moveChose = false;
@@ -34,7 +35,8 @@ public class GridManager : MonoBehaviour
 	void createNodeGrid()
 	{
 		gridCells = new GameObject[width, height];
-		Vector2 gridOffset = new Vector2(width / 2.0f - 0.5f, height / 2.0f - 0.5f);
+		Vector2 gridOffset = new Vector2(width / 2.0f + 3.5f, height / 2.0f - 0.5f);
+		Debug.Log("GRID OFFSET " + gridOffset);
 
 		for (int x = 0; x < width; x++)
 		{
@@ -128,12 +130,12 @@ public class GridManager : MonoBehaviour
 
 		foreach (Vector2 moveCell in moveCells)
 		{
-			//if (SearchGrid(moveCell).GetComponent<GridCell>().cellOccupied == false)
-			//{
+			if (SearchGrid(moveCell).GetComponent<GridCell>().cellOccupied == false)
+			{
 				GameObject moveableCell = SearchGrid(moveCell);
 				moveableCell.GetComponent<GridCell>().HighlightMoveCell();
 				highlightedCells.Add(moveableCell);
-			//}
+			}
 		}
 		moveSelect(highlightedCells);
 	}
@@ -175,9 +177,12 @@ public class GridManager : MonoBehaviour
 
 		foreach (Vector2 moveCell in moveCells)
 		{
-			GameObject moveableCell = SearchGrid(moveCell);
-			moveableCell.GetComponent<GridCell>().HighlightMoveCell();
-			highlightedCells.Add(moveableCell);
+			if (SearchGrid(moveCell).GetComponent<GridCell>().cellOccupied == false)
+			{
+				GameObject moveableCell = SearchGrid(moveCell);
+				moveableCell.GetComponent<GridCell>().HighlightMoveCell();
+				highlightedCells.Add(moveableCell);
+			}
 		}
 		moveSelect(highlightedCells);
 	}
@@ -241,9 +246,12 @@ public class GridManager : MonoBehaviour
 
 		foreach (Vector2 moveCell in moveCells)
 		{
-			GameObject moveableCell = SearchGrid(moveCell);
-			moveableCell.GetComponent<GridCell>().HighlightMoveCell();
-			highlightedCells.Add(moveableCell);
+			if (SearchGrid(moveCell).GetComponent<GridCell>().cellOccupied == false)
+			{
+				GameObject moveableCell = SearchGrid(moveCell);
+				moveableCell.GetComponent<GridCell>().HighlightMoveCell();
+				highlightedCells.Add(moveableCell);
+			}
 		}
 		moveSelect(highlightedCells);
 	}
@@ -302,13 +310,13 @@ public class GridManager : MonoBehaviour
 
 	private void HandleMovement()
 	{
-		cellPosWorld = new Vector2(movingCell.x - (float)3.5, movingCell.y - (float)3.5);
+		cellPosWorld = new Vector2(movingCell.x - 7.5f, movingCell.y - 3.5f);
 		moveableObject.transform.position = Vector2.MoveTowards(moveableObject.transform.position, cellPosWorld, 2 * Time.deltaTime);
 
 		if (Vector2.Distance(moveableObject.transform.position, cellPosWorld) < 0.01f)
 		{
 			moveChose = false;
-			Debug.Log("destination reached yipee!!!");
+			Debug.Log("destination reached yipee!!! " + cellPosWorld);
 		}
 	}
 }
