@@ -14,7 +14,7 @@ public class TaskRealPlay : BTNode
     private Transform _target;
     private bool waitForPreviousNode;
     private float waitCounter =0f;
-
+    private BattleManager _battleManager;
     private float _waitTime = 2f;
     //WAIT FOR ANIMATIONS FIRST
     /*
@@ -23,12 +23,13 @@ public class TaskRealPlay : BTNode
    */
    
    
-    public TaskRealPlay(EnemyContainer container, float waitTime)
+    public TaskRealPlay(BattleManager battleManager, EnemyContainer container, float waitTime)
     {
         _card  = container.CardToPlay;
         _target = container.Target; 
         waitForPreviousNode = true;
         _waitTime = waitTime;
+        _battleManager = battleManager;
     }
 
     public override NodeState Evaluate()
@@ -39,13 +40,22 @@ public class TaskRealPlay : BTNode
                   if (waitCounter >= _waitTime)
                       waitForPreviousNode = false;
               }else {
-                  
-                  
                   //BODY - TALK TO MIKE
-                  
-                  
-                  Debug.Log("waitin ");
-                  
+                   switch (_card.cardType)
+                    {
+                        case Card.CardType.Attack:
+                            _battleManager.AttackCardEffect(_card as AttackCard, _target.gameObject);         
+                            break;
+                        case Card.CardType.Support:
+                            _battleManager.SupportCardEffect(_card as SupportCard, _target.gameObject);
+                            break;
+                        case Card.CardType.Move:
+                            _battleManager.MoveCardEffect(_card as MoveCard, _target.gameObject);
+                            break;
+                        default:
+                            Debug.Log("wth boi, what u doin - Not implemented yet");
+                            break;
+                    }
        
         
         

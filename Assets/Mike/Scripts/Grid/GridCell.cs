@@ -87,7 +87,7 @@ public class GridCell : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D coll)
 	{
 		// If the Collider2D component is enabled on the collided object
-		if (coll.gameObject.layer == 7 )
+		if (coll.gameObject.layer == 7 || coll.gameObject.layer == 8 )
 		{
 			// Disables the Collider2D component
 			cellHighlight.gameObject.SetActive(true);
@@ -98,7 +98,7 @@ public class GridCell : MonoBehaviour
 	}
 	private void OnCollisionExit2D(Collision2D coll)
 	{
-		if (coll.gameObject.layer == 7)
+		if (coll.gameObject.layer == 7 )
 		{
 			cellOccupied = false;
 			cellHighlight.SetActive(false);
