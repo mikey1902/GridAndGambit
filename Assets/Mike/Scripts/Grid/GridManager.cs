@@ -11,8 +11,8 @@ public class GridManager : MonoBehaviour
 	public GameObject cellPrefab;
 	public GameObject moveableObject;
 	public List<GameObject> highlightedCells;
-	public int width = 8;
-	public int height = 8;
+	public int width = 16;
+	public int height = 16;
 
 	private List<Vector2> moveCells = new List<Vector2>();
 	private Vector2 gridOffset;
