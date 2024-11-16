@@ -2,98 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09761955-a85e-4dce-af18-f28872101404" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroupTemplates.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroupTemplates/Packed Assets.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroupTemplates/Packed Assets.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Built In Data.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Built In Data.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Schemas.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Schemas/Built In Data_PlayerDataGroupSchema.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Schemas/Built In Data_PlayerDataGroupSchema.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Schemas/Default Local Group_BundledAssetGroupSchema.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Schemas/Default Local Group_BundledAssetGroupSchema.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Schemas/Default Local Group_ContentUpdateGroupSchema.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AssetGroups/Schemas/Default Local Group_ContentUpdateGroupSchema.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders/BuildScriptFastMode.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders/BuildScriptFastMode.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders/BuildScriptPackedMode.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders/BuildScriptPackedMode.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders/BuildScriptPackedPlayMode.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders/BuildScriptPackedPlayMode.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders/BuildScriptVirtualMode.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DataBuilders/BuildScriptVirtualMode.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DefaultObject.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/DefaultObject.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources_moved.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources_moved/FMODStudioSettings.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources_moved/FMODStudioSettings.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks/ArrowShot.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks/ArrowShot.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks/Blunderbuss.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks/Blunderbuss.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks/Ignite.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks/Ignite.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Move.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Move/SpiritOfTheBishop.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Move/SpiritOfTheBishop.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Move/SpiritOfTheRook.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Move/SpiritOfTheRook.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Support.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Support/Patch.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Support/Patch.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Support/Protect.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Support/Protect.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/.cache/buildrecords/Desktop/Master.br" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/.cache/buildrecords/Desktop/testBank.br" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Build/Desktop/Master.bank" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Build/Desktop/Master.strings.bank" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Build/Desktop/testBank.bank" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Asset/{a378ce1d-b619-4876-a8f6-53748a5c9d27}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Bank/{24a7d7d8-1ea3-4241-b908-bb3fc4a1e5ff}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Bank/{7a460cb8-2281-48f1-8d2f-14254e2f1806}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/BankFolder/{1f87ea50-f2d9-400f-9cca-ceabc1741e92}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/EffectPresetFolder/{b0c226c1-6fea-416e-9341-976e9478bba9}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/EncodingSetting/{23f6a164-b669-47d0-8240-32b5f2e39cb1}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/EventFolder/{ffb68ad3-027e-4ee6-8bc8-0eae63fea32f}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Master.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Mixer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/ParameterPresetFolder/{19acb76a-2a55-4b7c-9da8-20c0afcab85c}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Platform/{08bf0214-648c-4c2e-8ce6-37593f2c6d41}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/ProfilerFolder/{f7fd42df-3f89-4fe5-ba5e-1d21a917fa92}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Return/{29440ae6-9534-4877-9dba-cbe98ffd4b1d}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/SandboxFolder/{1b53c47c-83ea-4931-9391-1a5ef728332f}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/SnapshotGroup/{ef681e69-4e63-4db2-acf1-e9967f912705}.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Tags.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/Metadata/Workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testproject/testproject.fspro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mike/Fonts/GothicUltra-g9w5 SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Fonts/GothicUltra-g9w5 SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mike/Prefabs/CardPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Prefabs/CardPrefab.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Bishop_b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Bishop_b.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Bishop_w.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Bishop_w.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Knight_b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Knight_b.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Knight_w.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Knight_w.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Pawn_b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Pawn_b.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Pawn_w.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Pawn_w.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Rook_b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Rook_b.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Rook_w.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Dee/Rook_w.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/background.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/bush.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/bush.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_cyan.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_cyan.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_green.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_green.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_periwinkle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_periwinkle.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_pimk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_pimk.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_purble.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/crayon_purble.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/rock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/rock.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/teddy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/Images/teddy.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/Bush.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/Bush.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonCyan.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonCyan.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonFranchescia.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonFranchescia.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonLime.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonLime.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonPeriwinkle.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonPeriwinkle.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonViolet.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/CrayonViolet.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/Teddy.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Marty/MartyPrefabs/Teddy.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chlo/BehaviourTrees/BasicTasks/TaskMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chlo/BehaviourTrees/BasicTasks/TaskMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chlo/BehaviourTrees/BasicTasks/TaskRealPlay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chlo/BehaviourTrees/BasicTasks/TaskRealPlay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chlo/BehaviourTrees/ToySoldierBehaviours/ToySoldierBTree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chlo/BehaviourTrees/ToySoldierBehaviours/ToySoldierBTree.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chlo/VeryDifferentCardTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chlo/VeryDifferentCardTesting.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dee.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dee.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemyContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EnemyContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mike/Fonts/GirlOnAnAlleyChmc-W7rV SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Fonts/GirlOnAnAlleyChmc-W7rV SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mike/Prefabs/Bishop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Prefabs/Bishop.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mike/Prefabs/Knight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Prefabs/Knight.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mike/Prefabs/Soldier.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Prefabs/Soldier.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mike/Scripts/Cards/Card.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Scripts/Cards/Card.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mike/Scripts/Cards/SupportCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Scripts/Cards/SupportCard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/FMOD/platform_ios.mm.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/platform_ios.mm.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CardData.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CardData/Enforce.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Support/Enforce.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CardData/Enforce.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Support/Enforce.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CardData/SpiritOfTheKnight.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Move/SpiritOfTheKnight.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CardData/SpiritOfTheKnight.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Move/SpiritOfTheKnight.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CardData/Strike.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks/Strike.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CardData/Strike.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/P_PawnCards/Attacks/Strike.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mike/Scripts/Grid/GridCell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mike/Scripts/Grid/GridCell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,21 +75,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2odPvSzGYv3ogQwZa8iWQqOZiRi" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging feature/CardMechanics",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging feature/CardMechanics&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
