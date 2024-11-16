@@ -130,7 +130,12 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 			{
 				TryMoveCardPlay(ray, moveCard);
 			}
+			else if (cardData is SupportCard supportCard)
+			{
+				TrySupportCardPlay(ray, supportCard);
+			}
 
+			GameManager.Instance.playingCard = false;
 			TransitionToState0();
 		}
 	}
@@ -154,8 +159,8 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
 			handManager.cardsInHand.Remove(gameObject);
 			handManager.UpdateHandVisuals();
-			Debug.Log("played spell");
 			handManager.ClearHand();
+			handManager.cardsInHand.Clear();
 			Destroy(gameObject);
 		}
 	}
@@ -167,22 +172,49 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
 		if (hit.collider != null && hit.collider.GetComponent<PlayerUnit>())
 		{
-			Debug.Log("MoveCard Hit");
-			GameObject movableUnit = hit.collider.gameObject;
+			if (!GameManager.Instance.playingMove)
+			{
+				GameManager.Instance.playingMove = true;
+			}
+
 			PlayerUnit unit = hit.collider.GetComponent<PlayerUnit>();
 			GridCell cell = hit2.collider.GetComponent<GridCell>();
-
-			gridManager.moveableObject = movableUnit;
-			//gridManager.MoveObjectOnGrid(cell.gridIndex, moveCard);
+			battleManager.MoveCardEffect(moveCard, unit.gameObject, cell.gridIndex);
+		
 			handManager.cardsInHand.Remove(gameObject);
 			handManager.UpdateHandVisuals();
-			Debug.Log("played Move");
 			handManager.ClearHand();
+			handManager.cardsInHand.Clear();
 			Destroy(gameObject);
 		}
 	}
 
-	private bool checkRange(RaycastHit2D hit, AttackCard card)
+	private void TrySupportCardPlay(Ray ray, SupportCard supportCard)
+	{
+		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
+
+		if (hit.collider != null && hit.collider.GetComponent<PlayerUnit>())
+		{
+			if (!GameManager.Instance.playingMove)
+			{
+				GameManager.Instance.playingMove = true;
+			}
+
+			//PUT BATTLE FUNCTION HERE RIZZ!!!
+			if (checkRange(hit, supportCard) == true)
+			{
+				battleManager.SupportCardEffect(supportCard, hit.collider.gameObject);
+			}
+
+			handManager.cardsInHand.Remove(gameObject);
+			handManager.UpdateHandVisuals();
+			handManager.ClearHand();
+			handManager.cardsInHand.Clear();
+			Destroy(gameObject);
+		}
+	}
+
+	private bool checkRange(RaycastHit2D hit, Card card)
 	{
 		float unitDistance = Vector2.Distance(unitPlaying.transform.position, hit.collider.gameObject.transform.position);
 
@@ -196,9 +228,27 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 			unitDistance = Mathf.Floor(unitDistance);
 		}
 
-		if (unitDistance <= card.range)
+		if (card is AttackCard attackCard)
 		{
-			return true;
+			if (unitDistance <= attackCard.range)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else if(card is SupportCard supportCard)
+		{
+			if (unitDistance <= supportCard.range)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{

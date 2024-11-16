@@ -128,9 +128,12 @@ public class GridManager : MonoBehaviour
 
 		foreach (Vector2 moveCell in moveCells)
 		{
-			GameObject moveableCell = SearchGrid(moveCell);
-			moveableCell.GetComponent<GridCell>().HighlightMoveCell();
-			highlightedCells.Add(moveableCell);
+			//if (SearchGrid(moveCell).GetComponent<GridCell>().cellOccupied == false)
+			//{
+				GameObject moveableCell = SearchGrid(moveCell);
+				moveableCell.GetComponent<GridCell>().HighlightMoveCell();
+				highlightedCells.Add(moveableCell);
+			//}
 		}
 		moveSelect(highlightedCells);
 	}
@@ -291,7 +294,7 @@ public class GridManager : MonoBehaviour
 		{
 			return true;
 		}
-		else 
+		else
 			return false;
 	}
 

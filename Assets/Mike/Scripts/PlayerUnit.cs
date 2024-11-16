@@ -11,7 +11,6 @@ public class PlayerUnit : MonoBehaviour
 	public int moveDistance = 2;
 	private GridManager gridManager;
 	private DrawManager drawManager;
-	private HandManager handManager;
 
 	public bool discoverReady = true;
 	public bool moveReady = true;
@@ -26,26 +25,19 @@ public class PlayerUnit : MonoBehaviour
 	void Awake()
 	{
 		gridManager = FindObjectOfType<GridManager>();
-		handManager = FindObjectOfType<HandManager>();
 		drawManager = GetComponent<DrawManager>();
 
 	}
 	void Start()
 	{
 		//load cards from resources folder
-		Card[] cards = Resources.LoadAll<Card>(CDTypeFolderName);
-
+		List<Card> cards = GridGambitUtil.ReturnCardPool(true, CDTypeFolderName);
 		CardsInResources.AddRange(cards);
-	}
-
-	void Update()
-	{
+		drawManager.CreateUnitDeck(CardsInResources);
 	}
 
 	public void DiscoverSetup()
 	{
-		handManager.MaxHandSizeSetup(3);
-		drawManager.CreateUnitDeck(CardsInResources);
 		drawManager.FirstHandSetup(3);
 		discoverReady = false;
 	}

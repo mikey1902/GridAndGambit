@@ -316,6 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 683364828}
   - component: {fileID: 683364827}
+  - component: {fileID: 683364829}
   m_Layer: 0
   m_Name: MoveManager
   m_TagString: Untagged
@@ -350,6 +351,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &683364829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683364826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d4cdc24bd31cf4cab17bd43ef417b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1022357355 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3082241185294421009, guid: ca5efa52fe21baf47b4b029d4167a859, type: 3}
@@ -680,7 +693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6902010225711152701, guid: b321c490923466c4db21a7e15931c135, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6902010225711152701, guid: b321c490923466c4db21a7e15931c135, type: 3}
       propertyPath: m_LocalPosition.z

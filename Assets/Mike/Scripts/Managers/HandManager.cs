@@ -11,7 +11,7 @@ public class HandManager : MonoBehaviour
 
 	public float verticalCardSpace = 0f;
 	public float horizontalCardSpace = 300f;
-	public int maxHandSize;
+	public int maxHandSize = 3;
 
 	void Start()
 	{
@@ -32,10 +32,6 @@ public class HandManager : MonoBehaviour
 		}
 
 		UpdateHandVisuals();
-	}
-	public void MaxHandSizeSetup(int setMaxHandSize)
-	{
-		maxHandSize = setMaxHandSize;
 	}
 
 	public void UpdateHandVisuals()

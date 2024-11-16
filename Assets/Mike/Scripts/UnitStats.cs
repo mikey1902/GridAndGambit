@@ -6,8 +6,14 @@ public class UnitStats : MonoBehaviour
 {
     public bool isDestroyed = false;
     public int health;
+    private int startHealth;
 
-    public void TakeDamage(int damage)
+	private void Awake()
+	{
+        startHealth = health;
+    }
+
+	public void TakeDamage(int damage)
 	{
         health -= damage;
 
@@ -16,6 +22,15 @@ public class UnitStats : MonoBehaviour
             DestroyUnit();
         }
 	}
+    public void Heal(int healAmount)
+    {
+        health += healAmount;
+
+        if (health >= startHealth)
+        {
+            health = startHealth;
+        }
+    }
 
     public void DestroyUnit()
     {
