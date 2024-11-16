@@ -7,17 +7,20 @@ using JetBrains.Annotations;
 
 public class EnemyContainer : MonoBehaviour
 {
-    public bool isPlayingCard = false;
-    public Card[] discoverChoices;
+    public bool isPlayingCard;
+    public bool moveReady;
+    public GridManager gridManager;
+    public List<Card> discoverChoices;
     public Card CardToPlay;
     public Card discoverCard;
-    public Card[] CardInfos;
     public Transform Target;
+    public MoveManager moveManager;
+    public int MoveAmount;
     private void Awake()
     { 
-        discoverChoices = new Card[3];
-        CardInfos = new Card[3];
-        
+        discoverChoices = new List<Card>();
+        gridManager = FindObjectOfType<GridManager>();
+        moveManager = FindObjectOfType<MoveManager>();
     }
 
 }

@@ -13,9 +13,12 @@ public class TaskDiscover : BTNode
    private List<Card> currentPool;
     private EnemyContainer _enemyContainer;
 
+    
+        //WAIT FOR ANIMATIONS FIRST
+    /*
     private float waitTime;
     private bool waitForPreviousNode = false;
-   
+   */
    
    
    public TaskDiscover(EnemyContainer enemyContainer, params string[] discoverStr)
@@ -34,13 +37,13 @@ public class TaskDiscover : BTNode
        }*/
      /*  else
        {*/
-           if (!_enemyContainer.discoverChoices[0])
+           if (_enemyContainer.discoverChoices.Count < 1)
            {
                for (int j = 0; j < 3; j++)
                {
-                   _enemyContainer.discoverChoices[j] = currentPool.ElementAt(Random.Range(0, currentPool.Count - 1));
+                   _enemyContainer.discoverChoices.Add( currentPool.ElementAt(Random.Range(0, currentPool.Count - 1)));
                }    
-                        
+                            
            }
 
            state = NodeState.SUCCESS;

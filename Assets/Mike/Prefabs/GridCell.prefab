@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3683020845643642066}
   - component: {fileID: 6874005284786522038}
   - component: {fileID: 8008666872904851528}
-  - component: {fileID: -2567882919677406977}
   - component: {fileID: 4454064899892195912}
+  - component: {fileID: 468631218711378569}
   m_Layer: 6
   m_Name: GridCell
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 1543989368109199698}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6874005284786522038
 SpriteRenderer:
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -131,27 +131,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &-2567882919677406977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4184581097308111931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5575ee308dc08d641a884711abc20b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allGridable: []
-  units:
-    serializedVersion: 2
-    m_Bits: 0
-  dist: 0.5
-  nearest: {fileID: 0}
-  gridIndex: {x: 0, y: 0}
 --- !u!114 &4454064899892195912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,12 +147,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectInCell: {fileID: 0}
   cellOccupied: 0
+  cellMoveHighlighted: 0
+  hoveringCell: 0
   gridIndex: {x: 0, y: 0}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   highlightColor: {r: 0.28261834, g: 0.8207547, b: 0.8207547, a: 1}
   occupiedColor: {r: 0.9056604, g: 0.85535157, b: 0.2947668, a: 1}
   placeableColor: {r: 0.18623178, g: 0.8773585, b: 0.18623178, a: 1}
   notPlaceableColor: {r: 0.9339623, g: 0.2863564, b: 0.2863564, a: 1}
+  MoveableColor: {r: 1, g: 0, b: 1, a: 1}
+--- !u!50 &468631218711378569
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184581097308111931}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!1 &8985948186797279956
 GameObject:
   m_ObjectHideFlags: 0

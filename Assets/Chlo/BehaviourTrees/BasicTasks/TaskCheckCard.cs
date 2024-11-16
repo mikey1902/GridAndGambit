@@ -7,7 +7,6 @@ using GridGambitProd;
 using BehaviourTree;
 using Vector2 = System.Numerics.Vector2;
 
-
 public class TaskCheckCard : BTNode
 {
 
@@ -18,7 +17,8 @@ public class TaskCheckCard : BTNode
     public float waitCounter = 0f;
     private float _waitTime;
     private bool waitingForPreviousNode = false;
-    public Card[] cds;
+    public List<Card> cds;
+    public List<Card> orderedCards;
 
     public TaskCheckCard(Transform unit, EnemyContainer enemyContainer, float waitTime, bool greed)
     {
@@ -28,7 +28,7 @@ public class TaskCheckCard : BTNode
         _enemyContainer = enemyContainer;
         _transform = unit;
         _waitTime = waitTime;
-        cds = enemyContainer.CardInfos;
+        cds =  enemyContainer.discoverChoices;
         _greed = greed;
     }
 
@@ -44,8 +44,7 @@ public class TaskCheckCard : BTNode
         }
         else if(!waitingForPreviousNode && _greed == false)
         {
-            
-                for (var i = 0; i < _enemyContainer.discoverChoices.Length; i++)
+                for (var i = 0; i < _enemyContainer.discoverChoices.Count-1; i++)
                 {
                     cds[i] = _enemyContainer.discoverChoices[i];
                     switch (cds[i].cardType)
@@ -54,14 +53,15 @@ public class TaskCheckCard : BTNode
                             Debug.Log("attack");
 
                             AttackCard atkC = (AttackCard)cds[i];
-                            cds[i].cardScore = atkC.damage;
+                            cds[i].cardScore = (float)atkC.damage*2 + (float)atkC.range;
                             //cds[i].Typing = 0;
+                            
                             break;
                         case Card.CardType.Support:
                             Debug.Log("support");
 
                             SupportCard supC = (SupportCard)cds[i];
-                            cds[i].cardScore = (supC.supportAmount + supC.range);
+                            cds[i].cardScore =  (supC.supportAmount + (supC.range));
                             //cds[i].Typing = 1;
 
                             break;
@@ -78,11 +78,8 @@ public class TaskCheckCard : BTNode
                             break;
                     }
                 }
-
-                //_enemyContainer.Target = GameObject.Find("FriendlyUnit").transform;
-                _enemyContainer.CardToPlay = cds[0];
-                //Debug.Log("the cards name " + _enemyContainer.CardToPlay.cardType);
-                _enemyContainer.discoverCard =_enemyContainer.CardToPlay;
+                _enemyContainer.discoverChoices = _enemyContainer.discoverChoices.OrderByDescending(item => item.cardScore).ToList();
+                _enemyContainer.discoverCard = _enemyContainer.discoverChoices.First();
                 state = NodeState.SUCCESS;
                 return state;
             }

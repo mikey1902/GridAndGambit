@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Enforce
   cardType: 2
+  imageType: 0
   cardSprite: {fileID: 739342557, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   cardText: Gain +1 Damage for 2 turns
   hasExtraEffect: 1
+  cardScore: 1
+  canPlayOnSelf: 0
   supportAmount: 1
   supportType: 0
   range: 0

@@ -17,9 +17,9 @@ public class PlayerUnit : MonoBehaviour
 
 	public enum UnitMoveType
 	{
-		Orthogonal,
-		Diagonal,
-		LShape,
+		Orthogonal =0,
+		Diagonal =1,
+		LShape=2,
 	}
 
 	void Awake()

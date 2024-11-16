@@ -5,7 +5,8 @@ using UnityEngine;
 using GridGambitProd;
 
 using BehaviourTree;
-using Vector2 = System.Numerics.Vector2;
+using JetBrains.Annotations;
+using Vector2 = UnityEngine.Vector2;
 
 
 public class TaskPlayCard : BTNode
@@ -19,16 +20,14 @@ public class TaskPlayCard : BTNode
 	private Transform _target;
 	private Card selectedCard;
 	private int reps;
-
+	private Transform targ;
 	public Transform _transform;
 	private bool waitingForPreviousNode;
-	public HandManager handManager;
 
-	public TaskPlayCard(Transform target, Transform unit, Card selectCard, EnemyContainer enemyContainer, float waitTime)
+	public TaskPlayCard([CanBeNull] Transform target, Transform unit, EnemyContainer enemyContainer, float waitTime)
 	{
 		//  selectedCards = unit.gameObject.GetComponent<EnemyContainer>().discoverChoices;
 		_enemyContainer = enemyContainer;
-		ChosenCard = selectCard;
 		waitCounter = 0f;
 		_waitTime = waitTime;
 		_transform = unit;
@@ -49,33 +48,51 @@ public class TaskPlayCard : BTNode
 		}
 		else
 		{
-			ChosenCard = _enemyContainer.CardToPlay;
-			handManager = GridGambitUtil.GetHandManager();
+			List<Card> ourLs = _enemyContainer.discoverChoices;
 
-			//    _transform.gameObject.SetActive(false);
+			foreach (Card c in ourLs)
+			{
+				//int field;
+				bool canBePlayed = false;
+				if (c is AttackCard attackCard)
+				{
+					targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, false).First()
+						.transform;
+					if (attackCard.range > Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position)- _enemyContainer.MoveAmount)
+						canBePlayed = true;
+				}
+				else if (c is SupportCard supportCard)
+				{
+					if (!supportCard.canPlayOnSelf)
+					{
+						targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, true).ElementAt(1).transform;
+						float dst = Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position) -
+						            _enemyContainer.MoveAmount;
+						if (supportCard.range > dst)
+						{
+							canBePlayed = true;
+						}
+					}
+					else if (supportCard.canPlayOnSelf)
+					{
+						targ = _enemyContainer.gameObject.transform;
+						canBePlayed = true;
+					}
+				}
 
-			///    Debug.Log(ChosenCard.Typing);
-			if (ChosenCard is AttackCard attackCard)
-			{
-				Debug.Log(attackCard.damage);
-				_target.gameObject.GetComponent<simpleSetup>().HP -= attackCard.damage;
-			}
-			else if (ChosenCard is SupportCard supportCard)
-			{
-				Debug.Log(supportCard.supportAmount);
-				_target.gameObject.GetComponent<simpleSetup>().HP += supportCard.supportAmount;
-			}
-			// Debug.Log(stc.supportAmount); 
-			else
-			{
-				//Debug.Log(ChosenCard.cardName);
+				if (canBePlayed)
+				{
+					_enemyContainer.discoverCard = c;
+					Debug.Log(c.name);
+					break;
+				}
 			}
 
-			/*  case 2: //Move
-				//  trg.HP -= mtc.damage; 
-				  MoveCard mtc = (MoveCard)ChosenCard.smpCard; 
-				  Debug.Log(mtc.moveDistance); 
-				  break;*/
+
+			_enemyContainer.Target = targ;
+			
+			
+		
 			state = NodeState.SUCCESS;
 			return state;
 		}
