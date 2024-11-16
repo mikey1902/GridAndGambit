@@ -74,7 +74,6 @@ public TaskMove(EnemyContainer enemyContainer, int distance, GridManager gridMan
                     moveOb mv = new moveOb();
                     mv.Score = Vector2.Distance(_target.position, cell.transform.position);
                     mv.Cell = cell;
-                    Debug.Log(cell.GetComponent<GridCell>().GridIndex + " " + mv.Score);
                     if (!cell.GetComponent<GridCell>().cellOccupied) pathLis.Add(mv);
                 }
                 //Order by the best path - via Distance To Target
