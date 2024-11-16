@@ -28,12 +28,10 @@ public class ToySoldierBTree : BTree
             new TaskDiscover(container, relatedCardPools),
             new Selector(new List<BTNode>{
          // new TaskCheckCard(transform, container, 5f),
-           new Sequence(new List<BTNode>
+            new Sequence(new List<BTNode>
            { 
                new TaskCheckCard(transform, container, 2f, false),
-               
            }),
-//new TaskTryMove(transform, container.CardToPlay, container, 2f),
             new Sequence(new List<BTNode>
             {
                 //Code for Moving closer to Target
@@ -45,7 +43,7 @@ public class ToySoldierBTree : BTree
              }),
             new TaskPlayCard( container.Target, transform, container, 3f),
             new TaskMove(container, 3, gridManager, container.Target, 5f),
-            new TaskRealPlay(container),
+            new TaskRealPlay(container, 2f),
             
             
             

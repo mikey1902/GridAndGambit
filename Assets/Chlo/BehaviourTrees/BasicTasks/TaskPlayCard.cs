@@ -65,13 +65,17 @@ public class TaskPlayCard : BTNode
 				{
 					if (!supportCard.canPlayOnSelf)
 					{
-						targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, true)
-							.ElementAt(1).transform;
-						float dst = Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position) - _enemyContainer.MoveAmount;
-						canBePlayed = true;
+						targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, true).ElementAt(1).transform;
+						float dst = Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position) -
+						            _enemyContainer.MoveAmount;
+						if (supportCard.range > dst)
+						{
+							canBePlayed = true;
+						}
 					}
 					else if (supportCard.canPlayOnSelf)
 					{
+						targ = _enemyContainer.gameObject.transform;
 						canBePlayed = true;
 					}
 				}
@@ -82,7 +86,6 @@ public class TaskPlayCard : BTNode
 					Debug.Log(c.name);
 					break;
 				}
-				
 			}
 
 

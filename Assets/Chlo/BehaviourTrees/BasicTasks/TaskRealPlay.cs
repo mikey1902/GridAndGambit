@@ -23,11 +23,12 @@ public class TaskRealPlay : BTNode
    */
    
    
-    public TaskRealPlay(EnemyContainer container)
+    public TaskRealPlay(EnemyContainer container, float waitTime)
     {
         _card  = container.CardToPlay;
         _target = container.Target; 
         waitForPreviousNode = true;
+        _waitTime = waitTime;
     }
 
     public override NodeState Evaluate()

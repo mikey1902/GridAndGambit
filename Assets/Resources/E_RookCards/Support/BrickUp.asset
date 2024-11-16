@@ -19,6 +19,7 @@ MonoBehaviour:
   cardText: Gain 5 Armor for 3 turns
   hasExtraEffect: 1
   cardScore: 0
+  canPlayOnSelf: 1
   supportAmount: 5
   supportType: 0
   range: 0
