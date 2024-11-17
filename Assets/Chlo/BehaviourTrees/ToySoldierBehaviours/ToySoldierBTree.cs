@@ -42,8 +42,8 @@ public class ToySoldierBTree : BTree
             }),
              }),
             new TaskPlayCard( container.Target, transform, container, 3f),
-            new TaskMove(container, 3, gridManager, container.Target, 3f),
             new TaskRealPlay(container.battleManager, container, 3f),
+            new TaskMove(container, 3, gridManager, container.Target, 3f),
         });
              
         return root;

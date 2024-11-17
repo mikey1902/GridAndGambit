@@ -15,22 +15,21 @@ public class TaskRealPlay : BTNode
     private bool waitForPreviousNode;
     private float waitCounter;
     private BattleManager _battleManager;
-    private float _waitTime = 2f;
+    private float _waitTime;
     private EnemyContainer _container;
+
     private ToySoldierBTree _ts;
     //WAIT FOR ANIMATIONS FIRST
     /*
     private float waitTime;
     private bool waitForPreviousNode = false;
    */
-   
-   
+
+
     public TaskRealPlay(BattleManager battleManager, EnemyContainer container, float waitTime)
     {
         waitCounter = 0f;
         _container = container;
-        _card  = container.CardToPlay;
-        _target = container.Target; 
         waitForPreviousNode = true;
         _waitTime = waitTime;
         _battleManager = battleManager;
@@ -40,23 +39,24 @@ public class TaskRealPlay : BTNode
 
     public override NodeState Evaluate()
     {
-       /* if (waitForPreviousNode)
+        if (waitForPreviousNode)
         {
             Debug.Log(waitCounter);
             waitCounter += Time.deltaTime;
-            if (waitCounter >= _waitTime) {waitForPreviousNode = false;}
-                  
-        }else {*/
-            //BODY - TALK TO MIKE
-            if (_card != null)
-            {
+            if (waitCounter > _waitTime)
+                waitForPreviousNode = false;
+        }
+        else if (waitForPreviousNode == false)
+        {
+            _card = _container.discoverCard;
+            Debug.Log(_container.Target);
                 switch (_card.cardType)
                 {
                     case Card.CardType.Attack:
-                        _battleManager.AttackCardEffect(_card as AttackCard, _target.gameObject);
+                        _battleManager.AttackCardEffect(_card as AttackCard, _container.Target.gameObject);
                         break;
                     case Card.CardType.Support:
-                        _battleManager.SupportCardEffect(_card as SupportCard, _target.gameObject);
+                        _battleManager.SupportCardEffect(_card as SupportCard, _container.Target.gameObject);
                         break;
                     //case Card.CardType.Move:
                     //   _battleManager.MoveCardEffect(_card as MoveCard, _target.gameObject);
@@ -74,9 +74,13 @@ public class TaskRealPlay : BTNode
                     state = NodeState.SUCCESS;
                     return state;
                 }
-            }
+            
 
-            state = NodeState.FAILURE;
-        return state; 
+
+        }
+
+        state = NodeState.FAILURE;
+        return state;
+
     }
-    }
+}

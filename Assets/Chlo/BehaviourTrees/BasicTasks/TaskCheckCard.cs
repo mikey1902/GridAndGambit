@@ -81,7 +81,8 @@ public class TaskCheckCard : BTNode
                 _enemyContainer.discoverCard = _enemyContainer.discoverChoices.First();
                 state = NodeState.SUCCESS;
                 return state;
-            }
+        }
+        
         //Debug.Log("greed switch is real");
         state = NodeState.FAILURE;
         return state;
