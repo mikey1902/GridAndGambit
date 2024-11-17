@@ -85,21 +85,21 @@ public class TaskPlayCard : BTNode
 				if (canBePlayed)
 				{
 					_enemyContainer.discoverCard = c;
-					Debug.Log(c.name);
-					break;
+					_enemyContainer.Target = targ;
+					state = NodeState.SUCCESS;
+					return state;
 				}
-				state = NodeState.FAILURE;
-				return state;
-				
 			}
-			_enemyContainer.Target = targ;
+			
 			
 					
-			state = NodeState.SUCCESS;
-			return state;
+		
 		}
-		state = NodeState.RUNNING;
-		return state;
-	}
+		
+	state = NodeState.FAILURE;
+	return state;
 }
+}
+	
+
 
