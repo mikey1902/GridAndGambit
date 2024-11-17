@@ -35,12 +35,12 @@ namespace GridGambitProd
             Knight
         }
     }
-   
-    
-    
+
+
+
     public class GridGambitUtil : MonoBehaviour
     {
-        
+
         /// <summary>
         /// MIKE USE THIS METHOD!! it'll save ur life someday
         ///
@@ -54,32 +54,46 @@ namespace GridGambitProd
             var rnd = new Rand();
             List<Card> currentPool = new List<Card>();
             Debug.Log(poolNames.Length);
-            if (poolNames.Length > 1) {
-                foreach (string item in poolNames) {
+            if (poolNames.Length > 1)
+            {
+                foreach (string item in poolNames)
+                {
                     currentPool = Enumerable.Concat(currentPool, Resources.LoadAll<Card>(item)).ToList();
                     Debug.Log(item);
                 }
-            } else {
+            }
+            else
+            {
                 currentPool = Resources.LoadAll<Card>(poolNames[0]).ToList();
             }
+
             if (doesShuffle) return currentPool.OrderBy(item => rnd.Next()).ToList();
             return currentPool;
         }
-        
-        [ItemCanBeNull]
+
         public static List<GameObject> FindNearestTarget(Transform self, bool friendly)
         {
-         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Unit");
-         IEnumerable<GameObject> nearestUnfriendly = from item in allObjects where item.name != "baddie" select item;
-         IEnumerable<GameObject> nearestFriends = from item in allObjects where item.name == "baddie" select item;
-         if (friendly)
-         {
-             return nearestFriends.ToList().OrderBy(item => Vector2.Distance(item.transform.position, self.position))
-                 .ToList();
-         }
-         return nearestUnfriendly.ToList().OrderBy(item => Vector2.Distance(item.transform.position, self.position)).ToList();
+            GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Unit");
+            IEnumerable<GameObject> nearestUnfriendly =
+                from item in allObjects where item.name != "baddie" select item;
+            IEnumerable<GameObject> nearestFriends =
+                from item in allObjects where item.name == "baddie" select item;
+            if (friendly && nearestFriends.ToList().Count > 0)
+            {
+                return nearestFriends.ToList().OrderBy(item => Vector2.Distance(item.transform.position, self.position))
+                    .ToList();
+            }else if (!friendly && nearestUnfriendly.ToList().Count > 0){
+                return nearestUnfriendly.ToList()
+                    .OrderBy(item => Vector2.Distance(item.transform.position, self.position)).ToList(); 
+            }
+            else
+            {
+                return new List<GameObject>();
+            }
         }
-       public static string[] ReturnModifiedDirectoryArr(string[] items, string directoryModification)
+        
+        
+    public static string[] ReturnModifiedDirectoryArr(string[] items, string directoryModification)
         {
             for (var i = 0; i < items.Length; i++)
             {
@@ -88,8 +102,8 @@ namespace GridGambitProd
             return items;
         }
         //Concatinates all the pools()
-       
-        
+
+
         public static HandManager GetHandManager()
 		{
             HandManager handManager;

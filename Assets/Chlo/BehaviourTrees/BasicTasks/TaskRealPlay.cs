@@ -49,6 +49,9 @@ public class TaskRealPlay : BTNode
                         case Card.CardType.Support:
                             _battleManager.SupportCardEffect(_card as SupportCard, _target.gameObject);
                             break;
+                        //case Card.CardType.Move:
+                         //   _battleManager.MoveCardEffect(_card as MoveCard, _target.gameObject);
+                          //  break;
                         default:
                             Debug.Log("wth boi, what u doin - Not implemented yet");
                             break;
