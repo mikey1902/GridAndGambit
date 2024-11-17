@@ -37,7 +37,6 @@ public class TaskCheckCard : BTNode
     {
         if (waitingForPreviousNode)
         {
-      
             waitCounter += Time.deltaTime;
             if (waitCounter > _waitTime)
                 waitingForPreviousNode = false;
