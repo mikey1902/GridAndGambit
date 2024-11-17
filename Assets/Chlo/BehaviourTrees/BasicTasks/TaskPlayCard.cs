@@ -17,6 +17,7 @@ public class TaskPlayCard : BTNode
 	public float waitCounter;
 	private float _waitTime;
 
+	private bool canBePlayed;
 	private Transform _target;
 	private Card selectedCard;
 	private int reps;
@@ -53,7 +54,7 @@ public class TaskPlayCard : BTNode
 			foreach (Card c in ourLs)
 			{
 				//int field;
-				bool canBePlayed = false;
+				 canBePlayed = false;
 				if (c is AttackCard attackCard)
 				{
 					targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, false).First()
@@ -66,6 +67,7 @@ public class TaskPlayCard : BTNode
 					if (!supportCard.canPlayOnSelf)
 					{
 						targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, true).ElementAt(1).transform;
+						
 						float dst = Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position) -
 						            _enemyContainer.MoveAmount;
 						if (supportCard.range > dst)
@@ -86,13 +88,13 @@ public class TaskPlayCard : BTNode
 					Debug.Log(c.name);
 					break;
 				}
+				state = NodeState.FAILURE;
+				return state;
+				
 			}
-
-
 			_enemyContainer.Target = targ;
 			
-			
-		
+					
 			state = NodeState.SUCCESS;
 			return state;
 		}
