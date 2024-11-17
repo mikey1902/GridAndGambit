@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public enum GameState
@@ -37,6 +36,7 @@ public class GameManager : MonoBehaviour
 	public bool playingCard = false;
 	public bool playingMove = false;
 	public PlayerUnit[] playerPieces;
+	public ToySoldierBTree[] enemyPieces;
 
 	private void Awake()
 	{
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		playerPieces = FindObjectsOfType<PlayerUnit>();
+		enemyPieces = FindObjectsOfType<ToySoldierBTree>();
 	}
 
 	private void InitializeManagers()
@@ -93,6 +94,11 @@ public class GameManager : MonoBehaviour
 		playerState = PlayerState.Move;
 		stateText.text = gameState.ToString();
 		playerStateText.text = playerState.ToString();
+
+		foreach(ToySoldierBTree enemy in enemyPieces)
+		{
+			enemy.enabled = false;
+		}
 		SetupCombat();
 	}
 
@@ -114,12 +120,21 @@ public class GameManager : MonoBehaviour
 			unit.moveReady = true;
 			unit.discoverReady = true;
 		}
+		foreach (ToySoldierBTree enemy in enemyPieces)
+		{
+			enemy.enabled = false;
+		}
 	}
 
 	public void EndPlayerTurn()
 	{
 		gameState = GameState.ENEMY;
 		stateText.text = gameState.ToString();
+
+		foreach (ToySoldierBTree enemy in enemyPieces)
+		{
+			enemy.enabled = true;
+		}
 	}
 
 	public void SwitchToMove()

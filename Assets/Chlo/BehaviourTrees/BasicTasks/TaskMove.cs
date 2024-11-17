@@ -23,6 +23,7 @@ public class TaskMove : BTNode
     private Transform _target;
     private float _waitTime;
     private float waitCounter;
+    private PlayerUnit.UnitMoveType _moveType;
     private bool notHadTurn;
     class moveOb
     {
@@ -66,8 +67,8 @@ public TaskMove(EnemyContainer enemyContainer, int distance, GridManager gridMan
                 _gridManager.moveableObject = _enemyContainer.gameObject;
 
                 _target = _enemyContainer.Target;
-                MoveSetup(_gridManager, localPos, _enemyContainer.MoveAmount,
-                    PlayerUnit.UnitMoveType.LShape);
+                MoveSetup(_gridManager, localPos, _enemyContainer.MoveAmount-1,
+                    _moveType);
                 //Figure Out Path
                 foreach (GameObject cell in _gridManager.highlightedCells)
                 {
@@ -78,19 +79,22 @@ public TaskMove(EnemyContainer enemyContainer, int distance, GridManager gridMan
                 }
                 //Order by the best path - via Distance To Target
                 pathLis = pathLis.OrderBy(item => item.Score).ToList();
+                
+                
                 _gridManager.moveChosen(pathLis.First().Cell.gameObject.GetComponent<GridCell>().GridIndex);
                 
                 
                 _gridManager.moveChose = true;
                 waitingForMove = _gridManager.movingUnit;
                 //Complete Turn
-                notHadTurn = false;
-                state = NodeState.SUCCESS;
-                return state;
+                
             }
-
+                            notHadTurn = false;
+                             state = NodeState.SUCCESS;
+                             return state;
         }
 
+        
         state = NodeState.FAILURE;
         return state;
     }

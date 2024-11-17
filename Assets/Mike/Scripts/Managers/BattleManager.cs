@@ -7,7 +7,6 @@ public class BattleManager : MonoBehaviour
 {
 	private GridManager gridManager;
 	private HandManager handManager;
-
 	void Awake()
 	{
 		gridManager = FindObjectOfType<GridManager>();

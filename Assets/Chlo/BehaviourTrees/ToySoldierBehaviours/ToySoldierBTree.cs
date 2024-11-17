@@ -40,10 +40,11 @@ public class ToySoldierBTree : BTree
                 //- READS DISCOVER LIST AND ATTEMPTS TO PLAY EACH LOOKING FROM FIRST DECENDING
                 //IF NONE CURRENTLY PLAYABLE, RETURNS FAILURE, WHICH MOVES TO NEXT SEQUENCE
             }),
-             }),
+             }), 
             new TaskPlayCard( container.Target, transform, container, 3f),
             new TaskRealPlay(container.battleManager, container, 3f),
             new TaskMove(container, 3, gridManager, container.Target, 3f),
+
         });
              
         return root;

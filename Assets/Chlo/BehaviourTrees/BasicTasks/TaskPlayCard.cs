@@ -41,7 +41,6 @@ public class TaskPlayCard : BTNode
 	{
 		if (waitingForPreviousNode)
 		{
-
 			//code for delay goes here
 			waitCounter += Time.deltaTime;
 			if (waitCounter >= _waitTime)
@@ -67,21 +66,17 @@ public class TaskPlayCard : BTNode
 					if (!supportCard.canPlayOnSelf)
 					{
 						targ = GridGambitUtil.FindNearestTarget(_enemyContainer.gameObject.transform, true).ElementAt(1).transform;
-						
 						float dst = Vector2.Distance(targ.position, _enemyContainer.gameObject.transform.position) -
 						            _enemyContainer.MoveAmount;
 						if (supportCard.range > dst)
 						{
 							canBePlayed = true;
 						}
-					}
-					else if (supportCard.canPlayOnSelf)
-					{
+					}else if (supportCard.canPlayOnSelf) {
 						targ = _enemyContainer.gameObject.transform;
 						canBePlayed = true;
 					}
 				}
-
 				if (canBePlayed)
 				{
 					_enemyContainer.discoverCard = c;
@@ -90,14 +85,9 @@ public class TaskPlayCard : BTNode
 					return state;
 				}
 			}
-			
-			
-					
-		
 		}
-		
-	state = NodeState.FAILURE;
-	return state;
+		state = NodeState.FAILURE;
+		return state;
 }
 }
 	

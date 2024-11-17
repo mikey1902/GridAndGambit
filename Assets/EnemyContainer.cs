@@ -18,6 +18,7 @@ public class EnemyContainer : MonoBehaviour
     public bool iveHadMyTurn;
     public MoveManager moveManager;
     public int MoveAmount;
+    public PlayerUnit.UnitMoveType moveType;
     private void Awake()
     { 
         discoverChoices = new List<Card>();

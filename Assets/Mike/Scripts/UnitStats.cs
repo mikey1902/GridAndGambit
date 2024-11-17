@@ -1,23 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UnitStats : MonoBehaviour
 {
     public bool isDestroyed = false;
     public int health;
+    public TMP_Text healthText;
     private int startHealth;
+    
 
 	private void Awake()
 	{
         startHealth = health;
+        healthText.text = health.ToString();
     }
 
 	public void TakeDamage(int damage)
 	{
         health -= damage;
+        healthText.text = health.ToString();
 
-        if(health <= 0)
+        if (health <= 0)
 		{
             DestroyUnit();
         }
@@ -30,6 +35,8 @@ public class UnitStats : MonoBehaviour
         {
             health = startHealth;
         }
+
+        healthText.text = health.ToString();
     }
 
     public void DestroyUnit()
