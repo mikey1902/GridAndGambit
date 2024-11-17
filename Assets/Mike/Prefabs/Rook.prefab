@@ -302,7 +302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroyed: 0
-  health: 10
+  health: 8
+  healthText: {fileID: 4408603230814028476}
 --- !u!50 &1034347573170194083
 Rigidbody2D:
   serializedVersion: 4
