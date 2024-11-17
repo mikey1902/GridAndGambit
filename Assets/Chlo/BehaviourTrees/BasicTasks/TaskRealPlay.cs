@@ -16,6 +16,8 @@ public class TaskRealPlay : BTNode
     private float waitCounter =0f;
     private BattleManager _battleManager;
     private float _waitTime = 2f;
+    private EnemyContainer _container;
+    private ToySoldierBTree _ts;
     //WAIT FOR ANIMATIONS FIRST
     /*
     private float waitTime;
@@ -25,11 +27,15 @@ public class TaskRealPlay : BTNode
    
     public TaskRealPlay(BattleManager battleManager, EnemyContainer container, float waitTime)
     {
+        _container = container;
         _card  = container.CardToPlay;
         _target = container.Target; 
         waitForPreviousNode = true;
         _waitTime = waitTime;
         _battleManager = battleManager;
+        _container = container;
+        
+        _ts = container.gameObject.GetComponent<ToySoldierBTree>();
     }
 
     public override NodeState Evaluate()
@@ -56,15 +62,12 @@ public class TaskRealPlay : BTNode
                             Debug.Log("wth boi, what u doin - Not implemented yet");
                             break;
                     }
-       
-        
-        
-                            
-        
 
+                    _container.iveHadMyTurn = true; 
+                    _ts.enabled = false;
         state = NodeState.SUCCESS;
         return state; 
-    }
+        }
         state = NodeState.RUNNING;
         return state; 
     
