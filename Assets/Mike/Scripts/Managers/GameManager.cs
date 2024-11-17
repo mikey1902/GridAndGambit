@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 	public TMP_Text playerStateText;
 	public bool playingCard = false;
 	public bool playingMove = false;
-	public PlayerUnit[] playerPieces;
+	public List<PlayerUnit> playerPieces;
 	public ToySoldierBTree[] enemyPieces;
 
 	private void Awake()
@@ -51,7 +51,11 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		playerPieces = FindObjectsOfType<PlayerUnit>();
+		PlayerUnit[] pieces = (FindObjectsOfType<PlayerUnit>());
+		foreach(PlayerUnit unit in pieces)
+		{
+			playerPieces.Add(unit);
+		}
 		enemyPieces = FindObjectsOfType<ToySoldierBTree>();
 	}
 
@@ -123,6 +127,11 @@ public class GameManager : MonoBehaviour
 		foreach (ToySoldierBTree enemy in enemyPieces)
 		{
 			enemy.enabled = false;
+		}
+
+		if (playerPieces.Count <= 0)
+		{
+			gameState = GameState.LOST;
 		}
 	}
 

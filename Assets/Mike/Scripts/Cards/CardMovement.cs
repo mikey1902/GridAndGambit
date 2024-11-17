@@ -144,7 +144,7 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 	{
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, unitLayerMask);
 
-		if (hit.collider != null && hit.collider.GetComponent<PlayerUnit>())
+		if (hit.collider != null && hit.collider.GetComponent<UnitStats>())
 		{
 			if (!GameManager.Instance.playingMove)
 			{
@@ -155,13 +155,17 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 			if(checkRange(hit, attackCard) == true)
 			{
 				battleManager.AttackCardEffect(attackCard, hit.collider.gameObject);
-			}
 
-			handManager.cardsInHand.Remove(gameObject);
-			handManager.UpdateHandVisuals();
-			handManager.ClearHand();
-			handManager.cardsInHand.Clear();
-			Destroy(gameObject);
+				handManager.cardsInHand.Remove(gameObject);
+				handManager.UpdateHandVisuals();
+				handManager.ClearHand();
+				handManager.cardsInHand.Clear();
+				Destroy(gameObject);
+			}
+			else
+			{
+				//RESET THE CARD
+			}
 		}
 	}
 
@@ -204,13 +208,17 @@ public class CardMovement : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 			if (checkRange(hit, supportCard) == true)
 			{
 				battleManager.SupportCardEffect(supportCard, hit.collider.gameObject);
-			}
 
-			handManager.cardsInHand.Remove(gameObject);
-			handManager.UpdateHandVisuals();
-			handManager.ClearHand();
-			handManager.cardsInHand.Clear();
-			Destroy(gameObject);
+				handManager.cardsInHand.Remove(gameObject);
+				handManager.UpdateHandVisuals();
+				handManager.ClearHand();
+				handManager.cardsInHand.Clear();
+				Destroy(gameObject);
+			}
+			else
+			{
+				//RESET THE CARD
+			}
 		}
 	}
 

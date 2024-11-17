@@ -19,6 +19,7 @@ MonoBehaviour:
   cardText: Take another Move Action as a Bishop or Rook
   hasExtraEffect: 1
   cardScore: 0
+  canPlayOnSelf: 0
   damage: 0
   moveDistance: 6
-  moveType: 3
+  moveType: 0

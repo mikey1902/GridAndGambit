@@ -24,9 +24,11 @@ public class UnitStats : MonoBehaviour
 
         if (health <= 0)
 		{
+            GameManager.Instance.playerPieces.Remove(gameObject.GetComponent<PlayerUnit>());
             DestroyUnit();
         }
 	}
+
     public void Heal(int healAmount)
     {
         health += healAmount;
